@@ -1,0 +1,293 @@
+#include "EGamma/LLRSkim/plugins/SkimAllPathsFilter.h"
+
+#include "TMath.h"
+
+using namespace std;
+
+//! ctor
+SkimAllPathsFilter::SkimAllPathsFilter(const edm::ParameterSet& iConfig):
+electronCollection_               (iConfig.getParameter<edm::InputTag>("electronCollection")),
+muonCollection_                   (iConfig.getParameter<edm::InputTag>("muonCollection")),
+_mode                             (iConfig.getParameter<std::string>("mode")),
+_eleID                            (iConfig.getParameter<std::string>("eleID"))
+{
+  
+  n_init            = 0;
+  n_lepton1_skimmed = 0;
+  n_lepton2_skimmed = 0;
+  n_ele2TP_skimmed = 0;
+  n_ele2TP_skimmed_nadir = 0;
+  n_lepton3_skimmed = 0;
+  n_ml_skimmed      = 0;
+  n_ep_skimmed      = 0;
+  n_old_skimmed     = 0;
+
+  // Print Informations
+  cout << " ============================================================================= " << endl;
+  cout << " Running Skimming " << _mode << " with EleID " << _eleID << endl;
+  cout << " ============================================================================= " << endl;
+
+  // Exceptions...
+  if(_mode!="ML" && _mode!="HZZ" && _mode!="Fake" && _mode!="EP" && _mode!="TP" && _mode!="TP_nadir") 
+    throw cms::Exception("Configuration") << "Parameter 'mode' must be either 'ML','HZZ','Fake','EP', or 'TP', or 'TP_nadir' \n";
+  
+  if(_eleID!="VBTF95" && _eleID!="VBTF80")
+    throw cms::Exception("Configuration") << "Parameter 'eleID' must be either 'VBTF95','HZZ' or 'VBTF80'.\n";
+  
+
+}
+
+//! dtor
+SkimAllPathsFilter::~SkimAllPathsFilter()
+{
+  
+  cout << "" << endl;
+  cout << "======================================" << endl;
+  cout << " N initial event          = " << n_init  << endl;
+  cout << " N 1 Lepton skimmed event = " << n_lepton1_skimmed << endl;
+  cout << " N 2 Lepton skimmed event = " << n_lepton2_skimmed << endl;
+  cout << " N 2 Lepton TP skimmed event = " << n_ele2TP_skimmed << endl;
+  cout << " N 2 Lepton TP nadir-skimmed event = " << n_ele2TP_skimmed_nadir << endl;
+  cout << " N 3 Lepton skimmed event = " << n_lepton3_skimmed << endl;
+  cout << " N ML skimmed event       = " << n_ml_skimmed << endl;
+  cout << " N ep skimmed event       = " << n_ep_skimmed << endl;
+  cout << " N old skimmed event      = " << n_old_skimmed << endl;
+  cout << "" << endl;
+
+  // Efficiency
+  double eff_1lepton = 0; double eff_2lepton = 0; double eff_2eleTP =0 ; double eff_2eleTP_nadir =0 ; double eff_3lepton = 0; 
+  double eff_ml      = 0; double eff_ep      = 0; double eff_old     = 0;
+  if(n_init!=0) { 
+    eff_1lepton = double(n_lepton1_skimmed)/double(n_init);
+    eff_2lepton = double(n_lepton2_skimmed)/double(n_init);
+    eff_2eleTP = double(n_ele2TP_skimmed)/double(n_init);
+    eff_2eleTP_nadir = double(n_ele2TP_skimmed_nadir)/double(n_init);
+    eff_3lepton = double(n_lepton3_skimmed)/double(n_init);
+    eff_ml      = double(n_ml_skimmed)/double(n_init);
+    eff_ep      = double(n_ep_skimmed)/double(n_init);
+    eff_old     = double(n_old_skimmed)/double(n_init);
+  } // n init
+  
+  cout << " Eff 1 lepton skim   = " << eff_1lepton << endl;
+  cout << " Eff 2 lepton skim   = " << eff_2lepton << endl;
+  cout << " Eff 2 leptonTP skim   = " << eff_2eleTP << endl;
+  cout << " Eff 2 leptonTP nadir skim   = " << eff_2eleTP_nadir << endl;
+  cout << " Eff 3 lepton skim   = " << eff_3lepton << endl;
+  cout << " Eff ML skim         = " << eff_ml << endl;
+  cout << " Eff EP skim         = " << eff_ep << endl;
+  cout << " Eff old skim        = " << eff_old << endl;
+
+}
+
+
+bool SkimAllPathsFilter::filter(edm::Event& iEvent, const edm::EventSetup& iSetup)
+{
+  //int runId = iEvent.id().run();
+  //int lumiId = iEvent.luminosityBlock();
+  //int eventId = iEvent.id().event();
+  
+  //  bool singlePath = false;
+  //bool doublePath = false;
+  //bool triplePath = false;
+  
+  n_init++;
+       
+                    // VBTF95 EB, EE    VBTF80 EB   EE
+  double deta[4]     = {0.007,  0.01,   0.004,    0.007};
+  double dphi[4]     = {0.08,   0.07,   0.06,     0.03};
+  double sigma[4]    = {0.01,   0.03,   0.01,     0.03};
+  
+  double isotrack[4] = {0.15, 0.08,     0.09,     0.04 };
+  double isoecal[4]  = {2.,   0.06,     0.07,     0.05 };
+  double isohcal[4]  = {0.12, 0.05,     0.10,     0.025};
+
+  int icut = -1;
+
+  if(_eleID=="VBTF95")      icut = 0;
+  else if(_eleID=="VBTF80") icut = 2;
+  else cout << "Please choose VBTF95 or VBTF80 !!!" << endl; // should put an exception...
+
+  // ====================================
+  // GSF Electron	
+  // ====================================
+  edm::Handle<reco::GsfElectronCollection> EleHandle;
+  iEvent.getByLabel(electronCollection_.label(), EleHandle);
+    
+  // ------------------
+  // Electron Counters
+  // ------------------
+  int nEle_pt20  = 0; int nEleId_pt20 = 0; int nEleIdNoIso_pt20 = 0; 
+  int nEle_pt15  = 0; int nEleId_pt15 = 0;
+  int nEle_pt10  = 0; int nEleId_pt10 = 0;
+  int nEle_pt5   = 0; int nEleId_pt5  = 0;
+
+  int nEle_et20  = 0; int nEleId_et20 = 0; int nEleIdNoIso_et20 = 0; 
+  int nEle_et15  = 0; int nEleId_et15 = 0;
+  int nEle_et10  = 0; int nEleId_et10 = 0;
+  int nEle_et5   = 0; int nEleId_et5  = 0;
+
+  int nEleId_sclEt5 = 0; // for E/P skim
+
+  // ------------------
+  // loop on electrons
+  // ------------------
+  for(unsigned int eleIt = 0; eleIt < EleHandle->size(); ++eleIt)
+    {      
+      reco::GsfElectronRef eleRef(EleHandle, eleIt);
+      
+      // switch to EE values
+      if(eleRef->isEE()) icut+=1; // 
+      // Get SuperCluster Informations
+      reco::SuperClusterRef sclRef = eleRef->superCluster();
+      ///math::XYZPoint sclPos        = eleRef->superClusterPosition();
+      if (!eleRef->ecalDrivenSeed() && eleRef->trackerDrivenSeed()) sclRef = eleRef->pflowSuperCluster();
+
+      
+      
+
+      
+      ///double R  = TMath::Sqrt(sclPos.x()*sclPos.x() + sclPos.y()*sclPos.y() +sclPos.z()*sclPos.z());
+      ///double Rt = TMath::Sqrt(sclPos.x()*sclPos.x() + sclPos.y()*sclPos.y());
+      
+      ///double sclET = sclRef->energy()*(Rt/R) ;
+      double sclET = 0.;
+      
+      // Relative Isolation wrt ET
+      double relET_isotrack = eleRef->dr03TkSumPt()/sclET; 
+      double relET_isohcal  = (eleRef->dr03HcalDepth1TowerSumEt() + eleRef->dr03HcalDepth2TowerSumEt() )/sclET; 
+      double relET_isoecal  = eleRef->dr03EcalRecHitSumEt()/sclET;
+
+      
+      // Relative Isolation wrt PT
+      double rel_isotrack = eleRef->dr03TkSumPt()/eleRef->pt();
+      double rel_isohcal  = (eleRef->dr03HcalDepth1TowerSumEt() + eleRef->dr03HcalDepth2TowerSumEt() )/eleRef->pt();
+      double rel_isoecal  = eleRef->dr03EcalRecHitSumEt()/eleRef->pt();
+      
+
+      // Electron ID
+      bool eleIDBool    = true ;
+      bool eleIsoBool   = true;
+      bool eleIsoETBool = true;
+
+      if ( fabs(eleRef->deltaEtaSuperClusterTrackAtVtx()) > deta[icut]) eleIDBool = false;
+      if ( fabs(eleRef->deltaPhiSuperClusterTrackAtVtx()) > dphi[icut]) eleIDBool = false;
+      //if ( eleRef->hadronicOverEm() > he[icut] )    eleIDBool = false ;
+      if ( eleRef->sigmaIetaIeta()  > sigma[icut] ) eleIDBool = false ;
+      
+      if (rel_isotrack > isotrack[icut]) eleIsoBool = false;
+      if (rel_isoecal  > isoecal[icut])  eleIsoBool = false;
+      if (rel_isohcal  > isohcal[icut])  eleIsoBool = false;
+      
+      if (relET_isotrack > isotrack[icut]) eleIsoETBool = false;
+      if (relET_isoecal  > isoecal[icut])  eleIsoETBool = false;
+      if (relET_isohcal  > isohcal[icut])  eleIsoETBool = false;
+      
+      
+      // count electrons
+      if( eleRef->pt() >  5) { ++nEle_pt5;  if(eleIDBool && eleIsoBool) nEleId_pt5++;  }
+      if( eleRef->pt() > 10) { ++nEle_pt10; if(eleIDBool && eleIsoBool) nEleId_pt10++; }
+      if( eleRef->pt() > 15) { ++nEle_pt15; if(eleIDBool && eleIsoBool) nEleId_pt15++; }
+      if( eleRef->pt() > 20) {cout<<"test"<<endl; ++nEle_pt20; if(eleIDBool && eleIsoBool) nEleId_pt20++; if(eleIDBool) nEleIdNoIso_pt20++;}
+
+      if( sclET > 5)  { ++nEle_et5;  if(eleIDBool && eleIsoBool) nEleId_et5++;  }
+      if( sclET > 10) { ++nEle_et10; if(eleIDBool && eleIsoBool) nEleId_et10++; }
+      if( sclET > 15) { ++nEle_et15; if(eleIDBool && eleIsoBool) nEleId_et15++; }
+      if( sclET > 20) { ++nEle_et20; if(eleIDBool && eleIsoBool) nEleId_et20++; if(eleIDBool) nEleIdNoIso_et20++;}
+      
+      
+      if( sclET>5. && eleIDBool && eleIsoETBool) nEleId_sclEt5++;
+      if(  eleRef->pt()>5. && eleIDBool && eleIsoETBool) nEleId_sclEt5++;
+      
+    } // end loop on electrons
+
+
+  // ====================================
+  // Muons
+  // ====================================
+  edm::Handle<reco::MuonCollection> MuonHandle;
+  iEvent.getByLabel(muonCollection_, MuonHandle);
+
+  // ------------------
+  // Muons Counters
+  // ------------------
+  int nMuon_pt20 = 0;
+  int nMuon_pt15 = 0;
+  int nMuon_pt10 = 0;
+  int nMuon_pt5 = 0;
+
+  // ------------------
+  // loop on muons
+  // ------------------
+  for(unsigned int muonIt = 0; muonIt < MuonHandle->size(); ++muonIt)
+    { 	
+      edm::Ref<reco::MuonCollection> muonRef(MuonHandle,muonIt);
+		
+      //muon ID
+      bool muonIDBool = true;
+      if ( muonRef->isGlobalMuon() == 0 ) muonIDBool = false ;
+      
+      // count muons
+      if( muonRef->pt() > 5) ++nMuon_pt5;
+      if( muonRef->pt() > 10) ++nMuon_pt10;
+      if( muonRef->pt() > 15) ++nMuon_pt15;
+      if( muonRef->pt() > 20 && muonIDBool) ++nMuon_pt20;
+      
+    } // end loop on muons
+  
+  
+  // ------------------
+  // Skimming...
+  // ------------------
+  bool lepton1_skim  = false;  bool old_lepton1_skim  = false; 
+  bool lepton2_skim  = false;
+  bool ele2TP_skim = false;
+  bool ele2TP_skim_nadir = false;
+  bool lepton3_skim  = false;
+  bool fakerate_skim = false;
+  bool ep_skim       = false;
+  
+  // 1 LeptonSkim
+  if( (nEleId_pt20 + nMuon_pt20 ) > 0 )      { lepton1_skim = true; n_lepton1_skimmed++;}
+  if( (nEleIdNoIso_pt20 + nMuon_pt20 ) > 0 ) { old_lepton1_skim = true;}
+
+  // 2 LeptonSkim
+  if( ( nEle_pt15 + nMuon_pt15 ) > 0 && 
+      ( nEle_pt10 + nMuon_pt10 ) > 1 )  { lepton2_skim = true; n_lepton2_skimmed++;}
+
+  // 2 Eleskim T&P 
+  if ( ( nEle_pt10 >=2 && nEleId_pt10>=1)) { ele2TP_skim = true ; n_ele2TP_skimmed++;} 
+  // default asking in cfg.py file
+
+  // 2 Eleskim T&P custom Nadir
+     if ( (nEle_et5 >=2 && nEleId_et5>=1) ) { ele2TP_skim_nadir = true ; n_ele2TP_skimmed_nadir++;} 
+
+  // 3 LeptonSkim
+  if ( ( nEle_pt10 + nMuon_pt10 ) > 1 && 
+       ( nEle_pt5 + nMuon_pt5 ) > 2 )   { lepton3_skim = true; n_lepton3_skimmed++;}
+
+  if(lepton1_skim==true     || lepton2_skim==true || lepton3_skim==true) n_ml_skimmed++;
+  if(old_lepton1_skim==true || lepton2_skim==true || lepton3_skim==true) n_old_skimmed++;
+
+  // Fake Rate Skim
+  if ( nEle_pt10 > 0) fakerate_skim = true; 
+
+  // E/p Skim
+  if( nEleId_sclEt5 > 1) { ep_skim = true; n_ep_skimmed++;}
+
+  // Select...
+  if(_mode == "ML")   { if(old_lepton1_skim==true || lepton2_skim==true || lepton3_skim==true) return true; }
+  if(_mode == "HZZ")  { if(lepton3_skim==true)  return true; }
+  if(_mode == "Fake") { if(fakerate_skim==true) return true; }
+  if(_mode == "EP")   { if(ep_skim==true)       return true; }
+  if(_mode == "TP")   { if(ele2TP_skim==true)       return true; } // default mode in cfg.py file
+  if(_mode == "TP_nadir")   { if(ele2TP_skim_nadir==true)       return true; } // custom
+
+
+  //if ( ( nEle_pt20 + nMuon_pt20 ) > 0 )return true; 
+  //if ( ( nEle_pt15 + nMuon_pt15 ) > 0 && 
+  //( nEle_pt10 + nMuon_pt10 ) > 1 ) return true; 
+  //if ( ( nEle_pt10 + nMuon_pt10 ) > 1 && 
+  //( nEle_pt5 + nMuon_pt5 ) > 2 ) return true; 
+  
+  return false;
+}

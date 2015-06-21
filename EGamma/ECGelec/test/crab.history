@@ -1,0 +1,48 @@
+111115_153027: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -cfg crab_TestFastSim_Standard.cfg -create -submit
+111115_153232: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -kill all
+111115_153238: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_153316: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -cfg crab_TestFastSim_Standard.cfg -create -submit
+111115_153417: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_153808: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_154301: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_154653: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_155348: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_155927: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_160013: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_160102: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_160212: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_160227: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -getoutput
+111115_160621: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_160848: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_161153: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_161707: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_162447: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_162833: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_163251: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_163300: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -getoutput
+111115_163349: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_164215: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -cfg crab_TestFastSim_Standard_TPG.cfg -create -submit
+111115_215128: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim/ -status
+111115_215547: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim_TPG/ -status
+111115_221029: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim_TPG/ -getoutput
+111115_221627: /opt/exp_soft/cms/Crab/CRAB_2_7_8_patch1/python/crab.py -c /home/llr/cms/ndaci/CRABBY/TestFastSim_TPG/ -status
+140729_113144: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -create -cfg crab_test.cfg
+140729_113356: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -create -cfg crab_test.cfg
+140729_113611: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -create -cfg crab_test.cfg
+140729_113620: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -create -cfg crab_test.cfg
+140729_113632: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -create -cfg crab_test.cfg
+140729_113643: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -create -cfg crab_test.cfg
+140729_113650: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -create -cfg crab_test.cfg
+140729_113700: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -create -cfg crab_test.cfg
+140729_114033: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -create -cfg crab_test.cfg
+140729_114042: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -create -cfg crab_test.cfg
+140729_114102: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -create -cfg crab_test.cfg
+140729_114202: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -create -cfg crab_test.cfg
+140729_114226: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -create -cfg crab_test.cfg
+140729_114359: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -continue /afs/cern.ch/work/t/thennequ/private/Data/TrigPrim/
+140729_114406: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -continue /afs/cern.ch/work/t/thennequ/private/Data/TrigPrim/ -status
+140729_114417: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -continue /afs/cern.ch/work/t/thennequ/private/Data/TrigPrim/ -submit
+140729_114820: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -continue /afs/cern.ch/work/t/thennequ/private/Data/TrigPrim/ -submit 500
+140729_115139: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -continue /afs/cern.ch/work/t/thennequ/private/Data/TrigPrim/ -status
+140729_120717: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -continue /afs/cern.ch/work/t/thennequ/private/Data/TrigPrim/ -status
+140729_122559: /afs/cern.ch/cms/ccs/wm/scripts/Crab/CRAB_2_10_6/python/crab.py -continue /afs/cern.ch/work/t/thennequ/private/Data/TrigPrim/ -status

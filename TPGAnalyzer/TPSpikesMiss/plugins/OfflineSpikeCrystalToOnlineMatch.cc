@@ -1643,7 +1643,6 @@ if (do_l1extraparticles_){
 
 		   bool processL1extraParticles=true;
 		   if (do_l1EG5Cut_) {processL1extraParticles=l1SingleEG5;}
-		   else processL1extraParticles=false;
 
 		   if(processL1extraParticles){
 

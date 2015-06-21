@@ -1,0 +1,9 @@
+process.load('SimCalorimetry.EcalTrigPrimProducers.ecalTrigPrimESProducer_cff')
+process.EcalTrigPrimESProducer.DatabaseFile = 'TPG_beamv6_trans_spikekill.txt.gz'
+
+
+process.load("SimCalorimetry.EcalTrigPrimProducers.ecalTriggerPrimitiveDigis_cff")
+process.simEcalTriggerPrimitiveDigis.Label = 'ecalDigis'
+#process.simEcalTriggerPrimitiveDigis.Label = 'ecalEBunpacker'
+process.simEcalTriggerPrimitiveDigis.InstanceEB =  'ebDigis'process.simEcalTriggerPrimitiveDigis.InstanceEE =  'eeDigis'
+#process.simEcalTriggerPrimitiveDigis.BarrelOnly = True

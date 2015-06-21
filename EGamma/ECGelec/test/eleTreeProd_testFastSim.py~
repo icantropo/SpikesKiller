@@ -1,0 +1,223 @@
+import FWCore.ParameterSet.Config as cms
+
+process = cms.Process("electronTreeProducer")
+
+# import of standard configurations
+
+process.load("Configuration.StandardSequences.Reconstruction_cff")
+process.load("FWCore.MessageLogger.MessageLogger_cfi")
+process.load("Configuration.StandardSequences.Services_cff")
+#process.load("Configuration.StandardSequences.MixingNoPileUp_cff")
+process.load("Configuration.StandardSequences.GeometryPilot2_cff")
+process.load("Configuration.StandardSequences.MagneticField_38T_cff")
+process.load("Geometry.CaloEventSetup.CaloGeometry_cfi")
+process.load("Geometry.CaloEventSetup.EcalTrigTowerConstituents_cfi")
+process.load("Geometry.CaloEventSetup.CaloTopology_cfi")
+process.load("Geometry.CaloEventSetup.EcalTrigTowerConstituents_cfi")
+process.load("Geometry.CMSCommonData.cmsIdealGeometryXML_cfi")
+process.load('Configuration/StandardSequences/FrontierConditions_GlobalTag_cff')
+
+# 4_4_0
+#process.GlobalTag.globaltag = 'GR_R_44_V1::All'
+
+# Florian FastSim 441
+process.GlobalTag.globaltag = 'START44_V6::All'
+
+HLT_name = 'HLT'
+
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1)
+                                        #SkipEvent = cms.untracked.vstring('ProductNotFound')
+                                        )
+
+# ---------------------------------------------------------------------
+# Input Files
+# ---------------------------------------------------------------------
+process.source = cms.Source("PoolSource",
+                            #debugFlag = cms.untracked.bool(True),
+                            #debugVebosity = cms.untracked.uint32(10),
+                            fileNames = cms.untracked.vstring(
+    '/store/mc/UpgFall13d/Neutrino_Pt2to20_gun/GEN-SIM-DIGI-RAW/PU140bx25_POSTLS261_V3-v1/20000/008E2E98-0A39-E311-833F-0025905938D4.root', 
+    '/store/mc/UpgFall13d/Neutrino_Pt2to20_gun/GEN-SIM-DIGI-RAW/PU140bx25_POSTLS261_V3-v1/20000/027029F2-FE38-E311-ACD6-003048678B34.root', 
+    '/store/mc/UpgFall13d/Neutrino_Pt2to20_gun/GEN-SIM-DIGI-RAW/PU140bx25_POSTLS261_V3-v1/20000/0298D3C4-9E3A-E311-BB62-003048B95B30.root'
+    ),                         
+                            )
+
+process.source.duplicateCheckMode = cms.untracked.string('noDuplicateCheck')
+
+# ---------------------------------------------------------------------
+# Ouptut File
+# ---------------------------------------------------------------------
+process.TFileService = cms.Service ("TFileService", 
+                                    fileName = cms.string ("tree_testFastSim.root")
+                                    )
+
+from TrackingTools.TransientTrack.TransientTrackBuilder_cfi import *
+
+process.runSelection = cms.EDFilter("RunSelect",
+    requireNoTimeScan = cms.untracked.bool(True) ,
+    requireCollidingBX = cms.untracked.bool(False),
+    requireNoLumiScan = cms.untracked.bool(False),
+    debug = cms.untracked.bool(False)
+    )
+
+# ---------------------------------------------------------------------
+# Skim ALL Path Filter
+# ---------------------------------------------------------------------
+#load the EDfilter to select just skim data
+process.load("EGamma.LLRSkim.skimAllPathsFilter_cfi")
+from EGamma.LLRSkim.skimAllPathsFilter_cfi import *
+process.skimAllPathsFilter = skimAllPathsFilter.clone()
+
+# Nadir TagAndProbe : at least 2 ele with eT>5 and at least 1 ele passing eleID==VBTF95
+process.skimAllPathsFilter.mode = "TP_nadir"
+process.skimAllPathsFilter.eleID= "VBTF95"
+
+
+# ---------------------------------------------------------------------
+# JETS
+# ---------------------------------------------------------------------
+# JPT
+#process.load('RecoJets.Configuration.RecoJPTJets_cff')
+process.load('RecoJets.Configuration.RecoPFJets_cff')
+process.load('RecoJets.Configuration.RecoPFJets_cff')
+#JEC Corrections... to come !
+# for 360: create colection of L2L3 corrected JPT jets: ak5JPTJetsL2L3  
+# one need set of tags will be provided be JES
+# process.p1 = cms.Path(process.ak5JPTJetsL2L3*process.dump)
+
+# ---------------------------------------------------------------------
+# Fast Jet Rho Correction
+# ---------------------------------------------------------------------
+process.load('RecoJets.JetProducers.kt4PFJets_cfi')
+process.kt6PFJets = process.kt4PFJets.clone( rParam = 0.6, doRhoFastjet = True )
+process.kt6PFJets.Rho_EtaMax = cms.double(2.5)
+
+# ---------------------------------------------------------------------
+# Vertexing DA
+4# ---------------------------------------------------------------------
+#process.load("RecoVertex.Configuration.RecoVertex_cff")
+from RecoVertex.Configuration.RecoVertex_cff import *
+process.vertexreco = cms.Sequence(offlinePrimaryVertices*offlinePrimaryVerticesWithBS)
+
+# ---------------------------------------------------------------------
+# Produce eID infos
+# ---------------------------------------------------------------------
+###process.load("RecoEgamma.ElectronIdentification.cutsInCategoriesElectronIdentification_cfi")
+###New optimization
+process.load("RecoEgamma.ElectronIdentification.cutsInCategoriesElectronIdentificationV06_DataTuning_cfi")
+# ---------------------------------------------------------------------
+# Produce eIso infos from HZZ official package
+# ---------------------------------------------------------------------
+process.load("EGamma.ECGelec.HzzIsolationSequences_cff")
+# ---------------------------------------------------------------------
+# Produce muIso infos from HZZ official package
+# ---------------------------------------------------------------------
+process.load("EGamma.ECGelec.muonHzzIsolationSequences_cff")
+# ---------------------------------------------------------------------
+# Produce Ntuple Module
+# ---------------------------------------------------------------------
+
+#process.load("EGamma.ECGelec.NtupleProducer_cfi")
+#from EGamma.ECGelec.NtupleProducer_cfi import *
+#process.produceNtuple = produceNtuple.clone()
+
+process.load("EGamma.ECGelec.NtupleProducer_custom_cfi")
+from EGamma.ECGelec.NtupleProducer_custom_cfi import *
+process.produceNtuple = produceNtupleCustom.clone()
+
+## Nadir's parameters
+process.produceNtuple.NadL1M = cms.untracked.bool(False)
+process.produceNtuple.NadTP = cms.untracked.bool(False)
+process.produceNtuple.NadTPemul = cms.untracked.bool(False)
+process.produceNtuple.NadTPmodif = cms.untracked.bool(False)
+process.produceNtuple.PrintDebug = cms.untracked.bool(False)
+#process.produceNtuple.PrintDebug_HLT = cms.untracked.bool(False)
+
+## standard parameters
+process.produceNtuple.type = 'MC'
+process.produceNtuple.AOD = cms.untracked.bool(False)
+process.produceNtuple.FillSC = cms.untracked.bool(True)
+process.produceNtuple.functionName = cms.string("EcalClusterEnergyUncertainty")
+# Trigger Stuff
+process.produceNtuple.HLTTag          = 'TriggerResults::' + HLT_name
+process.produceNtuple.TriggerEventTag = 'hltTriggerSummaryAOD::' + HLT_name
+process.produceNtuple.HLTElePaths     = cms.vstring(
+    'HLT_Ele17_SW_TighterEleIdIsol_L1R_v3', 'HLT_Ele17_SW_TighterEleIdIsol_L1R_v2', 'HLT_Ele17_SW_TighterEleIdIsol_L1R_v1',
+    'HLT_Ele17_SW_TightEleIdIsol_L1R', 'HLT_DoubleEle17_SW_L1R_v1', 'HLT_Ele17_SW_TightCaloEleId_Ele8HE_L1R_v2',
+    'HLT_Ele17_SW_TightCaloEleId_Ele8HE_L1R_v1')
+process.produceNtuple.HLTMuonPaths    = cms.vstring('HLT_Mu9')
+process.produceNtuple.HLTFilters      = cms.VInputTag('hltL1NonIsoHLTNonIsoSingleElectronEt17TighterEleIdIsolTrackIsolFilter::'+HLT_name,
+                                                      'hltL1NonIsoHLTNonIsoDoubleElectronEt17PixelMatchFilter::'+HLT_name,
+                                                      'hltL1NonIsoHLTNonIsoSingleElectronEt17TightCaloEleIdEle8HEPixelMatchFilter::'+HLT_name,
+                                                      'hltL1NonIsoHLTNonIsoSingleElectronEt17TightCaloEleIdEle8HEDoublePixelMatchFilter::'+HLT_name,
+                                                      # Muon Trigger
+                                                      'hltSingleMu9L3Filtered9')
+
+#hltL1NonIsoHLTNonIsoSinglePhotonEt15HcalIsolFilter::'+HLT_name)
+#should add one for the Cleaned trigger?!
+
+## HLT Filter from S. Beauceron
+import HLTrigger.HLTfilters.hltHighLevel_cfi
+
+process.MyHLTSelection = HLTrigger.HLTfilters.hltHighLevel_cfi.hltHighLevel.clone(
+    # SingleElectron paths
+    #HLTPaths = [ 'HLT_Ele27_CaloIdVT_CaloIsoT_TrkIdT_TrkIsoT_v3',
+    #             'HLT_Ele32_CaloIdVT_CaloIsoT_TrkIdT_TrkIsoT_v2',
+    #             'HLT_Ele45_CaloIdVT_TrkIdT_v3'
+    #             ]
+    # DoubleElectron paths
+##     HLTPaths = [ 'HLT_Ele17_CaloIdL_CaloIsoVL_v3',
+##                  'HLT_Ele8_CaloIdL_CaloIsoVL_v3',
+##                  'HLT_Ele8_CaloIdL_TrkIdVL_v3',
+##                  'HLT_Ele8_v3'
+##                  'HLT_Ele17_CaloIdL_CaloIsoVL_v2',
+##                  'HLT_Ele8_CaloIdL_CaloIsoVL_v2',
+##                  'HLT_Ele8_CaloIdL_TrkIdVL_v2',
+##                  'HLT_Ele8_v2'
+##                  'HLT_Ele17_CaloIdL_CaloIsoVL_v1',
+##                  'HLT_Ele8_CaloIdL_CaloIsoVL_v1',
+##                  'HLT_Ele8_CaloIdL_TrkIdVL_v1',
+##                  'HLT_Ele8_v1'
+##                  ],
+
+    # to get the spikes
+    #HLTPaths = [ 'HLT_Activity_Ecal_SC*_*' ],
+    #HLTPaths = [ 'HLT_Activity_Ecal_SC*_*',
+    #             'HLT_L1SingleEG5_*' ],
+    HLTPaths = [ 'HLT_L1SingleEG*' ],
+    
+    throw = False
+    #dont throw except on unknown path name
+    )
+#process.HLTfilter = cms.Path( process.MyHLTSelection )
+
+# ---------------------------------------------------------------------
+# Sequence PATH
+# ---------------------------------------------------------------------
+process.p = cms.Path (
+    #process.MyHLTSelection +
+    process.vertexreco + 
+    process.skimAllPathsFilter +   
+    process.kt6PFJets + 
+    
+    #process.runSelection +
+
+    #produce the eID CiC value maps
+    process.eidVeryLoose+
+    process.eidLoose+
+    process.eidMedium+
+    process.eidTight+
+    process.eidSuperTight+
+    process.eidHyperTight1+
+    #process.eidHyperTight2+
+    #process.eidHyperTight3+
+    #process.eidHyperTight4+
+    process.HzzIsolationSequence +
+    process.MuonHZZIsolationSequence +
+
+    process.produceNtuple 
+    )
+
+#process.schedule = cms.Schedule( process.p )
+
+

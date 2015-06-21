@@ -1,0 +1,335 @@
+import FWCore.ParameterSet.Config as cms
+
+from RecoLocalCalo.EcalRecAlgos.ecalCleaningAlgo import cleaningAlgoConfig 
+#from RecoEcal.EgammaClusterProducers.ecalRecHitFlags_cfi import *
+#from RecoEcal.EgammaClusterProducers.ecalSeverityLevelAlgos_cfi import *
+#from RecoEcal.EgammaClusterProducers.ecalSeverityLevelFlags_cfi import *
+
+
+process = cms.Process("Ana")
+
+
+process.load("Configuration.StandardSequences.Geometry_cff")
+process.load("FWCore.MessageService.MessageLogger_cfi")
+from RecoEcal.Configuration.RecoEcal_cff import *
+
+process.load("EventFilter.EcalRawToDigi.EcalUnpackerMapping_cfi");
+process.load("EventFilter.EcalRawToDigi.EcalUnpackerData_cfi");
+
+
+process.ecalEBunpacker.InputLabel = cms.InputTag('rawDataCollector');
+#process.ecalEBunpacker.InputLabel = cms.InputTag('source');
+
+
+process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
+process.load("RecoLocalCalo.EcalRecAlgos.EcalSeverityLevelESProducer_cfi")
+
+process.EcalLaserCorrectionService = cms.ESProducer("EcalLaserCorrectionService")
+
+process.load('Configuration.StandardSequences.RawToDigi_Data_cff') #modif-alex
+process.load('Configuration.StandardSequences.SimL1Emulator_cff') 
+process.load('L1Trigger.Configuration.L1Trigger_EventContent_cff')
+
+# global tag for run-dependent MC
+#process.GlobalTag.globaltag = 'START53_V7N::All'
+
+# global tag for data
+process.GlobalTag.globaltag = 'GR_R_53_V18::All'
+
+
+#
+# customization fragment to run L1 emulator starting from a RAW file
+#
+# V.M. Ghete 2010-06-09
+def customise(process):
+    
+    #
+    # (re-)run the  L1 emulator starting from a RAW file
+    #
+    from L1Trigger.Configuration.L1Trigger_custom import customiseL1EmulatorFromRaw
+    process=customiseL1EmulatorFromRaw(process)
+    
+    #
+    # special configuration cases (change to desired configuration in customize_l1TriggerConfiguration)
+    #
+    from L1Trigger.Configuration.customise_l1TriggerConfiguration import customiseL1TriggerConfiguration
+    process=customiseL1TriggerConfiguration(process)
+    
+    #
+    # customization of output commands
+    #
+    from L1Trigger.Configuration.L1Trigger_custom import customiseOutputCommands
+    process=customiseOutputCommands(process)
+    
+    return (process)
+
+# Customise the process as-is
+process = customise(process)
+
+
+#############   Set the number of events #############
+process.maxEvents = cms.untracked.PSet(
+    input = cms.untracked.int32(-1)
+)
+#############   Define the source file ###############
+process.source = cms.Source("PoolSource",
+
+
+ fileNames=cms.untracked.vstring(
+
+# Data
+
+
+'file:/afs/cern.ch/cms/CAF/CMSCOMM/COMM_ECAL/azabi/F0B823DE-763B-E211-A312-0025905964B2.root'
+
+
+## 200473 RAW-RECO
+
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/9C9D50AA-CB10-E311-85C4-485B39800C32.root', 
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/A0C0D334-CE10-E311-9A8E-E0CB4E19F9B8.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/8E270C8D-CA10-E311-A4F9-E0CB4E1A114E.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/8EBAF2C1-D010-E311-930D-90E6BAE8CC21.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/6479731C-CF10-E311-9169-00259073E3D4.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/66A8D6D4-D210-E311-B371-001EC9D8B15D.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/6A039BCB-D610-E311-BEED-0025907750A0.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/9C13C46B-CB10-E311-9E0A-90E6BA19A252.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/3C981A95-D110-E311-A47E-00259073E30E.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/02174E40-CC10-E311-91DB-E0CB4E5536D5.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/06FA1BA1-CF10-E311-B680-20CF3027A60B.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/0A029E04-CA10-E311-B08B-E0CB4E19F965.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/0AE3488B-D010-E311-8085-001EC9D26F89.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/12D0E56E-C910-E311-83B6-20CF30561701.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/141F5388-CE10-E311-A849-00259074AE40.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/14D1E564-CB10-E311-8E3E-485B39800B93.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/184AEB1E-CB10-E311-8ED9-485B39800BBE.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/1A093578-D010-E311-83F4-E0CB4E29C4F5.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/28512EFB-CB10-E311-90F9-001EC9D8D993.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/328F08E4-CF10-E311-A214-90E6BAE8CC21.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/381391F4-D410-E311-BA5F-00259074AEC2.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/3835C692-D510-E311-B5F7-00259073E4D6.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/8EFEE461-CD10-E311-AFFE-485B39800BBB.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/60BF3287-CC10-E311-9E28-20CF300E9EBD.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/62E29158-D110-E311-8844-00259073E38A.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/40BBAD7B-C710-E311-8DD0-485B39800BD2.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/44C4B32B-D210-E311-981D-001EC9D8B15D.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/46892CE1-C810-E311-8154-20CF30561701.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/46A256C3-D010-E311-A546-E0CB4EA0A929.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/46A7ADDB-CA10-E311-A905-485B39800BBB.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/4C0D8C32-D410-E311-AE2F-002590747E1C.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/5603E5DB-CC10-E311-BADC-001EC9D7FA18.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/56669D4D-CC10-E311-887C-485B39800B93.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/583D2842-CE10-E311-AFA4-00259073E3D4.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/5C9D1D40-CC10-E311-9E99-90E6BA0D0988.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/90A40394-CA10-E311-A2C6-00259073E3D4.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/A4F99F24-CB10-E311-8910-485B39800C2D.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/A688F19D-D310-E311-BFB6-002590747E1C.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/7873D8EB-CD10-E311-A56A-20CF3027A5B0.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/A6897EF2-CD10-E311-8313-00261834B5B1.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/B0CBA848-CA10-E311-8A88-485B39800C32.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/7ABB4FBB-C910-E311-A04A-485B39800B65.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/7E79E362-D110-E311-B083-20CF3027A5B9.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/72F8A6E2-CF10-E311-8923-001EC9D26F89.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/B61CAF4D-CC10-E311-B0CE-20CF3027A5DC.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/BAD837CB-CE10-E311-9EE8-90E6BA0D0987.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/BE530284-CC10-E311-BE0A-485B39800BC7.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/C0739006-D110-E311-AFB3-001EC9D8B15D.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/C0D08BF9-CB10-E311-9FCB-485B39800BC7.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/94CC3718-CD10-E311-B1F4-485B39800BB0.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/C4CFCB0C-2011-E311-91E5-485B39800BD5.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/CC22EBB4-CB10-E311-B189-485B39800C37.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/D0E5670C-CC10-E311-83E0-20CF300E9EB4.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/D44B3B4E-CA10-E311-85F5-E0CB4E1A1192.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/D60C6170-C910-E311-9675-485B39800BC8.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/D6E9EBD2-CC10-E311-A67E-BCAEC54B302A.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/D6ED8187-CE10-E311-8D33-001EC9D83165.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/D8129FA3-CD10-E311-BD2A-485B39800BB0.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/D84B99A8-D110-E311-9925-001EC9D8B15D.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/7A9DB568-CF10-E311-BD6D-00261834B586.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/DAA9C687-CE10-E311-9F57-00259073E4CA.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/DC6D11D8-CC10-E311-AFBE-20CF3027A5DC.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/E0941A12-C810-E311-84FC-20CF3027A628.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/E0D3E318-CD10-E311-94E1-00259073E526.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/803D8F20-CF10-E311-9E64-00259073E442.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/E889D3B2-CB10-E311-8000-20CF305B058C.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/E8EF78A3-CF10-E311-8A00-002590747DD8.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/944844DD-CA10-E311-B73E-20CF3019DF0F.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/80CAE9FA-CB10-E311-BFA0-E0CB4E19F983.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/8419FC38-D810-E311-A8A1-00259073E42E.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/8803E707-CC10-E311-BC7B-BCAEC53F6D57.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/ECA7554E-C810-E311-8989-E0CB4E1A11A1.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/8AADE856-CF10-E311-AA70-BCAEC50971F9.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/ECD9AA6E-CB10-E311-9B52-20CF30561724.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/78B4946C-CD10-E311-B9D8-20CF300E9EB4.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/F429F0FF-C910-E311-B194-00259073E532.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/70F7AD33-D010-E311-8115-002590747DD8.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/F64415C8-CE10-E311-A013-E0CB4EA0A91E.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/FC1A8FB1-CB10-E311-BAE6-20CF305B0572.root',
+## '/store/data/Run2012C/MinimumBias/RAW-RECO/28Aug2013-v1/20000/FEDA2128-C910-E311-ACEC-001EC9D81D4C.root'
+
+
+
+
+# Monte Carlo
+
+
+
+
+# MC, new noise model
+
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/005597C1-57CA-E211-B61D-00261894387A.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/005857A9-57CA-E211-85CF-0026189438EB.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/00903666-A1CA-E211-B55A-0026189438EB.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/009130B5-57CA-E211-8B68-003048679244.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/02B028E6-58CA-E211-8AAF-00261894393D.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/0427E658-78CA-E211-B090-002618943843.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/044BE259-5CCA-E211-9CEA-0026189438E1.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/0665EA8E-8ACA-E211-9EF7-002618943898.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/068DDFCE-73CA-E211-839C-00304867908C.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/08306AC5-57CA-E211-AF04-002618943829.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/08AB8A7A-5CCA-E211-ABF6-003048678A6C.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/08E68E08-58CA-E211-A9C2-003048FFCBB0.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/0A9C54DB-57CA-E211-89E8-002618FDA279.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/0AA830F3-57CA-E211-AAD5-00304867BFB0.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/0AD1F0EA-53CA-E211-8460-0030486790A6.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/0C9F6952-85CA-E211-955F-003048FFCB74.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/0CEA810A-60CA-E211-BDDC-002590593872.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/0E003CCB-59CA-E211-B947-002618943800.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/0E4F4B41-58CA-E211-A08D-002618943957.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/0E5962CB-57CA-E211-BD45-002618943945.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/0EA44820-59CA-E211-8CDA-002618943970.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/0EB7C31A-58CA-E211-B043-0026189438AF.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/0EBCDAF2-63CA-E211-BD79-002618FDA287.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/0ED8816F-60CA-E211-8DE3-00261894387C.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/10708652-52CA-E211-ABCB-002618943866.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/1200EC9E-63CA-E211-89B1-003048FFD752.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/122834B1-59CA-E211-8672-0026189438C4.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/12E39304-5ACA-E211-B4A8-002618943935.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/12F3ADA7-5FCA-E211-A2DE-002618943921.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/162DB92D-59CA-E211-A320-00261894391F.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/16455EFE-57CA-E211-A4BE-002618943943.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/16621DE4-59CA-E211-BE39-00261894387B.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/18106232-58CA-E211-B540-002618943911.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/1AC7D81B-62CA-E211-B0F8-0030486790A0.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/1C1FD066-C5CA-E211-842C-003048678FF4.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/1C32C614-5FCA-E211-913F-0026189438A7.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/1C4FD538-5ACA-E211-AFDD-0025905938D4.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/1CF4A3C5-59CA-E211-A9E8-0026189438B8.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/2241B3BC-7DCA-E211-BB37-003048678E8A.root',
+##   '/store/mc/Summer12/Neutrino_Pt_2to20_gun/RAWRECOSIMHLT/ShoLibRD202299_PU50nsExtM300nsTP_START53_V7N-v1/20000/28DF5B26-59CA-E211-8CDC-00261894390E.root',
+
+
+
+)
+                        
+)
+
+
+
+
+
+#############   Geometry  ###############
+
+process.load("Geometry.CMSCommonData.cmsIdealGeometryXML_cfi");
+process.load("Geometry.CaloEventSetup.CaloGeometry_cfi");
+process.load("Geometry.CaloEventSetup.CaloTopology_cfi");
+
+
+#############    Analyser options   ############################
+process.pfDataTree = cms.EDAnalyzer("PFDataTreeProducer",
+jets                 = cms.string('ak5PFJets'),
+histogramFile        = cms.string('ak5PFDataTree_data_50ns_tpgen_rechitmatch_tpoot.root'),
+tracks               = cms.string('generalTracks'),
+vertex               = cms.string('offlinePrimaryVertices'),
+JetCorrectionService = cms.string('L2L3JetCorrectorAK5PF'),
+EBRecHitCollection   = cms.string('ReducedEcalRecHitsEB'),
+EERecHitCollection   = cms.string('ReducedEcalRecHitsEE'),
+IsMC                 = cms.bool(False),  # set to True if using MC
+OnlineTPs  = cms.InputTag("ecalDigis", "EcalTriggerPrimitives"), #modif-alex
+cleaningConfig       = cleaningAlgoConfig,
+badsc_coordinatesEE  = cms.vint32(-1023023,1048098,-1078063),
+phoProducer          = cms.string('photons'),                             
+photonCollection     = cms.string(''),
+
+# bunch structure, run 200473 - 50ns
+bunchstartbx         = cms.vint32(66,146,226,306,413,493,573,653,773,853,960,1040,1120,1200,1307,1387,1467,1547,1667,1747,1854,1934,2014,2094,2201,2281,2361,2441,2549,2629,2736,2816,2896,2976,3083,3163,3243,3323)
+)
+
+process.load('HLTrigger.special.hltPhysicsDeclared_cfi')
+process.hltPhysicsDeclared.L1GtReadoutRecordTag = 'gtDigis'
+
+process.load('HLTrigger.HLTfilters.hltHighLevel_cfi')
+process.hltHighLevel.HLTPaths = cms.vstring("HLT_ZeroBias*")
+
+#modif-alex
+process.load('SimCalorimetry.EcalTrigPrimProducers.ecalTrigPrimESProducer_cff')
+#process.EcalTrigPrimESProducer.DatabaseFile = 'TPG_beamv5_mc_ideal.txt.gz'
+#process.EcalTrigPrimESProducer.DatabaseFile = 'TPG_beamv6_trans_spikekill.txt.gz'
+process.EcalTrigPrimESProducer.DatabaseFile = 'TPG_beamv6_notrans_spikekill_newscale.txt.gz'
+#process.EcalTrigPrimESProducer.DatabaseFile = 'TPG_beamv6_notrans_spikekill_nonlinear.txt.gz'
+#process.EcalTrigPrimESProducer.DatabaseFile = 'TPG_beamv6_notrans_spikekill_newscale_nonlinear.txt.gz'
+
+process.load("SimCalorimetry.EcalTrigPrimProducers.ecalTriggerPrimitiveDigis_cff")
+process.simEcalTriggerPrimitiveDigis.Label = 'ecalDigis'
+#process.simEcalTriggerPrimitiveDigis.Label = 'ecalEBunpacker'
+process.simEcalTriggerPrimitiveDigis.InstanceEB =  'ebDigis'
+process.simEcalTriggerPrimitiveDigis.InstanceEE =  'eeDigis'
+#process.simEcalTriggerPrimitiveDigis.BarrelOnly = True
+
+# emulator trigger
+process.simRctDigis.ecalDigis = cms.VInputTag(cms.InputTag("simEcalTriggerPrimitiveDigis"))
+process.simRctDigis.hcalDigis = cms.VInputTag(cms.InputTag("hcalDigis"))
+process.simGctDigis.inputLabel = cms.InputTag("simRctDigis")
+
+
+
+process.load('L1TriggerConfig.L1GtConfigProducers.L1GtTriggerMaskTechTrigConfig_cff')
+process.load('HLTrigger.HLTfilters.hltLevel1GTSeed_cfi')
+process.hltLevel1GTSeed.L1TechTriggerSeeding = cms.bool(True)
+process.hltLevel1GTSeed.L1SeedsLogicalExpression = cms.string('0 AND NOT (36 OR 37 OR 38 OR 39)')
+
+
+
+process.load('RecoMET.METFilters.eeBadScFilter_cfi')
+
+
+
+process.noscraping = cms.EDFilter("FilterOutScraping",
+                                  applyfilter = cms.untracked.bool(True),
+                                  debugOn = cms.untracked.bool(False),
+                                  numtrack = cms.untracked.uint32(10),
+                                  thresh = cms.untracked.double(0.25)
+                                  )
+
+
+process.primaryVertexFilter = cms.EDFilter("GoodVertexFilter",
+                                           vertexCollection = cms.InputTag('offlinePrimaryVertices'),
+                                           minimumNDOF = cms.uint32(4) ,
+                                           maxAbsZ = cms.double(24),
+                                           maxd0 = cms.double(2)
+                                           )
+
+
+process.load('CommonTools/RecoAlgos/HBHENoiseFilter_cfi')
+
+
+#############   Path       ###########################
+
+
+
+# data - RAW
+#process.p = cms.Path(process.hltHighLevel * process.noscraping * process.primaryVertexFilter * process.HBHENoiseFilter * process.eeBadScFilter * process.ecalEBunpacker * process.simEcalTriggerPrimitiveDigis * process.pfDataTree)
+#process.p = cms.Path(process.RawToDigi * process.noscraping * process.primaryVertexFilter * process.HBHENoiseFilter * process.eeBadScFilter * process.ecalEBunpacker * process.simEcalTriggerPrimitiveDigis * process.pfDataTree)
+process.p = cms.Path(process.RawToDigi * process.ecalEBunpacker * process.simEcalTriggerPrimitiveDigis * process.pfDataTree)
+
+
+
+
+# mc - RAW
+
+#process.p = cms.Path(process.noscraping * process.primaryVertexFilter * process.HBHENoiseFilter * process.eeBadScFilter * process.ecalEBunpacker * process.simEcalTriggerPrimitiveDigis * process.pfDataTree)
+
+
+#############   Format MessageLogger #################
+process.MessageLogger.cerr.FwkReport.reportEvery = 100
+
+

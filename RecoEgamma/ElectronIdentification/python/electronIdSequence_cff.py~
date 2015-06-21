@@ -1,0 +1,25 @@
+import FWCore.ParameterSet.Config as cms
+
+from RecoEgamma.ElectronIdentification.electronIdCutBasedExt_cfi import *
+
+eidRobustLoose = eidCutBasedExt.clone()
+eidRobustLoose.electronIDType = 'robust'
+eidRobustLoose.electronQuality = 'loose'
+
+eidRobustTight = eidCutBasedExt.clone()
+eidRobustTight.electronIDType = 'robust'
+eidRobustTight.electronQuality = 'tight'
+
+eidRobustHighEnergy = eidCutBasedExt.clone()
+eidRobustHighEnergy.electronIDType = 'robust'
+eidRobustHighEnergy.electronQuality = 'highenergy'
+
+eidLoose0 = eidCutBasedExt.clone()
+eidLoose0.electronIDType = 'classbased'
+eidLoose0.electronQuality = 'loose'
+
+eidTight0 = eidCutBasedExt.clone()
+eidTight0.electronIDType = 'classbased'
+eidTight0.electronQuality = 'tight'
+
+eIdSequence = cms.Sequence(eidRobustLoose+eidRobustTight+eidRobustHighEnergy+eidLoose+eidTight)

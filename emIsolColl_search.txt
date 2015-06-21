@@ -1,0 +1,58 @@
+EGamma/ECGelec/plugins/SimpleNtple.cc:1101:	  edm::Handle< l1extra::L1EmParticleCollection > emIsolColl ;
+EGamma/ECGelec/plugins/SimpleNtple.cc:1102:	  iEvent.getByLabel("l1extraParticles","Isolated", emIsolColl ) ;
+EGamma/ECGelec/plugins/SimpleNtple.cc:1107:	  _trig_L1emIso_N = emIsolColl->size();
+EGamma/ECGelec/plugins/SimpleNtple.cc:1109:	  for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl->begin(); emItr != emIsolColl->end() ;++emItr) {
+EGamma/ECGelec/plugins/SimpleNtple.cc~:1101:	  edm::Handle< l1extra::L1EmParticleCollection > emIsolColl ;
+EGamma/ECGelec/plugins/SimpleNtple.cc~:1102:	  iEvent.getByLabel("l1extraParticles","Isolated", emIsolColl ) ;
+EGamma/ECGelec/plugins/SimpleNtple.cc~:1107:	  _trig_L1emIso_N = emIsolColl->size();
+EGamma/ECGelec/plugins/SimpleNtple.cc~:1109:	  for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl->begin(); emItr != emIsolColl->end() ;++emItr) {
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc:1090:    edm::Handle< l1extra::L1EmParticleCollection > emIsolColl ;
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc:1092:    edm::Handle< l1extra::L1EmParticleCollection > emIsolColl_M ;  
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc:1097:      iEvent.getByLabel("l1extraParticles","Isolated", emIsolColl ) ;
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc:1101:      iEvent.getByLabel("l1extraParticlesOnline","Isolated", emIsolColl ) ;
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc:1104:      iEvent.getByLabel("l1extraParticles","Isolated", emIsolColl_M ) ;
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc:1110:    _trig_L1emIso_N = emIsolColl->size();
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc:1113:    for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl->begin(); emItr != emIsolColl->end() ;++emItr) {
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc:1148:      _trig_L1emIso_N_M = emIsolColl_M->size();
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc:1151:      for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl_M->begin(); 
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc:1152:	   emItr != emIsolColl_M->end() ;++emItr) {
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc.1.1.423:1091:    edm::Handle< l1extra::L1EmParticleCollection > emIsolColl ;
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc.1.1.423:1093:    edm::Handle< l1extra::L1EmParticleCollection > emIsolColl_M ;  
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc.1.1.423:1098:      iEvent.getByLabel("l1extraParticles","Isolated", emIsolColl ) ;
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc.1.1.423:1102:      iEvent.getByLabel("l1extraParticlesOnline","Isolated", emIsolColl ) ;
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc.1.1.423:1105:      iEvent.getByLabel("l1extraParticles","Isolated", emIsolColl_M ) ;
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc.1.1.423:1111:    _trig_L1emIso_N = emIsolColl->size();
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc.1.1.423:1114:    for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl->begin(); emItr != emIsolColl->end() ;++emItr) {
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc.1.1.423:1149:      _trig_L1emIso_N_M = emIsolColl_M->size();
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc.1.1.423:1152:      for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl_M->begin(); 
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc.1.1.423:1153:	   emItr != emIsolColl_M->end() ;++emItr) {
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc~:1096:    edm::Handle< l1extra::L1EmParticleCollection > emIsolColl ;
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc~:1098:    edm::Handle< l1extra::L1EmParticleCollection > emIsolColl_M ;  
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc~:1103:      iEvent.getByLabel("l1extraParticles","Isolated", emIsolColl ) ;
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc~:1107:      iEvent.getByLabel("l1extraParticlesOnline","Isolated", emIsolColl ) ;
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc~:1110:      iEvent.getByLabel("l1extraParticles","Isolated", emIsolColl_M ) ;
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc~:1116:    _trig_L1emIso_N = emIsolColl->size();
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc~:1119:    for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl->begin(); emItr != emIsolColl->end() ;++emItr) {
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc~:1154:      _trig_L1emIso_N_M = emIsolColl_M->size();
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc~:1157:      for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl_M->begin(); 
+EGamma/ECGelec/plugins/SimpleNtpleCustom.cc~:1158:	   emItr != emIsolColl_M->end() ;++emItr) {
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc:1198:    edm::Handle< l1extra::L1EmParticleCollection > emIsolColl ;
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc:1200:    edm::Handle< l1extra::L1EmParticleCollection > emIsolColl_M ;  
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc:1205:      iEvent.getByLabel("l1extraParticles","Isolated", emIsolColl ) ;
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc:1209:      iEvent.getByLabel("l1extraParticlesOnline","Isolated", emIsolColl ) ;
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc:1212:      iEvent.getByLabel("l1extraParticles","Isolated", emIsolColl_M ) ;
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc:1218:    _trig_L1emIso_N = emIsolColl->size();
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc:1221:    for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl->begin(); emItr != emIsolColl->end() ;++emItr) {
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc:1256:      _trig_L1emIso_N_M = emIsolColl_M->size();
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc:1259:      for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl_M->begin(); 
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc:1260:	   emItr != emIsolColl_M->end() ;++emItr) {
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc~:1198:    edm::Handle< l1extra::L1EmParticleCollection > emIsolColl ;
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc~:1200:    edm::Handle< l1extra::L1EmParticleCollection > emIsolColl_M ;  
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc~:1205:      iEvent.getByLabel("l1extraParticles","Isolated", emIsolColl ) ;
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc~:1209:      iEvent.getByLabel("l1extraParticlesOnline","Isolated", emIsolColl ) ;
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc~:1212:      iEvent.getByLabel("l1extraParticles","Isolated", emIsolColl_M ) ;
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc~:1218:    _trig_L1emIso_N = emIsolColl->size();
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc~:1221:    for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl->begin(); emItr != emIsolColl->end() ;++emItr) {
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc~:1256:      _trig_L1emIso_N_M = emIsolColl_M->size();
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc~:1259:      for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl_M->begin(); 
+EGamma/ECGelec/plugins/SimpleNtpleSpike.cc~:1260:	   emItr != emIsolColl_M->end() ;++emItr) {

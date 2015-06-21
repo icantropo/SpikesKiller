@@ -1,0 +1,6 @@
+<library file="*.cc" name=EGammaLLRSkimPlugins>
+    <flags EDM_PLUGIN=1>
+    <use name=EGamma/LLRSkim>
+    <use name=FWCore/Framework>
+    <use name=clhep>
+</library>
