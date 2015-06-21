@@ -48,3 +48,9 @@ Thumbs.db
 ######################
 *.our
 *.out
+
+# Eclipse IDE files #
+#####################
+.settings
+.project
+.cprogect
