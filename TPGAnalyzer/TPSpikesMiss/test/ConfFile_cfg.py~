@@ -1,0 +1,50 @@
+import FWCore.ParameterSet.Config as cms
+
+process = cms.Process("Demo")
+
+# ---------------------------------------------------------------------
+# Produce Ntuple Module
+# ---------------------------------------------------------------------
+#
+#process.load("TPGAnalyzer.TPSpikesMiss.TPSpikesMiss_cfi")
+#from TPGAnalyzer.TPSpikesMiss.TPSpikesMiss_cfi import *
+#process.produceNtuple = produceNtupleCustom.clone()
+#
+## standard parameters
+#process.produceNtuple.functionName = cms.string("Some Function Name")
+
+process.load("Configuration.StandardSequences.Geometry_cff")
+process.load("FWCore.MessageService.MessageLogger_cfi")
+
+process.load("Configuration.StandardSequences.FrontierConditions_GlobalTag_cff")
+process.load('Configuration.StandardSequences.RawToDigi_Data_cff')
+
+
+# global tag for data
+process.GlobalTag.globaltag = 'GR_R_53_V18::All'
+
+
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
+
+process.source = cms.Source("PoolSource",
+    # replace 'myfile.root' with the source file you want to use
+    fileNames = cms.untracked.vstring(
+        #'root:///afs/cern.ch/work/i/iantropo/161E7F57-74CA-E111-AC13-0025901D631E.root'
+        'file:/afs/cern.ch/cms/CAF/CMSCOMM/COMM_ECAL/azabi/F0B823DE-763B-E211-A312-0025905964B2.root'
+    )
+)
+
+process.load("SimCalorimetry.EcalTrigPrimProducers.ecalTriggerPrimitiveDigis_cff")
+process.simEcalTriggerPrimitiveDigis.Label = 'ecalDigis'
+#process.simEcalTriggerPrimitiveDigis.Label = 'ecalEBunpacker'
+process.simEcalTriggerPrimitiveDigis.InstanceEB =  'ebDigis'
+process.simEcalTriggerPrimitiveDigis.InstanceEE =  'eeDigis'
+#process.simEcalTriggerPrimitiveDigis.BarrelOnly = True
+
+
+process.demo = cms.EDAnalyzer('TPSpikesMiss',
+			TPEmulatorCollection  = cms.InputTag("simEcalTriggerPrimitiveDigis"),
+			TPOnlineCollection    = cms.InputTag("ecalDigis","EcalTriggerPrimitives")
+)
+
+process.p = cms.Path(process.RawToDigi * process.simEcalTriggerPrimitiveDigis * process.demo)

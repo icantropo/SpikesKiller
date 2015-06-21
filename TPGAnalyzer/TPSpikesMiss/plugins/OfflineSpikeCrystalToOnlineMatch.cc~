@@ -1,0 +1,475 @@
+// -*- C++ -*-
+//
+// Package:    OfflineSpikeCrystalToOnlineMatch
+// Class:      OfflineSpikeCrystalToOnlineMatch
+// 
+/**\class OfflineSpikeCrystalToOnlineMatch OfflineSpikeCrystalToOnlineMatch.cc TPGAnalyzer/TPSpikesMiss/plugins/OfflineSpikeCrystalToOnlineMatch.cc
+
+Description: [one line class summary]
+
+Implementation:
+[Notes on implementation]
+*/
+//
+// Original Author:  Iurii Antropov
+//         Created:  Fri, 31 Oct 2014 16:36:59 GMT
+// $Id$
+//
+//
+
+// system include files
+#include <memory>
+#include <iostream>
+
+//include root
+#include "TTree.h"
+//#include "TNtuple.h"
+#include "TH1D.h"
+#include "TH3D.h"
+#include "TH2F.h"
+#include "TFile.h"
+#include "TLorentzVector.h"
+#include "TClonesArray.h"
+
+
+
+// CMSSW
+#include "FWCore/Framework/interface/Frameworkfwd.h"
+#include "FWCore/Framework/interface/EDAnalyzer.h"
+
+#include "FWCore/Framework/interface/Event.h"
+#include "FWCore/Framework/interface/MakerMacros.h"
+
+#include "FWCore/ParameterSet/interface/ParameterSet.h"
+#include "FWCore/Framework/interface/ESHandle.h"
+
+//file service
+#include "FWCore/ServiceRegistry/interface/Service.h"
+#include "CommonTools/UtilAlgos/interface/TFileService.h"
+
+//ECAL includes
+#include "CondFormats/EcalObjects/interface/EcalTPGTowerStatus.h" // for the EcalTPGTowerStatusMapIterator
+#include "DataFormats/EcalDigi/interface/EcalDigiCollections.h"
+#include "Geometry/CaloTopology/interface/CaloTopology.h"
+#include "Geometry/CaloEventSetup/interface/CaloTopologyRecord.h"
+#include "Geometry/CaloGeometry/interface/CaloGeometry.h"
+#include "Geometry/Records/interface/IdealGeometryRecord.h"
+
+// TPG (Nadir study)
+#include "DataFormats/EcalDigi/interface/EcalTriggerPrimitiveDigi.h"
+#include "DataFormats/DetId/interface/DetId.h"
+#include "DataFormats/EcalDigi/interface/EcalDigiCollections.h"
+#include "DataFormats/EcalDigi/interface/EcalTrigPrimCompactColl.h"
+#include "DataFormats/EcalDigi/interface/EcalTriggerPrimitiveSample.h"
+#include "DataFormats/EcalDetId/interface/EcalTrigTowerDetId.h"
+
+//Clusters
+#include "DataFormats/CaloRecHit/interface/CaloClusterFwd.h"
+#include "DataFormats/CaloRecHit/interface/CaloCluster.h"
+
+// For H/E - Iso on SC
+#include "RecoEgamma/EgammaIsolationAlgos/interface/EgammaHcalIsolation.h"
+#include "RecoEgamma/EgammaIsolationAlgos/interface/EgammaTowerIsolation.h"
+#include "RecoEgamma/EgammaElectronAlgos/interface/ElectronHcalHelper.h"
+#include "RecoEgamma/EgammaIsolationAlgos/interface/EgammaRecHitIsolation.h"
+#include "RecoEgamma/EgammaIsolationAlgos/interface/ElectronTkIsolation.h"
+
+//RECHITS 
+#include "RecoLocalCalo/EcalRecAlgos/interface/EcalSeverityLevelAlgo.h"  
+#include "RecoLocalCalo/EcalRecAlgos/interface/EcalSeverityLevelAlgoRcd.h"  
+#include "DataFormats/EcalRecHit/interface/EcalUncalibratedRecHit.h"
+#include "DataFormats/EcalRecHit/interface/EcalRecHitCollections.h"
+
+// severity for spikes
+#include "RecoLocalCalo/EcalRecAlgos/interface/EcalSeverityLevelAlgo.h"
+
+
+//
+// class declaration
+//
+
+using namespace std;
+//using namespace reco;
+using namespace edm;
+//using namespace IPTools;
+
+class OfflineSpikeCrystalToOnlineMatch : public edm::EDAnalyzer {
+	public:
+		explicit OfflineSpikeCrystalToOnlineMatch(const edm::ParameterSet&);
+		~OfflineSpikeCrystalToOnlineMatch();
+
+		static void fillDescriptions(edm::ConfigurationDescriptions& descriptions);
+
+
+	private:
+		virtual void beginJob() override;
+		virtual void analyze(const edm::Event&, const edm::EventSetup&) override;
+		virtual void endJob() override;
+
+		// handles to get the TPs
+		edm::Handle<EcalTrigPrimDigiCollection> * ecal_tp_;
+		edm::Handle<EcalTrigPrimDigiCollection> * offlineTP;
+		EcalTrigTowerDetId TPtowid_;
+		EcalTrigTowerDetId TPtowidM_;
+
+		std::string   histogramFile_;  
+		edm::InputTag tpEmulatorCollection_ ;
+		edm::InputTag tpOnlineCollection_ ;
+		edm::InputTag EcalRecHitCollectionEB_ ;
+		//virtual void beginRun(edm::Run const&, edm::EventSetup const&) override;
+		//virtual void endRun(edm::Run const&, edm::EventSetup const&) override;
+		//virtual void beginLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&) override;
+		//virtual void endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&) override;
+		// ----------member data ---------------------------
+
+		TTree * mytree;
+               
+		double ttonline_et;
+		double ttoffline_et;
+		double ttoffline_spikes_to_ttonline_match_et;
+		double rechits_et;
+                double rechit_spikes_et;
+		double rechit_spikes_match_to_ttonline_et;
+		double rechit_spikes_to_ttonline_with_sFGCB0_et;
+                double rechit_spikes_to_ttonline_with_sFGCB1_et;
+                //TH2F *h_TPGsaturated;
+		
+                /*TFile* file_;
+		TH1F *h_ttonline_et;
+		TH1F *h_ttoffline_et;
+		TH1F *h_ttoffline_spikes_to_ttonline_match_et;
+		TH1F *h_rechits_et;
+                TH1F *h_rechit_spikes_et;
+		TH1F *h_rechit_spikes_match_to_ttonline_et;
+		TH1F *h_rechit_spikes_to_ttonline_with_sFGCB0_et;
+                TH1F *h_rechit_spikes_to_ttonline_with_sFGCB1_et;
+                TH2F *h_TPGsaturated;
+		*/
+
+		const CaloSubdetectorGeometry * theEndcapGeometry_ ;
+		const CaloSubdetectorGeometry * theBarrelGeometry_ ;
+		//edm::ESHandle<EcalTrigTowerConstituentsMap> eTTmap_;
+                int spike_N;
+};
+
+OfflineSpikeCrystalToOnlineMatch::OfflineSpikeCrystalToOnlineMatch(const edm::ParameterSet& iConfig) :
+  histogramFile_ (iConfig.getParameter<std::string>("histogramFile")),
+  tpEmulatorCollection_ (iConfig.getParameter<edm::InputTag> ("TPEmulatorCollection")),
+  tpOnlineCollection_ (iConfig.getParameter<edm::InputTag> ("TPOnlineCollection"))
+{
+  //now do what ever initialization is needed
+  EcalRecHitCollectionEB_ = (iConfig.getParameter<edm::InputTag>("EcalRecHitCollectionEB"));
+  
+  //Creating ntuple
+  edm::Service<TFileService> fs;
+  mytree = fs->make <TTree>("SpikeHistsTree", "SpikeHistsTree");
+  
+  mytree->Branch("ttonline_et",&ttonline_et,"ttonline_et/D");
+  mytree->Branch("ttoffline_et",&ttoffline_et,"ttoffline_et/D");
+  mytree->Branch("ttoffline_spikes_to_ttonline_match_et",&ttoffline_spikes_to_ttonline_match_et,"ttoffline_spikes_to_ttonline_match_et/D");
+  mytree->Branch("rechits_et",&rechits_et,"rechits_et/D");
+  mytree->Branch("rechit_spikes_et",&rechit_spikes_et,"rechit_spikes_et/D");
+  mytree->Branch("rechit_spikes_match_to_ttonline_et",&rechit_spikes_match_to_ttonline_et,"rechit_spikes_match_to_ttonline_et/D");
+  mytree->Branch("rechit_spikes_to_ttonline_with_sFGCB0_et",&rechit_spikes_to_ttonline_with_sFGCB0_et,"rechit_spikes_to_ttonline_with_sFGCB0_et/D");
+  mytree->Branch("rechit_spikes_to_ttonline_with_sFGCB1_et",&rechit_spikes_to_ttonline_with_sFGCB1_et,"rechit_spikes_to_ttonline_with_sFGCB1_et/D");
+
+}
+
+
+OfflineSpikeCrystalToOnlineMatch::~OfflineSpikeCrystalToOnlineMatch()
+{
+  // do anything here that needs to be done at desctruction time
+  // (e.g. close files, deallocate resources etc.)
+  
+  //delete file_;
+
+  
+
+  /*delete h_ttonline_et;
+  delete h_ttoffline_et;
+  delete h_ttoffline_spikes_to_ttonline_match_et;
+  delete h_rechits_et;
+  delete h_rechit_spikes_et;
+  delete h_rechit_spikes_match_to_ttonline_et;
+  delete h_rechit_spikes_to_ttonline_with_sFGCB0_et;
+  delete h_rechit_spikes_to_ttonline_with_sFGCB1_et;
+  delete h_TPGsaturated;*/
+}
+
+
+//
+// member functions
+//
+
+// ------------ method called for each event  ------------
+	void
+OfflineSpikeCrystalToOnlineMatch::analyze(const edm::Event& iEvent, const edm::EventSetup& iSetup)
+{
+  
+  //ONLINE TPs (Alex's code for Iurii the best)
+  edm::Handle<EcalTrigPrimDigiCollection> onlineTP;
+  iEvent.getByLabel(tpOnlineCollection_, onlineTP);
+  EcalTrigPrimDigiCollection const &onlineTPs  = *(onlineTP.product());
+  EcalTrigPrimDigiCollection::const_iterator onTP_it;
+  
+  edm::Handle<EcalTrigPrimDigiCollection>  offlineTP;
+  iEvent.getByLabel(tpEmulatorCollection_, offlineTP);
+  EcalTrigPrimDigiCollection const &offlineTPs = *(offlineTP.product());
+  EcalTrigPrimDigiCollection::const_iterator ofTP_it;    
+  
+  //std::cout << "looping on online TPG" << std::endl;
+  for(onTP_it = onlineTPs.begin(); onTP_it != onlineTPs.end(); ++onTP_it){
+    if(onTP_it->compressedEt() > 0) {
+      /*
+      std::cout << "ET="     << onTP_it->compressedEt() 
+		<< " raw="   << ((*onTP_it)[0].raw()&0xff) 
+		<< " sFGVB=" << (*onTP_it)[0].sFGVB() 
+		<< std::endl;
+      */
+      ttonline_et = onTP_it->compressedEt();
+    }//non zero TP
+
+    if(onTP_it->compressedEt() == 255){
+      //std::cout << "SaturatedTP ------------" << std::endl;
+      //std::cout << "ET=255  ieta=" << onTP_it->id().ieta() 
+      //		<< "  iphi=" << onTP_it->id().iphi()
+      //		<< " sFVGB=" << onTP_it->sFGVB()
+      //	<< std::endl; 
+
+      // h_TPGsaturated-> Fill(onTP_it->id().ieta(),onTP_it->id().iphi());
+
+      EcalTrigPrimDigiCollection::const_iterator  offlineMatchForSpike_it;
+      offlineMatchForSpike_it =  offlineTPs.find(onTP_it->id());
+      if (offlineMatchForSpike_it!=offlineTPs.end()){
+	ttoffline_spikes_to_ttonline_match_et = (*offlineMatchForSpike_it)[2].raw()&0xff;
+	
+        //std::cout << "Offline match"<< std::endl;
+	//std::cout << "ET="<<offlineMatchForSpike_it->compressedEt()<<"  iphi="<< offlineMatchForSpike_it->id().iphi() << "  ieta=" << offlineMatchForSpike_it->id().ieta()<< std::endl;
+      } else {
+	std::cout << "No match tower for next spike was found offline:"<< std::endl;
+	std::cout << "ET=255  iphi="<< onTP_it->id().iphi() << "  ieta=" << onTP_it->id().ieta()<< std::endl;
+      } //end else 
+      
+    }//  end if spike
+    
+  }//loop online TPG
+  
+  
+  // EMULATOR TPs (Nadir's code  modified by me :)
+  //if (print_) std::cout<<"TPEmulator collection size="<<tpEmul.product()->size()<<std::endl ;
+  
+  for (ofTP_it = offlineTPs.begin(); ofTP_it != offlineTPs.end() ; ++ofTP_it) {
+    double OfflineCompressedEt;   OfflineCompressedEt = (*ofTP_it)[2].raw()&0xff;
+    if(OfflineCompressedEt > 0){
+    	ttoffline_et = OfflineCompressedEt;
+    }
+  }
+
+  //------------------------//
+  // GET THE SPIKES (Nadir) //
+  //------------------------//
+  
+  // geometry (used for L1 trigger)    
+  //   //cout << "get the geometry" << endl;
+  edm::ESHandle<CaloSubdetectorGeometry> theBarrelGeometry_handle;
+  iSetup.get<EcalBarrelGeometryRecord>().get("EcalBarrel",theBarrelGeometry_handle);
+  //iSetup.get<IdealGeometryRecord>().get(eTTmap_);
+  theBarrelGeometry_ = &(*theBarrelGeometry_handle);
+  
+  //cout << "starting getting the spike-like rechits " << endl;
+
+  // channel status : old way to do it
+  /*
+        edm::ESHandle<EcalChannelStatus> pChannelStatus;
+        iSetup.get<EcalChannelStatusRcd>().get(pChannelStatus);
+        const EcalChannelStatus *chaStatus = pChannelStatus.product();
+  */
+  // for 42x    
+
+ unsigned long long cacheSevLevel = 0;
+  edm::ESHandle<EcalSeverityLevelAlgo> sevLevel;
+  if(cacheSevLevel != iSetup.get<EcalSeverityLevelAlgoRcd>().cacheIdentifier()){
+    cacheSevLevel = iSetup.get<EcalSeverityLevelAlgoRcd>().cacheIdentifier();
+    iSetup.get<EcalSeverityLevelAlgoRcd>().get(sevLevel);
+  }
+  const EcalSeverityLevelAlgo* sl=sevLevel.product();
+  // Get EB rechits
+  edm::Handle<EcalRecHitCollection> rechitsEB;
+  EcalRecHitCollection::const_iterator rechitItr;
+
+  EBDetId id;
+  int flag=0;
+  uint32_t sev=0;
+  double thetaHit, etaHit, phiHit;
+
+  int i=0;
+  //cout << "looking" << endl;
+  if (iEvent.getByLabel(EcalRecHitCollectionEB_, rechitsEB) ) {
+    //cout << "looping" << endl;
+    for ( rechitItr = rechitsEB->begin(); rechitItr != rechitsEB->end(); ++rechitItr ) {
+      //cout << "i=" << i << endl;
+      if(i>=5000) {
+	cout << "more than 5000 spikes in run " << iEvent.id().run() << " , event " << iEvent.id().event() << endl;
+	//break;
+      }
+      id = rechitItr->id();
+      //sev = EcalSeverityLevelAlgo::severityLevel( id, *rechitsEB, *chaStatus );
+      //sev = EcalSeverityLevelAlgo::severityLevel(id,*rechitsEB,*chaStatus, 5., 
+      //EcalSeverityLevelAlgo::kSwissCross,0.95) ;
+      sev = 0;
+      sev = sl->severityLevel( id, *rechitsEB );
+      //if(sev>0) cout << "got sev=" << sev << endl;
+      //if (sev >= 1) {
+      thetaHit = (theBarrelGeometry_->getGeometry(id)->getPosition()).theta();
+      rechits_et = (rechitItr->energy())*sin(thetaHit);
+      if ( (sev==3) || (sev==4) ) {
+	//cout << " severity youpi " << endl;
+	//thetaHit = (theBarrelGeometry_->getGeometry(id)->getPosition()).theta();
+	etaHit =   (theBarrelGeometry_->getGeometry(id)->getPosition()).eta();
+	phiHit =   (theBarrelGeometry_->getGeometry(id)->getPosition()).phi();
+	const EcalTrigTowerDetId towid = id.tower();
+	flag = 0;
+	flag = rechitItr->recoFlag();
+	//if( PrintDebug_ && false )
+	cout << "-- RecHit : "
+	     << "flag=" << flag
+	     << " | sev=" << sev
+	     << " | thetaHit="  << thetaHit
+	     << " | phiHit=" << phiHit
+	     << " | etaHit=" << etaHit
+	     << " | E="      << rechitItr->energy()
+	     << " | Et="     << (rechitItr->energy())*sin(thetaHit)
+	     << " | TT=" << towid.ieta() << " " << towid.iphi() 
+	     << endl;
+	// fill historgrams (Spikes, matches in online, mathces in online with sFGVB)
+	rechit_spikes_et =  (rechitItr->energy())*sin(thetaHit) ;
+        
+	if(rechit_spikes_et > 30) cout << "BIG SPIKE-----=" << towid << endl; 
+	
+        EcalTrigPrimDigiCollection::const_iterator  onlineMatchForSpike_it;
+        onlineMatchForSpike_it = onlineTPs.find(towid);
+        if (onlineMatchForSpike_it!=onlineTPs.end()){
+                  
+                  rechit_spikes_match_to_ttonline_et = onlineMatchForSpike_it->compressedEt() ;
+                  
+                  int sFGVB = onlineMatchForSpike_it->sFGVB();
+                  if (sFGVB==0) {
+                        std::cout << "sFGVB=0" << std::endl;
+                  	rechit_spikes_to_ttonline_with_sFGCB0_et = onlineMatchForSpike_it->compressedEt() ; 
+                  }  
+                  if (sFGVB==1) {
+                        std::cout << "sFGVB=1" << std::endl;
+                  	rechit_spikes_to_ttonline_with_sFGCB1_et=onlineMatchForSpike_it->compressedEt(); 
+                  }  
+          } else { cout << "Spike TT wasn't found in online collection!" <<std :: endl;  
+	} // end if spike not found online
+        
+        //cout << "is gonna fill the variables" << endl;
+	if(flag == EcalRecHit::kOutOfTime) ;//spike_outOfTime[i] = 1;
+	//else spike_outOfTime[i] = 0;
+	/*spike_severityLevel[i] = sev ;
+	  spike_time[i] = rechitItr->time();
+	  spike_Et[i] = (rechitItr->energy())*sin(thetaHit);
+	  spike_phi[i] = phiHit;
+	  spike_eta[i] = etaHit;
+	  spike_theta[i] = thetaHit;
+	  spike_TTiphi[i] = towid.iphi();
+	  spike_TTieta[i] = towid.ieta();
+	  spike_Riphi[i] = getGCTRegionPhi(towid.iphi());
+	  spike_Rieta[i] = getGCTRegionEta(towid.ieta());
+	*/
+	i++ ;
+      }//severity
+    }//loop rechit 
+  }//rechits EB
+  if(i>=5000) spike_N = 5000;
+  else spike_N = i+1;
+
+  mytree->Fill();
+}
+// ------------ method called once each job just before starting event loop  ------------
+	void 
+OfflineSpikeCrystalToOnlineMatch::beginJob()
+{
+  /*file_          = new TFile(histogramFile_.c_str(),"RECREATE");
+  h_ttonline_et  = new TH1F( "h_ttonline_et", "h_ttonline_et", 256,0,256);
+  h_ttoffline_et = new TH1F( "h_ttoffline_et", "h_ttoffline_et", 256,0,256);
+  h_ttoffline_spikes_to_ttonline_match_et = new TH1F( "h_ttoffline_spikes_to_ttonline_match_et", "h_ttoffline_spikes_to_ttonline_match_et", 256,0,256);
+  h_rechits_et = new TH1F( "h_rechits_et", "h_rechits_et", 256,0,256);
+  h_rechit_spikes_et = new TH1F( "h_rechit_spikes_et", "h_rechit_spikes_et", 256,0,256);
+  h_rechit_spikes_match_to_ttonline_et = new TH1F( "h_rechit_spikes_match_to_ttonline_et", "h_rechit_spikes_match_to_ttonline_et", 256,0,256);
+  h_rechit_spikes_to_ttonline_with_sFGCB0_et = new TH1F( "h_rechit_spikes_to_ttonline_with_sFGCB0_et", "h_rechit_spikes_to_ttonline_with_sFGCB0_et", 256,0,256);
+  h_rechit_spikes_to_ttonline_with_sFGCB1_et = new TH1F( "h_rechit_spikes_to_ttonline_with_sFGCB1_et", "h_rechit_spikes_to_ttonline_with_sFGCB1_et", 256,0,256);
+
+  h_TPGsaturated = new TH2F("h_TPGsaturated","h_TPGsaturated", 60,-30,30,72,0,72);
+  */
+
+
+}
+// ------------ method called once each job just after ending the event loop  ------------
+	void 
+OfflineSpikeCrystalToOnlineMatch::endJob() 
+{
+
+	/*if (file_ !=0) 
+	{
+		file_->cd();
+	        h_ttonline_et->Write();
+  		h_ttoffline_et->Write();
+                h_ttoffline_spikes_to_ttonline_match_et->Write();
+                h_rechits_et->Write();
+                h_rechit_spikes_et->Write();
+                h_rechit_spikes_match_to_ttonline_et->Write();
+                h_rechit_spikes_to_ttonline_with_sFGCB0_et->Write();
+                h_rechit_spikes_to_ttonline_with_sFGCB1_et->Write();
+		h_TPGsaturated->Write();
+		std::cout << "Writing plots" << endl;
+                file_->Close();
+        }
+	file_ = 0;*/
+}
+
+// ------------ method called when starting to processes a run  ------------
+/*
+   void 
+   OfflineSpikeCrystalToOnlineMatch::beginRun(edm::Run const&, edm::EventSetup const&)
+   {
+   }
+   */
+
+// ------------ method called when ending the processing of a run  ------------
+/*
+   void 
+   OfflineSpikeCrystalToOnlineMatch::endRun(edm::Run const&, edm::EventSetup const&)
+   {
+   }
+   */
+
+// ------------ method called when starting to processes a luminosity block  ------------
+/*
+   void 
+   OfflineSpikeCrystalToOnlineMatch::beginLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
+   {
+   }
+   */
+
+// ------------ method called when ending the processing of a luminosity block  ------------
+/*
+   void 
+   OfflineSpikeCrystalToOnlineMatch::endLuminosityBlock(edm::LuminosityBlock const&, edm::EventSetup const&)
+   {
+   }
+   */
+
+// ------------ method fills 'descriptions' with the allowed parameters for the module  ------------
+void
+OfflineSpikeCrystalToOnlineMatch::fillDescriptions(edm::ConfigurationDescriptions& descriptions) {
+	//The following says we do not know what parameters are allowed so do no validation
+	// Please change this to state exactly what you do use, even if it is no parameters
+	edm::ParameterSetDescription desc;
+	desc.setUnknown();
+	descriptions.addDefault(desc);
+}
+
+//define this as a plug-in
+DEFINE_FWK_MODULE(OfflineSpikeCrystalToOnlineMatch);

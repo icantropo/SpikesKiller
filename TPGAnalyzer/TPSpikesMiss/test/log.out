@@ -1,0 +1,874 @@
+12-Nov-2014 12:21:59 CET  Initiating request to open file file:/afs/cern.ch/cms/CAF/CMSCOMM/COMM_ECAL/azabi/F0B823DE-763B-E211-A312-0025905964B2.root
+12-Nov-2014 12:22:01 CET  Successfully opened file file:/afs/cern.ch/cms/CAF/CMSCOMM/COMM_ECAL/azabi/F0B823DE-763B-E211-A312-0025905964B2.root
+Begin processing the 1st record. Run 190459, Event 10119769, LumiSection 38 at 12-Nov-2014 12:22:20.524 CET
+Begin processing the 2nd record. Run 190459, Event 10124873, LumiSection 38 at 12-Nov-2014 12:22:23.902 CET
+Begin processing the 3rd record. Run 190459, Event 10126473, LumiSection 38 at 12-Nov-2014 12:22:23.979 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.48504 | phiHit=-0.637713 | etaHit=0.0858631 | E=40.1095 | Et=39.9621 | TT=1 65
+BIG SPIKE-----=(EcalTT subDet Barrel iz +  ieta 1 iphi 65)
+sFGVB=1
+Begin processing the 4th record. Run 190459, Event 10125145, LumiSection 38 at 12-Nov-2014 12:22:24.022 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.95925 | phiHit=-2.3145 | etaHit=-0.398605 | E=34.5924 | Et=32.0152 | TT=-5 46
+BIG SPIKE-----=(EcalTT subDet Barrel iz -  ieta 5 iphi 46)
+sFGVB=1
+-- RecHit : flag=2 | sev=3 | thetaHit=0.574239 | phiHit=1.93091 | etaHit=1.21984 | E=3.36036 | Et=1.82534 | TT=14 23
+sFGVB=0
+Begin processing the 5th record. Run 190459, Event 10128489, LumiSection 38 at 12-Nov-2014 12:22:24.076 CET
+Begin processing the 6th record. Run 190459, Event 10134873, LumiSection 38 at 12-Nov-2014 12:22:24.148 CET
+Begin processing the 7th record. Run 190459, Event 10135401, LumiSection 38 at 12-Nov-2014 12:22:24.193 CET
+Begin processing the 8th record. Run 190459, Event 10132569, LumiSection 38 at 12-Nov-2014 12:22:24.219 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.69289 | phiHit=2.93856 | etaHit=-1.47756 | E=3.99372 | Et=1.73248 | TT=-17 34
+sFGVB=0
+-- RecHit : flag=14 | sev=4 | thetaHit=1.43281 | phiHit=0.672382 | etaHit=0.138424 | E=4.52814 | Et=4.48511 | TT=2 8
+sFGVB=0
+Begin processing the 9th record. Run 190459, Event 10140217, LumiSection 38 at 12-Nov-2014 12:22:24.280 CET
+Begin processing the 10th record. Run 190459, Event 10143625, LumiSection 38 at 12-Nov-2014 12:22:24.347 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.1316 | phiHit=2.4343 | etaHit=-0.592744 | E=2.94993 | Et=2.49809 | TT=-7 28
+sFGVB=0
+Begin processing the 11th record. Run 190459, Event 10145081, LumiSection 38 at 12-Nov-2014 12:22:24.424 CET
+Begin processing the 12th record. Run 190459, Event 10145897, LumiSection 38 at 12-Nov-2014 12:22:24.465 CET
+Begin processing the 13th record. Run 190459, Event 10144825, LumiSection 38 at 12-Nov-2014 12:22:24.489 CET
+Begin processing the 14th record. Run 190459, Event 10150281, LumiSection 38 at 12-Nov-2014 12:22:24.535 CET
+Begin processing the 15th record. Run 190459, Event 10151689, LumiSection 38 at 12-Nov-2014 12:22:24.563 CET
+Begin processing the 16th record. Run 190459, Event 10153577, LumiSection 38 at 12-Nov-2014 12:22:24.587 CET
+Begin processing the 17th record. Run 190459, Event 10152553, LumiSection 38 at 12-Nov-2014 12:22:24.626 CET
+Begin processing the 18th record. Run 190459, Event 10153353, LumiSection 38 at 12-Nov-2014 12:22:24.695 CET
+Begin processing the 19th record. Run 190459, Event 10154809, LumiSection 38 at 12-Nov-2014 12:22:24.757 CET
+Begin processing the 20th record. Run 190459, Event 10155449, LumiSection 38 at 12-Nov-2014 12:22:24.813 CET
+Begin processing the 21st record. Run 190459, Event 10161081, LumiSection 38 at 12-Nov-2014 12:22:24.874 CET
+Begin processing the 22nd record. Run 190459, Event 10161817, LumiSection 38 at 12-Nov-2014 12:22:24.930 CET
+Begin processing the 23rd record. Run 190459, Event 10164425, LumiSection 38 at 12-Nov-2014 12:22:24.980 CET
+Begin processing the 24th record. Run 190459, Event 10167033, LumiSection 38 at 12-Nov-2014 12:22:25.031 CET
+Begin processing the 25th record. Run 190459, Event 10167497, LumiSection 38 at 12-Nov-2014 12:22:25.057 CET
+Begin processing the 26th record. Run 190459, Event 10165785, LumiSection 38 at 12-Nov-2014 12:22:25.136 CET
+Begin processing the 27th record. Run 190459, Event 10171497, LumiSection 38 at 12-Nov-2014 12:22:25.172 CET
+Begin processing the 28th record. Run 190459, Event 10172761, LumiSection 38 at 12-Nov-2014 12:22:25.213 CET
+Begin processing the 29th record. Run 190459, Event 10170313, LumiSection 38 at 12-Nov-2014 12:22:25.254 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 30th record. Run 190459, Event 10171865, LumiSection 38 at 12-Nov-2014 12:22:25.295 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.803856 | phiHit=-2.58984 | etaHit=0.855507 | E=2.37908 | Et=1.71303 | TT=10 43
+sFGVB=0
+Begin processing the 31st record. Run 190459, Event 10168841, LumiSection 38 at 12-Nov-2014 12:22:25.346 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.871814 | phiHit=-1.94734 | etaHit=0.76402 | E=19.8793 | Et=15.2176 | TT=9 50
+sFGVB=1
+-- RecHit : flag=15 | sev=4 | thetaHit=0.655835 | phiHit=0.586325 | etaHit=1.07822 | E=10.2717 | Et=6.2639 | TT=13 7
+sFGVB=0
+Begin processing the 32nd record. Run 190459, Event 10170281, LumiSection 38 at 12-Nov-2014 12:22:25.414 CET
+Begin processing the 33rd record. Run 190459, Event 10173833, LumiSection 38 at 12-Nov-2014 12:22:25.471 CET
+Begin processing the 34th record. Run 190459, Event 10175865, LumiSection 38 at 12-Nov-2014 12:22:25.521 CET
+Begin processing the 35th record. Run 190459, Event 10179977, LumiSection 38 at 12-Nov-2014 12:22:25.569 CET
+Begin processing the 36th record. Run 190459, Event 10181433, LumiSection 38 at 12-Nov-2014 12:22:25.613 CET
+Begin processing the 37th record. Run 190459, Event 10175513, LumiSection 38 at 12-Nov-2014 12:22:25.654 CET
+Begin processing the 38th record. Run 190459, Event 10181241, LumiSection 38 at 12-Nov-2014 12:22:25.713 CET
+Begin processing the 39th record. Run 190459, Event 10184937, LumiSection 38 at 12-Nov-2014 12:22:25.740 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 40th record. Run 190459, Event 10183545, LumiSection 38 at 12-Nov-2014 12:22:25.763 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.16035 | phiHit=2.6453 | etaHit=-0.627014 | E=2.74928 | Et=2.28517 | TT=-8 31
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=2.48538 | phiHit=1.21049 | etaHit=-1.0776 | E=2.55181 | Et=1.55692 | TT=-13 14
+sFGVB=0
+Begin processing the 41st record. Run 190459, Event 10187385, LumiSection 38 at 12-Nov-2014 12:22:25.824 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 42nd record. Run 190459, Event 10185977, LumiSection 38 at 12-Nov-2014 12:22:25.878 CET
+Begin processing the 43rd record. Run 190459, Event 10192969, LumiSection 38 at 12-Nov-2014 12:22:25.901 CET
+Begin processing the 44th record. Run 190459, Event 10198585, LumiSection 38 at 12-Nov-2014 12:22:25.965 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.45336 | phiHit=1.94705 | etaHit=-1.02617 | E=3.03623 | Et=1.92853 | TT=-12 23
+sFGVB=1
+Begin processing the 45th record. Run 190459, Event 10197177, LumiSection 38 at 12-Nov-2014 12:22:26.033 CET
+Begin processing the 46th record. Run 190459, Event 10194233, LumiSection 38 at 12-Nov-2014 12:22:26.098 CET
+Begin processing the 47th record. Run 190459, Event 10194633, LumiSection 38 at 12-Nov-2014 12:22:26.162 CET
+Begin processing the 48th record. Run 190459, Event 10193017, LumiSection 38 at 12-Nov-2014 12:22:26.221 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.456217 | phiHit=0.969974 | etaHit=1.46037 | E=3.48528 | Et=1.53546 | TT=17 12
+sFGVB=0
+Begin processing the 49th record. Run 190459, Event 10196505, LumiSection 38 at 12-Nov-2014 12:22:26.281 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 50th record. Run 190459, Event 10198297, LumiSection 38 at 12-Nov-2014 12:22:26.332 CET
+Begin processing the 51st record. Run 190459, Event 10200185, LumiSection 38 at 12-Nov-2014 12:22:26.355 CET
+Begin processing the 52nd record. Run 190459, Event 10205241, LumiSection 38 at 12-Nov-2014 12:22:26.383 CET
+Begin processing the 53rd record. Run 190459, Event 10200489, LumiSection 38 at 12-Nov-2014 12:22:26.406 CET
+Begin processing the 54th record. Run 190459, Event 10207849, LumiSection 38 at 12-Nov-2014 12:22:26.434 CET
+Begin processing the 55th record. Run 190459, Event 10212953, LumiSection 38 at 12-Nov-2014 12:22:26.457 CET
+Begin processing the 56th record. Run 190459, Event 10210457, LumiSection 38 at 12-Nov-2014 12:22:26.484 CET
+Begin processing the 57th record. Run 190459, Event 10209721, LumiSection 38 at 12-Nov-2014 12:22:26.509 CET
+Begin processing the 58th record. Run 190459, Event 10211417, LumiSection 38 at 12-Nov-2014 12:22:26.556 CET
+Begin processing the 59th record. Run 190459, Event 10214457, LumiSection 38 at 12-Nov-2014 12:22:26.579 CET
+Begin processing the 60th record. Run 190459, Event 10218201, LumiSection 38 at 12-Nov-2014 12:22:26.607 CET
+Begin processing the 61st record. Run 190459, Event 10214169, LumiSection 38 at 12-Nov-2014 12:22:26.630 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.48512 | phiHit=-2.78378 | etaHit=0.0857858 | E=8.58928 | Et=8.55777 | TT=1 41
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=0.625088 | phiHit=1.56059 | etaHit=1.12969 | E=2.60046 | Et=1.52171 | TT=13 18
+sFGVB=0
+Begin processing the 62nd record. Run 190459, Event 10217241, LumiSection 38 at 12-Nov-2014 12:22:26.688 CET
+Begin processing the 63rd record. Run 190459, Event 10218281, LumiSection 38 at 12-Nov-2014 12:22:26.747 CET
+Begin processing the 64th record. Run 190459, Event 10219113, LumiSection 38 at 12-Nov-2014 12:22:26.796 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=2.27017 | phiHit=-1.84075 | etaHit=-0.764536 | E=5.20266 | Et=3.9813 | TT=-9 51
+sFGVB=0
+-- RecHit : flag=14 | sev=4 | thetaHit=1.52198 | phiHit=1.0731 | etaHit=0.048832 | E=14.0357 | Et=14.019 | TT=1 13
+sFGVB=0
+Begin processing the 65th record. Run 190459, Event 10217401, LumiSection 38 at 12-Nov-2014 12:22:26.847 CET
+Begin processing the 66th record. Run 190459, Event 10224057, LumiSection 38 at 12-Nov-2014 12:22:26.908 CET
+Begin processing the 67th record. Run 190459, Event 10217305, LumiSection 38 at 12-Nov-2014 12:22:26.953 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.2147 | phiHit=-2.95624 | etaHit=0.363865 | E=2.28828 | Et=2.14473 | TT=5 39
+sFGVB=0
+Begin processing the 68th record. Run 190459, Event 10225961, LumiSection 38 at 12-Nov-2014 12:22:27.018 CET
+Begin processing the 69th record. Run 190459, Event 10225113, LumiSection 38 at 12-Nov-2014 12:22:27.063 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.65655 | phiHit=2.10278 | etaHit=-0.0858612 | E=25.9805 | Et=25.885 | TT=-1 25
+sFGVB=1
+Begin processing the 70th record. Run 190459, Event 10227321, LumiSection 38 at 12-Nov-2014 12:22:27.107 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=0.504027 | phiHit=-0.374459 | etaHit=1.35678 | E=12.0632 | Et=5.82601 | TT=16 68
+sFGVB=0
+Begin processing the 71st record. Run 190459, Event 10224825, LumiSection 38 at 12-Nov-2014 12:22:27.183 CET
+Begin processing the 72nd record. Run 190459, Event 10226377, LumiSection 38 at 12-Nov-2014 12:22:27.229 CET
+Begin processing the 73rd record. Run 190459, Event 10228745, LumiSection 38 at 12-Nov-2014 12:22:27.283 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.81109 | phiHit=-0.689812 | etaHit=-0.242638 | E=7.31913 | Et=7.10884 | TT=-3 65
+sFGVB=0
+Begin processing the 74th record. Run 190459, Event 10232073, LumiSection 38 at 12-Nov-2014 12:22:27.353 CET
+Begin processing the 75th record. Run 190459, Event 10239145, LumiSection 38 at 12-Nov-2014 12:22:27.381 CET
+Begin processing the 76th record. Run 190459, Event 10234249, LumiSection 38 at 12-Nov-2014 12:22:27.405 CET
+Begin processing the 77th record. Run 190459, Event 10231881, LumiSection 38 at 12-Nov-2014 12:22:27.463 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.18235 | phiHit=-0.827314 | etaHit=0.398605 | E=3.26992 | Et=3.0263 | TT=5 63
+sFGVB=0
+Begin processing the 78th record. Run 190459, Event 10250473, LumiSection 38 at 12-Nov-2014 12:22:27.528 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=2.64613 | phiHit=-0.0265276 | etaHit=-1.37466 | E=5.49964 | Et=2.61474 | TT=-16 72
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=0.449099 | phiHit=0.0091392 | etaHit=1.47665 | E=3.89721 | Et=1.69199 | TT=17 1
+sFGVB=0
+Begin processing the 79th record. Run 190459, Event 10251385, LumiSection 38 at 12-Nov-2014 12:22:27.589 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.66184 | phiHit=1.17591 | etaHit=-1.40819 | E=2.66893 | Et=1.23187 | TT=-17 14
+sFGVB=0
+Begin processing the 80th record. Run 190459, Event 10250585, LumiSection 38 at 12-Nov-2014 12:22:27.649 CET
+Begin processing the 81st record. Run 190459, Event 10250233, LumiSection 38 at 12-Nov-2014 12:22:27.709 CET
+Begin processing the 82nd record. Run 190459, Event 10252281, LumiSection 38 at 12-Nov-2014 12:22:27.796 CET
+Begin processing the 83rd record. Run 190459, Event 10260825, LumiSection 38 at 12-Nov-2014 12:22:27.830 CET
+Begin processing the 84th record. Run 190459, Event 10265625, LumiSection 38 at 12-Nov-2014 12:22:27.853 CET
+Begin processing the 85th record. Run 190459, Event 10277689, LumiSection 38 at 12-Nov-2014 12:22:27.881 CET
+Begin processing the 86th record. Run 190459, Event 10279801, LumiSection 38 at 12-Nov-2014 12:22:27.904 CET
+Begin processing the 87th record. Run 190459, Event 10275769, LumiSection 38 at 12-Nov-2014 12:22:27.937 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.19848 | phiHit=1.61614 | etaHit=0.381234 | E=4.7122 | Et=4.38934 | TT=5 19
+sFGVB=0
+Begin processing the 88th record. Run 190459, Event 10287225, LumiSection 38 at 12-Nov-2014 12:22:27.977 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.67741 | phiHit=1.35239 | etaHit=-1.44245 | E=2.35582 | Et=1.05468 | TT=-17 16
+sFGVB=1
+Begin processing the 89th record. Run 190459, Event 10287769, LumiSection 38 at 12-Nov-2014 12:22:28.027 CET
+Begin processing the 90th record. Run 190459, Event 10290697, LumiSection 38 at 12-Nov-2014 12:22:28.103 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.66967 | phiHit=2.78317 | etaHit=-1.42529 | E=2.40336 | Et=1.09256 | TT=-17 32
+sFGVB=0
+Begin processing the 91st record. Run 190459, Event 10296025, LumiSection 38 at 12-Nov-2014 12:22:28.158 CET
+Begin processing the 92nd record. Run 190459, Event 10294825, LumiSection 38 at 12-Nov-2014 12:22:28.227 CET
+Begin processing the 93rd record. Run 190459, Event 10301225, LumiSection 38 at 12-Nov-2014 12:22:28.283 CET
+Begin processing the 94th record. Run 190459, Event 10299081, LumiSection 38 at 12-Nov-2014 12:22:28.339 CET
+Begin processing the 95th record. Run 190459, Event 10306313, LumiSection 38 at 12-Nov-2014 12:22:28.395 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.28279 | phiHit=-1.61649 | etaHit=-0.781105 | E=2.44258 | Et=1.84919 | TT=-9 54
+sFGVB=0
+Begin processing the 96th record. Run 190459, Event 10308537, LumiSection 38 at 12-Nov-2014 12:22:28.460 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.55794 | phiHit=1.00337 | etaHit=-1.20263 | E=2.81878 | Et=1.55337 | TT=-14 12
+sFGVB=1
+-- RecHit : flag=2 | sev=3 | thetaHit=0.479432 | phiHit=2.12071 | etaHit=1.40889 | E=2.42805 | Et=1.12 | TT=17 25
+sFGVB=0
+Begin processing the 97th record. Run 190459, Event 10313081, LumiSection 38 at 12-Nov-2014 12:22:28.527 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.97524 | phiHit=2.5379 | etaHit=-0.415941 | E=2.26703 | Et=2.08413 | TT=-5 30
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=2.52902 | phiHit=0.270729 | etaHit=-1.15126 | E=4.53992 | Et=2.61035 | TT=-14 4
+sFGVB=0
+Begin processing the 98th record. Run 190459, Event 10316697, LumiSection 38 at 12-Nov-2014 12:22:28.587 CET
+Begin processing the 99th record. Run 190459, Event 10306345, LumiSection 38 at 12-Nov-2014 12:22:28.647 CET
+-- RecHit : flag=15 | sev=4 | thetaHit=2.40864 | phiHit=0.79241 | etaHit=-0.9576 | E=12.8141 | Et=8.57346 | TT=-11 10
+sFGVB=1
+Begin processing the 100th record. Run 190459, Event 10322409, LumiSection 38 at 12-Nov-2014 12:22:28.714 CET
+Begin processing the 101st record. Run 190459, Event 10323961, LumiSection 38 at 12-Nov-2014 12:22:28.743 CET
+Begin processing the 102nd record. Run 190459, Event 10320233, LumiSection 38 at 12-Nov-2014 12:22:28.769 CET
+Begin processing the 103rd record. Run 190459, Event 10322345, LumiSection 38 at 12-Nov-2014 12:22:28.818 CET
+Begin processing the 104th record. Run 190459, Event 10324185, LumiSection 38 at 12-Nov-2014 12:22:28.880 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.26389 | phiHit=-2.9947 | etaHit=0.311842 | E=63.6924 | Et=60.7162 | TT=4 38
+BIG SPIKE-----=(EcalTT subDet Barrel iz +  ieta 4 iphi 38)
+sFGVB=0
+Begin processing the 105th record. Run 190459, Event 10325513, LumiSection 38 at 12-Nov-2014 12:22:28.955 CET
+Begin processing the 106th record. Run 190459, Event 10325993, LumiSection 38 at 12-Nov-2014 12:22:29.037 CET
+Begin processing the 107th record. Run 190459, Event 10311065, LumiSection 38 at 12-Nov-2014 12:22:29.087 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.841697 | phiHit=-0.0428439 | etaHit=0.803877 | E=2.0642 | Et=1.53943 | TT=10 72
+sFGVB=0
+Begin processing the 108th record. Run 190459, Event 10342697, LumiSection 38 at 12-Nov-2014 12:22:29.154 CET
+Begin processing the 109th record. Run 190459, Event 10349769, LumiSection 38 at 12-Nov-2014 12:22:29.214 CET
+Begin processing the 110th record. Run 190459, Event 10345705, LumiSection 38 at 12-Nov-2014 12:22:29.256 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.32529 | phiHit=-1.52622 | etaHit=-0.838326 | E=3.52858 | Et=2.57099 | TT=-10 55
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=0.479432 | phiHit=-1.36995 | etaHit=1.40889 | E=2.97331 | Et=1.37151 | TT=17 57
+sFGVB=1
+Begin processing the 111th record. Run 190459, Event 10348409, LumiSection 38 at 12-Nov-2014 12:22:29.297 CET
+Begin processing the 112th record. Run 190459, Event 10349865, LumiSection 38 at 12-Nov-2014 12:22:29.369 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.555948 | phiHit=1.43988 | etaHit=1.254 | E=2.47168 | Et=1.30443 | TT=15 17
+sFGVB=0
+Begin processing the 113th record. Run 190459, Event 10353993, LumiSection 38 at 12-Nov-2014 12:22:29.432 CET
+Begin processing the 114th record. Run 190459, Event 10352777, LumiSection 38 at 12-Nov-2014 12:22:29.512 CET
+Begin processing the 115th record. Run 190459, Event 10345097, LumiSection 38 at 12-Nov-2014 12:22:29.555 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.67443 | phiHit=-2.71513 | etaHit=-0.103817 | E=2.18527 | Et=2.17355 | TT=-2 41
+sFGVB=0
+Begin processing the 116th record. Run 190459, Event 10356377, LumiSection 38 at 12-Nov-2014 12:22:29.601 CET
+Begin processing the 117th record. Run 190459, Event 10359001, LumiSection 38 at 12-Nov-2014 12:22:29.634 CET
+Begin processing the 118th record. Run 190459, Event 10357065, LumiSection 38 at 12-Nov-2014 12:22:29.657 CET
+Begin processing the 119th record. Run 190459, Event 10365833, LumiSection 38 at 12-Nov-2014 12:22:29.688 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.63811 | phiHit=-3.02967 | etaHit=-0.067362 | E=2.77394 | Et=2.76766 | TT=-1 38
+sFGVB=0
+Begin processing the 120th record. Run 190459, Event 10370889, LumiSection 38 at 12-Nov-2014 12:22:29.720 CET
+Begin processing the 121st record. Run 190459, Event 10383977, LumiSection 38 at 12-Nov-2014 12:22:29.797 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.02707 | phiHit=2.93881 | etaHit=-0.472984 | E=2.19384 | Et=1.96941 | TT=-6 34
+sFGVB=0
+Begin processing the 122nd record. Run 190459, Event 10380601, LumiSection 38 at 12-Nov-2014 12:22:29.871 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.11709 | phiHit=2.67983 | etaHit=-0.575687 | E=3.59873 | Et=3.07496 | TT=-7 31
+sFGVB=1
+Begin processing the 123rd record. Run 190459, Event 10388857, LumiSection 38 at 12-Nov-2014 12:22:29.925 CET
+Begin processing the 124th record. Run 190459, Event 10389689, LumiSection 38 at 12-Nov-2014 12:22:29.985 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.732895 | phiHit=2.27993 | etaHit=0.95768 | E=3.49599 | Et=2.3389 | TT=11 27
+sFGVB=0
+Begin processing the 125th record. Run 190459, Event 10390153, LumiSection 38 at 12-Nov-2014 12:22:30.034 CET
+Begin processing the 126th record. Run 190459, Event 10395769, LumiSection 38 at 12-Nov-2014 12:22:30.085 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.25655 | phiHit=-2.38364 | etaHit=-0.74683 | E=2.50003 | Et=1.93488 | TT=-9 45
+sFGVB=0
+Begin processing the 127th record. Run 190459, Event 10391673, LumiSection 38 at 12-Nov-2014 12:22:30.147 CET
+Begin processing the 128th record. Run 190459, Event 10397929, LumiSection 38 at 12-Nov-2014 12:22:30.183 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.625505 | phiHit=-0.163499 | etaHit=1.12897 | E=2.26337 | Et=1.32522 | TT=13 71
+sFGVB=1
+Begin processing the 129th record. Run 190459, Event 10403833, LumiSection 38 at 12-Nov-2014 12:22:30.234 CET
+Begin processing the 130th record. Run 190459, Event 10406521, LumiSection 38 at 12-Nov-2014 12:22:30.313 CET
+Begin processing the 131st record. Run 190459, Event 10406009, LumiSection 38 at 12-Nov-2014 12:22:30.368 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.512349 | phiHit=2.52161 | etaHit=1.33968 | E=3.43461 | Et=1.68374 | TT=16 29
+sFGVB=1
+Begin processing the 132nd record. Run 190459, Event 10401721, LumiSection 38 at 12-Nov-2014 12:22:30.425 CET
+Begin processing the 133rd record. Run 190459, Event 10411065, LumiSection 38 at 12-Nov-2014 12:22:30.495 CET
+Begin processing the 134th record. Run 190459, Event 10407993, LumiSection 38 at 12-Nov-2014 12:22:30.543 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.61957 | phiHit=-0.112496 | etaHit=-0.0487925 | E=2.68461 | Et=2.68142 | TT=-1 71
+sFGVB=0
+Begin processing the 135th record. Run 190459, Event 10407849, LumiSection 38 at 12-Nov-2014 12:22:30.588 CET
+Begin processing the 136th record. Run 190459, Event 10415737, LumiSection 38 at 12-Nov-2014 12:22:30.652 CET
+Begin processing the 137th record. Run 190459, Event 10415417, LumiSection 38 at 12-Nov-2014 12:22:30.678 CET
+Begin processing the 138th record. Run 190459, Event 10411769, LumiSection 38 at 12-Nov-2014 12:22:30.726 CET
+Begin processing the 139th record. Run 190459, Event 10416057, LumiSection 38 at 12-Nov-2014 12:22:30.773 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=0.666844 | phiHit=2.8016 | etaHit=1.0603 | E=22.1307 | Et=13.688 | TT=13 33
+sFGVB=1
+Begin processing the 140th record. Run 190459, Event 10422889, LumiSection 38 at 12-Nov-2014 12:22:30.836 CET
+Begin processing the 141st record. Run 190459, Event 10419545, LumiSection 38 at 12-Nov-2014 12:22:30.908 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.64614 | phiHit=-2.5045 | etaHit=-1.37467 | E=4.21173 | Et=2.00239 | TT=-16 44
+sFGVB=1
+Begin processing the 142nd record. Run 190459, Event 10418169, LumiSection 38 at 12-Nov-2014 12:22:30.965 CET
+Begin processing the 143rd record. Run 190459, Event 10122527, LumiSection 38 at 12-Nov-2014 12:22:31.032 CET
+Begin processing the 144th record. Run 190459, Event 10120031, LumiSection 38 at 12-Nov-2014 12:22:31.106 CET
+Begin processing the 145th record. Run 190459, Event 10125471, LumiSection 38 at 12-Nov-2014 12:22:31.169 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.95922 | phiHit=3.09799 | etaHit=-0.398571 | E=17.0571 | Et=15.7865 | TT=-5 36
+sFGVB=1
+Begin processing the 146th record. Run 190459, Event 10124687, LumiSection 38 at 12-Nov-2014 12:22:31.243 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=0.767955 | phiHit=-2.05085 | etaHit=0.906261 | E=10.1803 | Et=7.07188 | TT=11 49
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=0.464184 | phiHit=1.75446 | etaHit=1.44244 | E=2.06691 | Et=0.925344 | TT=17 21
+sFGVB=0
+Begin processing the 147th record. Run 190459, Event 10132479, LumiSection 38 at 12-Nov-2014 12:22:31.311 CET
+Begin processing the 148th record. Run 190459, Event 10131695, LumiSection 38 at 12-Nov-2014 12:22:31.369 CET
+Begin processing the 149th record. Run 190459, Event 10128815, LumiSection 38 at 12-Nov-2014 12:22:31.406 CET
+Begin processing the 150th record. Run 190459, Event 10128383, LumiSection 38 at 12-Nov-2014 12:22:31.445 CET
+Begin processing the 151st record. Run 190459, Event 10136447, LumiSection 38 at 12-Nov-2014 12:22:31.510 CET
+Begin processing the 152nd record. Run 190459, Event 10136975, LumiSection 38 at 12-Nov-2014 12:22:31.580 CET
+Begin processing the 153rd record. Run 190459, Event 10142479, LumiSection 38 at 12-Nov-2014 12:22:31.617 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.537718 | phiHit=-0.917357 | etaHit=1.28906 | E=2.76671 | Et=1.41705 | TT=15 62
+sFGVB=0
+Begin processing the 154th record. Run 190459, Event 10137151, LumiSection 38 at 12-Nov-2014 12:22:31.700 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.62075 | phiHit=1.73599 | etaHit=-1.32249 | E=2.15514 | Et=1.07242 | TT=-16 20
+sFGVB=0
+Begin processing the 155th record. Run 190459, Event 10142159, LumiSection 38 at 12-Nov-2014 12:22:31.786 CET
+Begin processing the 156th record. Run 190459, Event 10147695, LumiSection 38 at 12-Nov-2014 12:22:31.857 CET
+Begin processing the 157th record. Run 190459, Event 10143231, LumiSection 38 at 12-Nov-2014 12:22:31.928 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.24324 | phiHit=2.67978 | etaHit=-0.729724 | E=8.22184 | Et=6.43198 | TT=-9 31
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=1.11488 | phiHit=1.26711 | etaHit=0.472584 | E=3.18948 | Et=2.8637 | TT=6 15
+sFGVB=0
+Begin processing the 158th record. Run 190459, Event 10150191, LumiSection 38 at 12-Nov-2014 12:22:32.003 CET
+Begin processing the 159th record. Run 190459, Event 10150239, LumiSection 38 at 12-Nov-2014 12:22:32.072 CET
+Begin processing the 160th record. Run 190459, Event 10151983, LumiSection 38 at 12-Nov-2014 12:22:32.132 CET
+Begin processing the 161st record. Run 190459, Event 10151583, LumiSection 38 at 12-Nov-2014 12:22:32.158 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.60384 | phiHit=-1.10823 | etaHit=-1.28899 | E=2.04626 | Et=1.04811 | TT=-15 60
+sFGVB=0
+Begin processing the 162nd record. Run 190459, Event 10151439, LumiSection 38 at 12-Nov-2014 12:22:32.231 CET
+Begin processing the 163rd record. Run 190459, Event 10159215, LumiSection 38 at 12-Nov-2014 12:22:32.288 CET
+Begin processing the 164th record. Run 190459, Event 10159231, LumiSection 38 at 12-Nov-2014 12:22:32.343 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=2.58603 | phiHit=-2.08639 | etaHit=-1.25473 | E=14.8347 | Et=7.8241 | TT=-15 49
+sFGVB=0
+Begin processing the 165th record. Run 190459, Event 10161695, LumiSection 38 at 12-Nov-2014 12:22:32.378 CET
+Begin processing the 166th record. Run 190459, Event 10130623, LumiSection 38 at 12-Nov-2014 12:22:32.422 CET
+Begin processing the 167th record. Run 190459, Event 10172607, LumiSection 38 at 12-Nov-2014 12:22:32.466 CET
+Begin processing the 168th record. Run 190459, Event 10175135, LumiSection 38 at 12-Nov-2014 12:22:32.494 CET
+Begin processing the 169th record. Run 190459, Event 10178303, LumiSection 38 at 12-Nov-2014 12:22:32.518 CET
+Begin processing the 170th record. Run 190459, Event 10176639, LumiSection 38 at 12-Nov-2014 12:22:32.566 CET
+Begin processing the 171st record. Run 190459, Event 10173903, LumiSection 38 at 12-Nov-2014 12:22:32.590 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 172nd record. Run 190459, Event 10177455, LumiSection 38 at 12-Nov-2014 12:22:32.618 CET
+Begin processing the 173rd record. Run 190459, Event 10181135, LumiSection 38 at 12-Nov-2014 12:22:32.641 CET
+Begin processing the 174th record. Run 190459, Event 10176239, LumiSection 38 at 12-Nov-2014 12:22:32.690 CET
+Begin processing the 175th record. Run 190459, Event 10177855, LumiSection 38 at 12-Nov-2014 12:22:32.725 CET
+Begin processing the 176th record. Run 190459, Event 10178783, LumiSection 38 at 12-Nov-2014 12:22:32.764 CET
+Begin processing the 177th record. Run 190459, Event 10185199, LumiSection 38 at 12-Nov-2014 12:22:32.831 CET
+Begin processing the 178th record. Run 190459, Event 10182623, LumiSection 38 at 12-Nov-2014 12:22:32.887 CET
+Begin processing the 179th record. Run 190459, Event 10183039, LumiSection 38 at 12-Nov-2014 12:22:32.910 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=2.1749 | phiHit=2.86972 | etaHit=-0.644599 | E=4.28158 | Et=3.5238 | TT=-8 33
+sFGVB=0
+Begin processing the 180th record. Run 190459, Event 10182207, LumiSection 38 at 12-Nov-2014 12:22:32.958 CET
+Begin processing the 181st record. Run 190459, Event 10181215, LumiSection 38 at 12-Nov-2014 12:22:32.987 CET
+Begin processing the 182nd record. Run 190459, Event 10181279, LumiSection 38 at 12-Nov-2014 12:22:33.011 CET
+Begin processing the 183rd record. Run 190459, Event 10185839, LumiSection 38 at 12-Nov-2014 12:22:33.069 CET
+Begin processing the 184th record. Run 190459, Event 10186831, LumiSection 38 at 12-Nov-2014 12:22:33.096 CET
+Begin processing the 185th record. Run 190459, Event 10184863, LumiSection 38 at 12-Nov-2014 12:22:33.120 CET
+Begin processing the 186th record. Run 190459, Event 10184751, LumiSection 38 at 12-Nov-2014 12:22:33.199 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.77725 | phiHit=0.322886 | etaHit=-0.207938 | E=3.99019 | Et=3.90545 | TT=-3 4
+sFGVB=0
+Begin processing the 187th record. Run 190459, Event 10185983, LumiSection 38 at 12-Nov-2014 12:22:33.259 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 188th record. Run 190459, Event 10193423, LumiSection 38 at 12-Nov-2014 12:22:33.291 CET
+Begin processing the 189th record. Run 190459, Event 10191007, LumiSection 38 at 12-Nov-2014 12:22:33.315 CET
+Begin processing the 190th record. Run 190459, Event 10192879, LumiSection 38 at 12-Nov-2014 12:22:33.350 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.03922 | phiHit=-0.374651 | etaHit=0.558535 | E=49.3871 | Et=42.5722 | TT=7 68
+BIG SPIKE-----=(EcalTT subDet Barrel iz +  ieta 7 iphi 68)
+sFGVB=1
+Begin processing the 191st record. Run 190459, Event 10184479, LumiSection 38 at 12-Nov-2014 12:22:33.388 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.26393 | phiHit=-0.374741 | etaHit=0.311803 | E=4.55593 | Et=4.3431 | TT=4 68
+sFGVB=1
+-- RecHit : flag=2 | sev=3 | thetaHit=1.24718 | phiHit=-0.39208 | etaHit=0.329417 | E=2.17505 | Et=2.06215 | TT=4 68
+sFGVB=1
+Begin processing the 192nd record. Run 190459, Event 10193407, LumiSection 38 at 12-Nov-2014 12:22:33.433 CET
+Begin processing the 193rd record. Run 190459, Event 10192623, LumiSection 38 at 12-Nov-2014 12:22:33.459 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 194th record. Run 190459, Event 10189679, LumiSection 38 at 12-Nov-2014 12:22:33.523 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.57692 | phiHit=1.08972 | etaHit=-1.23758 | E=2.36058 | Et=1.26324 | TT=-15 13
+sFGVB=0
+Begin processing the 195th record. Run 190459, Event 10196175, LumiSection 38 at 12-Nov-2014 12:22:33.578 CET
+Begin processing the 196th record. Run 190459, Event 10196783, LumiSection 38 at 12-Nov-2014 12:22:33.638 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 197th record. Run 190459, Event 10184639, LumiSection 38 at 12-Nov-2014 12:22:33.687 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.95958 | phiHit=-2.60778 | etaHit=-0.398962 | E=2.81268 | Et=2.60278 | TT=-5 43
+sFGVB=0
+Begin processing the 198th record. Run 190459, Event 10200191, LumiSection 38 at 12-Nov-2014 12:22:33.737 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 199th record. Run 190459, Event 10202367, LumiSection 38 at 12-Nov-2014 12:22:33.783 CET
+Begin processing the 200th record. Run 190459, Event 10205807, LumiSection 38 at 12-Nov-2014 12:22:33.826 CET
+Begin processing the 201st record. Run 190459, Event 10208895, LumiSection 38 at 12-Nov-2014 12:22:33.874 CET
+Begin processing the 202nd record. Run 190459, Event 10203727, LumiSection 38 at 12-Nov-2014 12:22:33.924 CET
+Begin processing the 203rd record. Run 190459, Event 10209871, LumiSection 38 at 12-Nov-2014 12:22:33.988 CET
+Begin processing the 204th record. Run 190459, Event 10211951, LumiSection 38 at 12-Nov-2014 12:22:34.032 CET
+Begin processing the 205th record. Run 190459, Event 10212239, LumiSection 38 at 12-Nov-2014 12:22:34.055 CET
+Begin processing the 206th record. Run 190459, Event 10212527, LumiSection 38 at 12-Nov-2014 12:22:34.083 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 207th record. Run 190459, Event 10214351, LumiSection 38 at 12-Nov-2014 12:22:34.106 CET
+Begin processing the 208th record. Run 190459, Event 10211119, LumiSection 38 at 12-Nov-2014 12:22:34.164 CET
+Begin processing the 209th record. Run 190459, Event 10216079, LumiSection 38 at 12-Nov-2014 12:22:34.190 CET
+Begin processing the 210th record. Run 190459, Event 10212959, LumiSection 38 at 12-Nov-2014 12:22:34.233 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 211th record. Run 190459, Event 10215807, LumiSection 38 at 12-Nov-2014 12:22:34.257 CET
+Begin processing the 212th record. Run 190459, Event 10217855, LumiSection 38 at 12-Nov-2014 12:22:34.307 CET
+Begin processing the 213th record. Run 190459, Event 10214463, LumiSection 38 at 12-Nov-2014 12:22:34.339 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 214th record. Run 190459, Event 10220495, LumiSection 38 at 12-Nov-2014 12:22:34.367 CET
+Begin processing the 215th record. Run 190459, Event 10214735, LumiSection 38 at 12-Nov-2014 12:22:34.390 CET
+Begin processing the 216th record. Run 190459, Event 10217583, LumiSection 38 at 12-Nov-2014 12:22:34.448 CET
+Begin processing the 217th record. Run 190459, Event 10217727, LumiSection 38 at 12-Nov-2014 12:22:34.495 CET
+Begin processing the 218th record. Run 190459, Event 10220207, LumiSection 38 at 12-Nov-2014 12:22:34.537 CET
+Begin processing the 219th record. Run 190459, Event 10226607, LumiSection 38 at 12-Nov-2014 12:22:34.573 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.55839 | phiHit=1.19328 | etaHit=-1.20346 | E=2.061 | Et=1.13498 | TT=-14 14
+sFGVB=0
+Begin processing the 220th record. Run 190459, Event 10221423, LumiSection 38 at 12-Nov-2014 12:22:34.612 CET
+Begin processing the 221st record. Run 190459, Event 10226335, LumiSection 38 at 12-Nov-2014 12:22:34.681 CET
+Begin processing the 222nd record. Run 190459, Event 10230687, LumiSection 38 at 12-Nov-2014 12:22:34.746 CET
+Begin processing the 223rd record. Run 190459, Event 10242735, LumiSection 38 at 12-Nov-2014 12:22:34.780 CET
+Begin processing the 224th record. Run 190459, Event 10239503, LumiSection 38 at 12-Nov-2014 12:22:34.810 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.58566 | phiHit=-0.952977 | etaHit=-1.25403 | E=3.08986 | Et=1.63062 | TT=-15 62
+sFGVB=0
+Begin processing the 225th record. Run 190459, Event 10238927, LumiSection 38 at 12-Nov-2014 12:22:34.864 CET
+Begin processing the 226th record. Run 190459, Event 10244111, LumiSection 38 at 12-Nov-2014 12:22:34.920 CET
+Begin processing the 227th record. Run 190459, Event 10250015, LumiSection 38 at 12-Nov-2014 12:22:34.980 CET
+Begin processing the 228th record. Run 190459, Event 10247919, LumiSection 38 at 12-Nov-2014 12:22:35.036 CET
+Begin processing the 229th record. Run 190459, Event 10248959, LumiSection 38 at 12-Nov-2014 12:22:35.079 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.87768 | phiHit=1.31818 | etaHit=-0.311813 | E=2.23061 | Et=2.1264 | TT=-4 16
+sFGVB=0
+Begin processing the 230th record. Run 190459, Event 10253871, LumiSection 38 at 12-Nov-2014 12:22:35.128 CET
+Begin processing the 231st record. Run 190459, Event 10248975, LumiSection 38 at 12-Nov-2014 12:22:35.186 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.29991 | phiHit=-1.66819 | etaHit=-0.803894 | E=8.93906 | Et=6.66644 | TT=-10 53
+sFGVB=0
+Begin processing the 232nd record. Run 190459, Event 10249839, LumiSection 38 at 12-Nov-2014 12:22:35.236 CET
+Begin processing the 233rd record. Run 190459, Event 10259999, LumiSection 38 at 12-Nov-2014 12:22:35.299 CET
+Begin processing the 234th record. Run 190459, Event 10268975, LumiSection 38 at 12-Nov-2014 12:22:35.368 CET
+Begin processing the 235th record. Run 190459, Event 10267199, LumiSection 38 at 12-Nov-2014 12:22:35.414 CET
+Begin processing the 236th record. Run 190459, Event 10269119, LumiSection 38 at 12-Nov-2014 12:22:35.462 CET
+Begin processing the 237th record. Run 190459, Event 10262959, LumiSection 38 at 12-Nov-2014 12:22:35.510 CET
+Begin processing the 238th record. Run 190459, Event 10269839, LumiSection 38 at 12-Nov-2014 12:22:35.583 CET
+Begin processing the 239th record. Run 190459, Event 10273727, LumiSection 38 at 12-Nov-2014 12:22:35.631 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=2.53886 | phiHit=1.24889 | etaHit=-1.16849 | E=4.49785 | Et=2.54983 | TT=-14 15
+sFGVB=0
+Begin processing the 240th record. Run 190459, Event 10274335, LumiSection 38 at 12-Nov-2014 12:22:35.678 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.54053 | phiHit=2.24118 | etaHit=0.0302681 | E=6.97645 | Et=6.97325 | TT=1 26
+sFGVB=0
+Begin processing the 241st record. Run 190459, Event 10277711, LumiSection 38 at 12-Nov-2014 12:22:35.749 CET
+Begin processing the 242nd record. Run 190459, Event 10277503, LumiSection 38 at 12-Nov-2014 12:22:35.836 CET
+Begin processing the 243rd record. Run 190459, Event 10286511, LumiSection 38 at 12-Nov-2014 12:22:35.869 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=0.512365 | phiHit=1.40538 | etaHit=1.33965 | E=4.05964 | Et=1.99019 | TT=16 17
+sFGVB=0
+Begin processing the 244th record. Run 190459, Event 10288511, LumiSection 38 at 12-Nov-2014 12:22:35.904 CET
+Begin processing the 245th record. Run 190459, Event 10293391, LumiSection 38 at 12-Nov-2014 12:22:35.974 CET
+Begin processing the 246th record. Run 190459, Event 10287855, LumiSection 38 at 12-Nov-2014 12:22:36.035 CET
+Begin processing the 247th record. Run 190459, Event 10297455, LumiSection 38 at 12-Nov-2014 12:22:36.069 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.62924 | phiHit=0.270696 | etaHit=-1.33968 | E=2.11999 | Et=1.03927 | TT=-16 4
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=2.63758 | phiHit=0.270693 | etaHit=-1.35681 | E=4.96167 | Et=2.39621 | TT=-16 4
+sFGVB=0
+Begin processing the 248th record. Run 190459, Event 10294847, LumiSection 38 at 12-Nov-2014 12:22:36.105 CET
+Begin processing the 249th record. Run 190459, Event 10297951, LumiSection 38 at 12-Nov-2014 12:22:36.155 CET
+Begin processing the 250th record. Run 190459, Event 10300383, LumiSection 38 at 12-Nov-2014 12:22:36.239 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.17492 | phiHit=-3.02989 | etaHit=-0.644622 | E=2.43791 | Et=2.0064 | TT=-8 38
+sFGVB=0
+Begin processing the 251st record. Run 190459, Event 10299071, LumiSection 38 at 12-Nov-2014 12:22:36.315 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.58611 | phiHit=0.533557 | etaHit=-1.25487 | E=4.90577 | Et=2.58709 | TT=-15 7
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=1.05361 | phiHit=2.25855 | etaHit=0.541915 | E=2.13938 | Et=1.85958 | TT=7 26
+sFGVB=0
+Begin processing the 252nd record. Run 190459, Event 10297183, LumiSection 38 at 12-Nov-2014 12:22:36.393 CET
+Begin processing the 253rd record. Run 190459, Event 10303247, LumiSection 38 at 12-Nov-2014 12:22:36.458 CET
+Begin processing the 254th record. Run 190459, Event 10307151, LumiSection 38 at 12-Nov-2014 12:22:36.533 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.666826 | phiHit=2.87063 | etaHit=1.06033 | E=2.21807 | Et=1.37187 | TT=13 33
+sFGVB=0
+Begin processing the 255th record. Run 190459, Event 10309663, LumiSection 38 at 12-Nov-2014 12:22:36.594 CET
+Begin processing the 256th record. Run 190459, Event 10317599, LumiSection 38 at 12-Nov-2014 12:22:36.654 CET
+Begin processing the 257th record. Run 190459, Event 10316367, LumiSection 38 at 12-Nov-2014 12:22:36.680 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.08798 | phiHit=-1.90971 | etaHit=-0.541915 | E=3.92501 | Et=3.41167 | TT=-7 51
+sFGVB=0
+Begin processing the 258th record. Run 190459, Event 10317375, LumiSection 38 at 12-Nov-2014 12:22:36.757 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.24742 | phiHit=0.568923 | etaHit=0.329166 | E=5.27961 | Et=5.00596 | TT=4 7
+sFGVB=0
+Begin processing the 259th record. Run 190459, Event 10318575, LumiSection 38 at 12-Nov-2014 12:22:36.798 CET
+Begin processing the 260th record. Run 190459, Event 10326191, LumiSection 38 at 12-Nov-2014 12:22:36.833 CET
+Begin processing the 261st record. Run 190459, Event 10322831, LumiSection 38 at 12-Nov-2014 12:22:36.880 CET
+Begin processing the 262nd record. Run 190459, Event 10329087, LumiSection 38 at 12-Nov-2014 12:22:36.932 CET
+Begin processing the 263rd record. Run 190459, Event 10336127, LumiSection 38 at 12-Nov-2014 12:22:36.961 CET
+Begin processing the 264th record. Run 190459, Event 10341951, LumiSection 38 at 12-Nov-2014 12:22:36.985 CET
+Begin processing the 265th record. Run 190459, Event 10347519, LumiSection 38 at 12-Nov-2014 12:22:37.047 CET
+Begin processing the 266th record. Run 190459, Event 10346111, LumiSection 38 at 12-Nov-2014 12:22:37.105 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=0.756121 | phiHit=-0.620065 | etaHit=0.923402 | E=13.9875 | Et=9.5969 | TT=11 65
+sFGVB=0
+Begin processing the 267th record. Run 190459, Event 10343471, LumiSection 38 at 12-Nov-2014 12:22:37.146 CET
+Begin processing the 268th record. Run 190459, Event 10345983, LumiSection 38 at 12-Nov-2014 12:22:37.183 CET
+Begin processing the 269th record. Run 190459, Event 10347967, LumiSection 38 at 12-Nov-2014 12:22:37.229 CET
+Begin processing the 270th record. Run 190459, Event 10344463, LumiSection 38 at 12-Nov-2014 12:22:37.291 CET
+Begin processing the 271st record. Run 190459, Event 10349359, LumiSection 38 at 12-Nov-2014 12:22:37.347 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.36209 | phiHit=0.322639 | etaHit=-0.889735 | E=3.32588 | Et=2.33785 | TT=-11 4
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=2.62965 | phiHit=3.01152 | etaHit=-1.3405 | E=2.32738 | Et=1.14013 | TT=-16 35
+sFGVB=0
+-- RecHit : flag=14 | sev=4 | thetaHit=1.24717 | phiHit=-1.65029 | etaHit=0.329431 | E=6.45556 | Et=6.12044 | TT=4 54
+sFGVB=0
+Begin processing the 272nd record. Run 190459, Event 10347647, LumiSection 38 at 12-Nov-2014 12:22:37.430 CET
+Begin processing the 273rd record. Run 190459, Event 10344303, LumiSection 38 at 12-Nov-2014 12:22:37.474 CET
+Begin processing the 274th record. Run 190459, Event 10352223, LumiSection 38 at 12-Nov-2014 12:22:37.559 CET
+Begin processing the 275th record. Run 190459, Event 10358031, LumiSection 38 at 12-Nov-2014 12:22:37.615 CET
+Begin processing the 276th record. Run 190459, Event 10362079, LumiSection 38 at 12-Nov-2014 12:22:37.670 CET
+Begin processing the 277th record. Run 190459, Event 10359519, LumiSection 38 at 12-Nov-2014 12:22:37.725 CET
+Begin processing the 278th record. Run 190459, Event 10368079, LumiSection 38 at 12-Nov-2014 12:22:37.808 CET
+Begin processing the 279th record. Run 190459, Event 10365951, LumiSection 38 at 12-Nov-2014 12:22:37.851 CET
+Begin processing the 280th record. Run 190459, Event 10363439, LumiSection 38 at 12-Nov-2014 12:22:37.888 CET
+Begin processing the 281st record. Run 190459, Event 10358591, LumiSection 38 at 12-Nov-2014 12:22:37.938 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.13042 | phiHit=-0.861815 | etaHit=0.455345 | E=2.29413 | Et=2.07525 | TT=6 63
+sFGVB=0
+Begin processing the 282nd record. Run 190459, Event 10372815, LumiSection 38 at 12-Nov-2014 12:22:38.014 CET
+Begin processing the 283rd record. Run 190459, Event 10375887, LumiSection 38 at 12-Nov-2014 12:22:38.074 CET
+Begin processing the 284th record. Run 190459, Event 10374943, LumiSection 38 at 12-Nov-2014 12:22:38.129 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=2.60345 | phiHit=3.09775 | etaHit=-1.28823 | E=5.13579 | Et=2.63231 | TT=-15 36
+sFGVB=0
+Begin processing the 285th record. Run 190459, Event 10389855, LumiSection 38 at 12-Nov-2014 12:22:38.189 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=2.31265 | phiHit=-1.03909 | etaHit=-0.821074 | E=52.5054 | Et=38.708 | TT=-10 61
+BIG SPIKE-----=(EcalTT subDet Barrel iz -  ieta 10 iphi 61)
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=0.503654 | phiHit=-0.391789 | etaHit=1.35756 | E=2.09296 | Et=1.01012 | TT=16 68
+sFGVB=0
+Begin processing the 286th record. Run 190459, Event 10353887, LumiSection 38 at 12-Nov-2014 12:22:38.240 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.4851 | phiHit=1.58151 | etaHit=0.0857997 | E=5.48961 | Et=5.46947 | TT=1 19
+sFGVB=1
+Begin processing the 287th record. Run 190459, Event 10392095, LumiSection 38 at 12-Nov-2014 12:22:38.293 CET
+Begin processing the 288th record. Run 190459, Event 10396319, LumiSection 38 at 12-Nov-2014 12:22:38.362 CET
+Begin processing the 289th record. Run 190459, Event 10395359, LumiSection 38 at 12-Nov-2014 12:22:38.402 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.70892 | phiHit=2.62832 | etaHit=-0.138567 | E=17.0057 | Et=16.8437 | TT=-2 31
+sFGVB=1
+Begin processing the 290th record. Run 190459, Event 10398591, LumiSection 38 at 12-Nov-2014 12:22:38.490 CET
+Begin processing the 291st record. Run 190459, Event 10399983, LumiSection 38 at 12-Nov-2014 12:22:38.535 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.41567 | phiHit=1.99963 | etaHit=0.155755 | E=16.6471 | Et=16.4472 | TT=2 23
+sFGVB=1
+Begin processing the 292nd record. Run 190459, Event 10399343, LumiSection 38 at 12-Nov-2014 12:22:38.581 CET
+Begin processing the 293rd record. Run 190459, Event 10401407, LumiSection 38 at 12-Nov-2014 12:22:38.637 CET
+Begin processing the 294th record. Run 190459, Event 10402479, LumiSection 38 at 12-Nov-2014 12:22:38.669 CET
+Begin processing the 295th record. Run 190459, Event 10405487, LumiSection 38 at 12-Nov-2014 12:22:38.720 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=0.828927 | phiHit=1.66797 | etaHit=0.821098 | E=4.44771 | Et=3.27889 | TT=10 20
+sFGVB=0
+Begin processing the 296th record. Run 190459, Event 10409199, LumiSection 38 at 12-Nov-2014 12:22:38.789 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.76005 | phiHit=1.00368 | etaHit=-0.190396 | E=4.98405 | Et=4.89506 | TT=-3 12
+sFGVB=0
+Begin processing the 297th record. Run 190459, Event 10409647, LumiSection 38 at 12-Nov-2014 12:22:38.846 CET
+Begin processing the 298th record. Run 190459, Event 10416399, LumiSection 38 at 12-Nov-2014 12:22:38.930 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=2.48538 | phiHit=-0.534842 | etaHit=-1.0776 | E=38.0707 | Et=23.2278 | TT=-13 66
+sFGVB=1
+Begin processing the 299th record. Run 190459, Event 10421663, LumiSection 38 at 12-Nov-2014 12:22:38.991 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.980892 | phiHit=-2.7664 | etaHit=0.627432 | E=3.55464 | Et=2.95389 | TT=8 41
+sFGVB=0
+Begin processing the 300th record. Run 190459, Event 10123255, LumiSection 38 at 12-Nov-2014 12:22:39.066 CET
+Begin processing the 301st record. Run 190459, Event 10121095, LumiSection 38 at 12-Nov-2014 12:22:39.111 CET
+Begin processing the 302nd record. Run 190459, Event 10124663, LumiSection 38 at 12-Nov-2014 12:22:39.157 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.5388 | phiHit=-2.73281 | etaHit=-1.1684 | E=3.23164 | Et=1.83215 | TT=-14 41
+sFGVB=0
+Begin processing the 303rd record. Run 190459, Event 10123927, LumiSection 38 at 12-Nov-2014 12:22:39.202 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.99112 | phiHit=-1.30183 | etaHit=-0.433277 | E=2.4879 | Et=2.27134 | TT=-5 58
+sFGVB=0
+-- RecHit : flag=14 | sev=4 | thetaHit=0.699235 | phiHit=1.02174 | etaHit=1.00897 | E=7.13951 | Et=4.59522 | TT=12 12
+sFGVB=0
+Begin processing the 304th record. Run 190459, Event 10124839, LumiSection 38 at 12-Nov-2014 12:22:39.274 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.721104 | phiHit=-2.31369 | etaHit=0.975423 | E=2.44609 | Et=1.61494 | TT=12 46
+sFGVB=1
+Begin processing the 305th record. Run 190459, Event 10132439, LumiSection 38 at 12-Nov-2014 12:22:39.345 CET
+Begin processing the 306th record. Run 190459, Event 10134823, LumiSection 38 at 12-Nov-2014 12:22:39.445 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.595 | phiHit=-3.13359 | etaHit=-1.27186 | E=5.95273 | Et=3.09409 | TT=-15 37
+sFGVB=1
+Begin processing the 307th record. Run 190459, Event 10132583, LumiSection 38 at 12-Nov-2014 12:22:39.504 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.16032 | phiHit=-1.30189 | etaHit=-0.626971 | E=5.26183 | Et=4.37367 | TT=-8 58
+sFGVB=0
+Begin processing the 308th record. Run 190459, Event 10145255, LumiSection 38 at 12-Nov-2014 12:22:39.589 CET
+Begin processing the 309th record. Run 190459, Event 10143191, LumiSection 38 at 12-Nov-2014 12:22:39.629 CET
+Begin processing the 310th record. Run 190459, Event 10143927, LumiSection 38 at 12-Nov-2014 12:22:39.652 CET
+Begin processing the 311th record. Run 190459, Event 10149335, LumiSection 38 at 12-Nov-2014 12:22:39.718 CET
+Begin processing the 312th record. Run 190459, Event 10148199, LumiSection 38 at 12-Nov-2014 12:22:39.778 CET
+Begin processing the 313th record. Run 190459, Event 10154391, LumiSection 38 at 12-Nov-2014 12:22:39.805 CET
+Begin processing the 314th record. Run 190459, Event 10143975, LumiSection 38 at 12-Nov-2014 12:22:39.861 CET
+Begin processing the 315th record. Run 190459, Event 10150039, LumiSection 38 at 12-Nov-2014 12:22:39.908 CET
+Begin processing the 316th record. Run 190459, Event 10154983, LumiSection 38 at 12-Nov-2014 12:22:39.952 CET
+Begin processing the 317th record. Run 190459, Event 10153959, LumiSection 38 at 12-Nov-2014 12:22:40.000 CET
+Begin processing the 318th record. Run 190459, Event 10157575, LumiSection 38 at 12-Nov-2014 12:22:40.042 CET
+-- RecHit : flag=15 | sev=4 | thetaHit=1.92718 | phiHit=1.58102 | etaHit=-0.364173 | E=38.9335 | Et=36.4871 | TT=-5 19
+BIG SPIKE-----=(EcalTT subDet Barrel iz -  ieta 5 iphi 19)
+sFGVB=1
+-- RecHit : flag=2 | sev=3 | thetaHit=1.92688 | phiHit=1.5982 | etaHit=-0.363854 | E=2.6988 | Et=2.52951 | TT=-5 19
+sFGVB=1
+-- RecHit : flag=14 | sev=4 | thetaHit=2.67741 | phiHit=0.0251601 | etaHit=-1.44244 | E=4.36977 | Et=1.95631 | TT=-17 1
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=0.537753 | phiHit=2.1552 | etaHit=1.28899 | E=2.2378 | Et=1.14622 | TT=15 25
+sFGVB=0
+Begin processing the 319th record. Run 190459, Event 10154087, LumiSection 38 at 12-Nov-2014 12:22:40.085 CET
+Begin processing the 320th record. Run 190459, Event 10157687, LumiSection 38 at 12-Nov-2014 12:22:40.129 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.20279 | phiHit=-1.3536 | etaHit=-0.678826 | E=2.48296 | Et=2.00338 | TT=-8 57
+sFGVB=0
+Begin processing the 321st record. Run 190459, Event 10157367, LumiSection 38 at 12-Nov-2014 12:22:40.183 CET
+Begin processing the 322nd record. Run 190459, Event 10164359, LumiSection 38 at 12-Nov-2014 12:22:40.240 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.10275 | phiHit=0.0081924 | etaHit=-0.558979 | E=3.67641 | Et=3.16839 | TT=-7 1
+sFGVB=0
+Begin processing the 323rd record. Run 190459, Event 10164695, LumiSection 38 at 12-Nov-2014 12:22:40.278 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.49575 | phiHit=-1.19456 | etaHit=-1.09472 | E=3.24439 | Et=1.9527 | TT=-13 59
+sFGVB=0
+Begin processing the 324th record. Run 190459, Event 10163719, LumiSection 38 at 12-Nov-2014 12:22:40.318 CET
+Begin processing the 325th record. Run 190459, Event 10166375, LumiSection 38 at 12-Nov-2014 12:22:40.381 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.546977 | phiHit=-1.0726 | etaHit=1.27112 | E=7.63703 | Et=3.97208 | TT=15 60
+sFGVB=0
+Begin processing the 326th record. Run 190459, Event 10160295, LumiSection 38 at 12-Nov-2014 12:22:40.433 CET
+Begin processing the 327th record. Run 190459, Event 10168135, LumiSection 38 at 12-Nov-2014 12:22:40.479 CET
+Begin processing the 328th record. Run 190459, Event 10169271, LumiSection 38 at 12-Nov-2014 12:22:40.509 CET
+Begin processing the 329th record. Run 190459, Event 10169319, LumiSection 38 at 12-Nov-2014 12:22:40.541 CET
+Begin processing the 330th record. Run 190459, Event 10169831, LumiSection 38 at 12-Nov-2014 12:22:40.599 CET
+Begin processing the 331st record. Run 190459, Event 10171191, LumiSection 38 at 12-Nov-2014 12:22:40.637 CET
+Begin processing the 332nd record. Run 190459, Event 10171655, LumiSection 38 at 12-Nov-2014 12:22:40.689 CET
+Begin processing the 333rd record. Run 190459, Event 10173783, LumiSection 38 at 12-Nov-2014 12:22:40.733 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.19851 | phiHit=-1.03833 | etaHit=0.381197 | E=32.1771 | Et=29.9729 | TT=5 61
+sFGVB=1
+Begin processing the 334th record. Run 190459, Event 10175879, LumiSection 38 at 12-Nov-2014 12:22:40.778 CET
+Begin processing the 335th record. Run 190459, Event 10177303, LumiSection 38 at 12-Nov-2014 12:22:40.813 CET
+Begin processing the 336th record. Run 190459, Event 10181527, LumiSection 38 at 12-Nov-2014 12:22:40.840 CET
+Begin processing the 337th record. Run 190459, Event 10182471, LumiSection 38 at 12-Nov-2014 12:22:40.865 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 338th record. Run 190459, Event 10177831, LumiSection 38 at 12-Nov-2014 12:22:40.922 CET
+Begin processing the 339th record. Run 190459, Event 10180055, LumiSection 38 at 12-Nov-2014 12:22:40.971 CET
+Begin processing the 340th record. Run 190459, Event 10181239, LumiSection 38 at 12-Nov-2014 12:22:41.005 CET
+Begin processing the 341st record. Run 190459, Event 10182775, LumiSection 38 at 12-Nov-2014 12:22:41.028 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 342nd record. Run 190459, Event 10184663, LumiSection 38 at 12-Nov-2014 12:22:41.055 CET
+Begin processing the 343rd record. Run 190459, Event 10189351, LumiSection 38 at 12-Nov-2014 12:22:41.079 CET
+Begin processing the 344th record. Run 190459, Event 10192967, LumiSection 38 at 12-Nov-2014 12:22:41.112 CET
+Begin processing the 345th record. Run 190459, Event 10192615, LumiSection 38 at 12-Nov-2014 12:22:41.155 CET
+Begin processing the 346th record. Run 190459, Event 10194631, LumiSection 38 at 12-Nov-2014 12:22:41.198 CET
+Begin processing the 347th record. Run 190459, Event 10200071, LumiSection 38 at 12-Nov-2014 12:22:41.221 CET
+Begin processing the 348th record. Run 190459, Event 10199495, LumiSection 38 at 12-Nov-2014 12:22:41.248 CET
+Begin processing the 349th record. Run 190459, Event 10201559, LumiSection 38 at 12-Nov-2014 12:22:41.272 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 350th record. Run 190459, Event 10206407, LumiSection 38 at 12-Nov-2014 12:22:41.306 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.38596 | phiHit=-0.55199 | etaHit=-0.924107 | E=2.00777 | Et=1.37684 | TT=-11 66
+sFGVB=1
+Begin processing the 351st record. Run 190459, Event 10207751, LumiSection 38 at 12-Nov-2014 12:22:41.352 CET
+Begin processing the 352nd record. Run 190459, Event 10211159, LumiSection 38 at 12-Nov-2014 12:22:41.379 CET
+Begin processing the 353rd record. Run 190459, Event 10209719, LumiSection 38 at 12-Nov-2014 12:22:41.403 CET
+Begin processing the 354th record. Run 190459, Event 10211959, LumiSection 38 at 12-Nov-2014 12:22:41.447 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 355th record. Run 190459, Event 10207239, LumiSection 38 at 12-Nov-2014 12:22:41.471 CET
+Begin processing the 356th record. Run 190459, Event 10208935, LumiSection 38 at 12-Nov-2014 12:22:41.513 CET
+Begin processing the 357th record. Run 190459, Event 10214343, LumiSection 38 at 12-Nov-2014 12:22:41.547 CET
+Begin processing the 358th record. Run 190459, Event 10215863, LumiSection 38 at 12-Nov-2014 12:22:41.589 CET
+Begin processing the 359th record. Run 190459, Event 10211911, LumiSection 38 at 12-Nov-2014 12:22:41.644 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.62924 | phiHit=-2.8709 | etaHit=-1.33968 | E=2.06055 | Et=1.01013 | TT=-16 40
+sFGVB=0
+Begin processing the 360th record. Run 190459, Event 10213383, LumiSection 38 at 12-Nov-2014 12:22:41.692 CET
+Begin processing the 361st record. Run 190459, Event 10217063, LumiSection 38 at 12-Nov-2014 12:22:41.746 CET
+Begin processing the 362nd record. Run 190459, Event 10215159, LumiSection 38 at 12-Nov-2014 12:22:41.787 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 363rd record. Run 190459, Event 10215287, LumiSection 38 at 12-Nov-2014 12:22:41.811 CET
+Begin processing the 364th record. Run 190459, Event 10221447, LumiSection 38 at 12-Nov-2014 12:22:41.846 CET
+Begin processing the 365th record. Run 190459, Event 10224951, LumiSection 38 at 12-Nov-2014 12:22:41.880 CET
+Begin processing the 366th record. Run 190459, Event 10223047, LumiSection 38 at 12-Nov-2014 12:22:41.917 CET
+Begin processing the 367th record. Run 190459, Event 10223191, LumiSection 38 at 12-Nov-2014 12:22:41.954 CET
+Begin processing the 368th record. Run 190459, Event 10217335, LumiSection 38 at 12-Nov-2014 12:22:41.995 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=2.67744 | phiHit=-0.811035 | etaHit=-1.44251 | E=7.17002 | Et=3.20978 | TT=-17 63
+sFGVB=0
+Begin processing the 369th record. Run 190459, Event 10232551, LumiSection 38 at 12-Nov-2014 12:22:42.063 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.67442 | phiHit=3.11546 | etaHit=-0.103814 | E=5.5663 | Et=5.53644 | TT=-2 36
+sFGVB=0
+Begin processing the 370th record. Run 190459, Event 10234439, LumiSection 38 at 12-Nov-2014 12:22:42.163 CET
+Begin processing the 371st record. Run 190459, Event 10237623, LumiSection 38 at 12-Nov-2014 12:22:42.228 CET
+Begin processing the 372nd record. Run 190459, Event 10237719, LumiSection 38 at 12-Nov-2014 12:22:42.299 CET
+Begin processing the 373rd record. Run 190459, Event 10242711, LumiSection 38 at 12-Nov-2014 12:22:42.367 CET
+Begin processing the 374th record. Run 190459, Event 10240983, LumiSection 38 at 12-Nov-2014 12:22:42.411 CET
+Begin processing the 375th record. Run 190459, Event 10241111, LumiSection 38 at 12-Nov-2014 12:22:42.456 CET
+Begin processing the 376th record. Run 190459, Event 10248359, LumiSection 38 at 12-Nov-2014 12:22:42.521 CET
+-- RecHit : flag=15 | sev=4 | thetaHit=2.24323 | phiHit=0.443404 | etaHit=-0.72971 | E=12.2126 | Et=9.55406 | TT=-9 6
+sFGVB=1
+-- RecHit : flag=14 | sev=4 | thetaHit=2.24369 | phiHit=0.495259 | etaHit=-0.730304 | E=34.057 | Et=26.6333 | TT=-9 6
+sFGVB=1
+Begin processing the 377th record. Run 190459, Event 10252087, LumiSection 38 at 12-Nov-2014 12:22:42.579 CET
+Begin processing the 378th record. Run 190459, Event 10254439, LumiSection 38 at 12-Nov-2014 12:22:42.643 CET
+Begin processing the 379th record. Run 190459, Event 10262023, LumiSection 38 at 12-Nov-2014 12:22:42.685 CET
+Begin processing the 380th record. Run 190459, Event 10253399, LumiSection 38 at 12-Nov-2014 12:22:42.746 CET
+Begin processing the 381st record. Run 190459, Event 10238295, LumiSection 38 at 12-Nov-2014 12:22:42.796 CET
+Begin processing the 382nd record. Run 190459, Event 10268919, LumiSection 38 at 12-Nov-2014 12:22:42.867 CET
+Begin processing the 383rd record. Run 190459, Event 10262007, LumiSection 38 at 12-Nov-2014 12:22:42.912 CET
+Begin processing the 384th record. Run 190459, Event 10267591, LumiSection 38 at 12-Nov-2014 12:22:42.971 CET
+Begin processing the 385th record. Run 190459, Event 10274887, LumiSection 38 at 12-Nov-2014 12:22:42.997 CET
+Begin processing the 386th record. Run 190459, Event 10273303, LumiSection 38 at 12-Nov-2014 12:22:43.083 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.520448 | phiHit=-2.86977 | etaHit=1.32328 | E=3.31047 | Et=1.64619 | TT=16 40
+sFGVB=0
+Begin processing the 387th record. Run 190459, Event 10276007, LumiSection 38 at 12-Nov-2014 12:22:43.144 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.48511 | phiHit=0.917894 | etaHit=0.0857944 | E=54.6552 | Et=54.4546 | TT=1 11
+BIG SPIKE-----=(EcalTT subDet Barrel iz +  ieta 1 iphi 11)
+sFGVB=1
+Begin processing the 388th record. Run 190459, Event 10281463, LumiSection 38 at 12-Nov-2014 12:22:43.196 CET
+Begin processing the 389th record. Run 190459, Event 10279431, LumiSection 38 at 12-Nov-2014 12:22:43.239 CET
+Begin processing the 390th record. Run 190459, Event 10282887, LumiSection 38 at 12-Nov-2014 12:22:43.282 CET
+Begin processing the 391st record. Run 190459, Event 10282263, LumiSection 38 at 12-Nov-2014 12:22:43.358 CET
+Begin processing the 392nd record. Run 190459, Event 10292263, LumiSection 38 at 12-Nov-2014 12:22:43.393 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=2.50639 | phiHit=-1.52629 | etaHit=-1.11253 | E=5.66559 | Et=3.36161 | TT=-13 55
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=2.65383 | phiHit=-1.78919 | etaHit=-1.39098 | E=2.52082 | Et=1.18137 | TT=-16 52
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=0.698799 | phiHit=-1.78812 | etaHit=1.00964 | E=3.25931 | Et=2.09671 | TT=12 52
+sFGVB=0
+Begin processing the 393rd record. Run 190459, Event 10291351, LumiSection 38 at 12-Nov-2014 12:22:43.444 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.04249 | phiHit=2.31362 | etaHit=-0.49023 | E=5.36461 | Et=4.77878 | TT=-6 27
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=0.520459 | phiHit=1.7026 | etaHit=1.32326 | E=2.08155 | Et=1.03511 | TT=16 20
+sFGVB=0
+Begin processing the 394th record. Run 190459, Event 10294615, LumiSection 38 at 12-Nov-2014 12:22:43.531 CET
+Begin processing the 395th record. Run 190459, Event 10303111, LumiSection 38 at 12-Nov-2014 12:22:43.581 CET
+Begin processing the 396th record. Run 190459, Event 10302471, LumiSection 38 at 12-Nov-2014 12:22:43.630 CET
+Begin processing the 397th record. Run 190459, Event 10307543, LumiSection 38 at 12-Nov-2014 12:22:43.679 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=0.99558 | phiHit=0.427042 | etaHit=0.609843 | E=9.2613 | Et=7.77092 | TT=7 5
+sFGVB=0
+Begin processing the 398th record. Run 190459, Event 10308871, LumiSection 38 at 12-Nov-2014 12:22:43.723 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=0.744024 | phiHit=-0.0773256 | etaHit=0.941148 | E=10.9555 | Et=7.41967 | TT=11 72
+sFGVB=0
+Begin processing the 399th record. Run 190459, Event 10302423, LumiSection 38 at 12-Nov-2014 12:22:43.784 CET
+Begin processing the 400th record. Run 190459, Event 10308823, LumiSection 38 at 12-Nov-2014 12:22:43.836 CET
+Begin processing the 401st record. Run 190459, Event 10310359, LumiSection 38 at 12-Nov-2014 12:22:43.864 CET
+Begin processing the 402nd record. Run 190459, Event 10311767, LumiSection 38 at 12-Nov-2014 12:22:43.940 CET
+Begin processing the 403rd record. Run 190459, Event 10313719, LumiSection 38 at 12-Nov-2014 12:22:43.998 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.89418 | phiHit=-1.19432 | etaHit=-0.329176 | E=5.08723 | Et=4.82353 | TT=-4 59
+sFGVB=0
+-- RecHit : flag=14 | sev=4 | thetaHit=0.792049 | phiHit=-2.67996 | etaHit=0.871999 | E=34.0519 | Et=24.2379 | TT=10 42
+sFGVB=1
+-- RecHit : flag=14 | sev=4 | thetaHit=0.792022 | phiHit=-2.64544 | etaHit=0.872037 | E=16.4645 | Et=11.719 | TT=10 42
+sFGVB=1
+-- RecHit : flag=2 | sev=3 | thetaHit=0.495828 | phiHit=-0.723522 | etaHit=1.37389 | E=2.16698 | Et=1.03096 | TT=16 64
+sFGVB=1
+-- RecHit : flag=2 | sev=3 | thetaHit=0.471919 | phiHit=-0.723514 | etaHit=1.42529 | E=3.99329 | Et=1.81534 | TT=17 64
+sFGVB=1
+-- RecHit : flag=2 | sev=3 | thetaHit=0.471566 | phiHit=-0.706328 | etaHit=1.42607 | E=5.02784 | Et=2.28406 | TT=17 64
+sFGVB=1
+-- RecHit : flag=2 | sev=3 | thetaHit=0.47189 | phiHit=-0.585451 | etaHit=1.42536 | E=2.69285 | Et=1.22409 | TT=17 66
+sFGVB=1
+Begin processing the 404th record. Run 190459, Event 10316487, LumiSection 38 at 12-Nov-2014 12:22:44.048 CET
+Begin processing the 405th record. Run 190459, Event 10329319, LumiSection 38 at 12-Nov-2014 12:22:44.128 CET
+Begin processing the 406th record. Run 190459, Event 10329703, LumiSection 38 at 12-Nov-2014 12:22:44.162 CET
+Begin processing the 407th record. Run 190459, Event 10332743, LumiSection 38 at 12-Nov-2014 12:22:44.187 CET
+Begin processing the 408th record. Run 190459, Event 10327687, LumiSection 38 at 12-Nov-2014 12:22:44.219 CET
+Begin processing the 409th record. Run 190459, Event 10335495, LumiSection 38 at 12-Nov-2014 12:22:44.257 CET
+Begin processing the 410th record. Run 190459, Event 10338439, LumiSection 38 at 12-Nov-2014 12:22:44.309 CET
+Begin processing the 411th record. Run 190459, Event 10338151, LumiSection 38 at 12-Nov-2014 12:22:44.357 CET
+Begin processing the 412th record. Run 190459, Event 10339863, LumiSection 38 at 12-Nov-2014 12:22:44.426 CET
+Begin processing the 413th record. Run 190459, Event 10329799, LumiSection 38 at 12-Nov-2014 12:22:44.499 CET
+Begin processing the 414th record. Run 190459, Event 10344071, LumiSection 38 at 12-Nov-2014 12:22:44.570 CET
+Begin processing the 415th record. Run 190459, Event 10347319, LumiSection 38 at 12-Nov-2014 12:22:44.634 CET
+Begin processing the 416th record. Run 190459, Event 10350999, LumiSection 38 at 12-Nov-2014 12:22:44.689 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.511981 | phiHit=-1.33544 | etaHit=1.34043 | E=4.43395 | Et=2.17222 | TT=16 57
+sFGVB=0
+Begin processing the 417th record. Run 190459, Event 10353911, LumiSection 38 at 12-Nov-2014 12:22:44.722 CET
+Begin processing the 418th record. Run 190459, Event 10353959, LumiSection 38 at 12-Nov-2014 12:22:44.768 CET
+Begin processing the 419th record. Run 190459, Event 10352119, LumiSection 38 at 12-Nov-2014 12:22:44.792 CET
+Begin processing the 420th record. Run 190459, Event 10352503, LumiSection 38 at 12-Nov-2014 12:22:44.854 CET
+Begin processing the 421st record. Run 190459, Event 10357703, LumiSection 38 at 12-Nov-2014 12:22:44.911 CET
+Begin processing the 422nd record. Run 190459, Event 10358983, LumiSection 38 at 12-Nov-2014 12:22:44.978 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=2.3859 | phiHit=2.73158 | etaHit=-0.924029 | E=5.67526 | Et=3.89204 | TT=-11 32
+sFGVB=0
+Begin processing the 423rd record. Run 190459, Event 10360951, LumiSection 38 at 12-Nov-2014 12:22:45.060 CET
+Begin processing the 424th record. Run 190459, Event 10357783, LumiSection 38 at 12-Nov-2014 12:22:45.127 CET
+Begin processing the 425th record. Run 190459, Event 10360295, LumiSection 38 at 12-Nov-2014 12:22:45.189 CET
+Begin processing the 426th record. Run 190459, Event 10361351, LumiSection 38 at 12-Nov-2014 12:22:45.257 CET
+Begin processing the 427th record. Run 190459, Event 10362343, LumiSection 38 at 12-Nov-2014 12:22:45.287 CET
+Begin processing the 428th record. Run 190459, Event 10360631, LumiSection 38 at 12-Nov-2014 12:22:45.319 CET
+Begin processing the 429th record. Run 190459, Event 10367687, LumiSection 38 at 12-Nov-2014 12:22:45.358 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.76795 | phiHit=-2.50346 | etaHit=0.906268 | E=2.36928 | Et=1.64585 | TT=11 44
+sFGVB=1
+Begin processing the 430th record. Run 190459, Event 10368455, LumiSection 38 at 12-Nov-2014 12:22:45.406 CET
+Begin processing the 431st record. Run 190459, Event 10365303, LumiSection 38 at 12-Nov-2014 12:22:45.469 CET
+Begin processing the 432nd record. Run 190459, Event 10369239, LumiSection 38 at 12-Nov-2014 12:22:45.506 CET
+Begin processing the 433rd record. Run 190459, Event 10372407, LumiSection 38 at 12-Nov-2014 12:22:45.540 CET
+Begin processing the 434th record. Run 190459, Event 10366183, LumiSection 38 at 12-Nov-2014 12:22:45.617 CET
+Begin processing the 435th record. Run 190459, Event 10369671, LumiSection 38 at 12-Nov-2014 12:22:45.676 CET
+Begin processing the 436th record. Run 190459, Event 10371863, LumiSection 38 at 12-Nov-2014 12:22:45.733 CET
+Begin processing the 437th record. Run 190459, Event 10375591, LumiSection 38 at 12-Nov-2014 12:22:45.797 CET
+Begin processing the 438th record. Run 190459, Event 10383783, LumiSection 38 at 12-Nov-2014 12:22:45.852 CET
+Begin processing the 439th record. Run 190459, Event 10383479, LumiSection 38 at 12-Nov-2014 12:22:45.878 CET
+Begin processing the 440th record. Run 190459, Event 10384263, LumiSection 38 at 12-Nov-2014 12:22:45.908 CET
+Begin processing the 441st record. Run 190459, Event 10394071, LumiSection 38 at 12-Nov-2014 12:22:45.963 CET
+Begin processing the 442nd record. Run 190459, Event 10396215, LumiSection 38 at 12-Nov-2014 12:22:46.057 CET
+Begin processing the 443rd record. Run 190459, Event 10391927, LumiSection 38 at 12-Nov-2014 12:22:46.090 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.39845 | phiHit=0.340494 | etaHit=0.173203 | E=4.05237 | Et=3.99233 | TT=2 4
+sFGVB=0
+-- RecHit : flag=2 | sev=3 | thetaHit=0.487763 | phiHit=-2.7834 | etaHit=1.39097 | E=2.05432 | Et=0.96276 | TT=16 41
+sFGVB=0
+Begin processing the 444th record. Run 190459, Event 10381591, LumiSection 38 at 12-Nov-2014 12:22:46.158 CET
+Begin processing the 445th record. Run 190459, Event 10391063, LumiSection 38 at 12-Nov-2014 12:22:46.221 CET
+Begin processing the 446th record. Run 190459, Event 10404359, LumiSection 38 at 12-Nov-2014 12:22:46.275 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.13012 | phiHit=-3.0465 | etaHit=0.455674 | E=9.87101 | Et=8.92797 | TT=6 38
+sFGVB=0
+Begin processing the 447th record. Run 190459, Event 10400311, LumiSection 38 at 12-Nov-2014 12:22:46.337 CET
+Begin processing the 448th record. Run 190459, Event 10406279, LumiSection 38 at 12-Nov-2014 12:22:46.407 CET
+Begin processing the 449th record. Run 190459, Event 10408071, LumiSection 38 at 12-Nov-2014 12:22:46.459 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=1.65656 | phiHit=-1.87499 | etaHit=-0.08587 | E=10.0931 | Et=10.056 | TT=-1 51
+sFGVB=0
+Begin processing the 450th record. Run 190459, Event 10409703, LumiSection 38 at 12-Nov-2014 12:22:46.513 CET
+Begin processing the 451st record. Run 190459, Event 10416839, LumiSection 38 at 12-Nov-2014 12:22:46.563 CET
+Begin processing the 452nd record. Run 190459, Event 10415767, LumiSection 38 at 12-Nov-2014 12:22:46.597 CET
+Begin processing the 453rd record. Run 190459, Event 10414839, LumiSection 38 at 12-Nov-2014 12:22:46.621 CET
+Begin processing the 454th record. Run 190459, Event 10417239, LumiSection 38 at 12-Nov-2014 12:22:46.661 CET
+Begin processing the 455th record. Run 190459, Event 10409287, LumiSection 38 at 12-Nov-2014 12:22:46.708 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.47481 | phiHit=2.99424 | etaHit=-1.0604 | E=3.02316 | Et=1.8697 | TT=-13 35
+sFGVB=0
+Begin processing the 456th record. Run 190459, Event 10421847, LumiSection 38 at 12-Nov-2014 12:22:46.783 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.602363 | phiHit=-3.04629 | etaHit=1.16915 | E=4.24285 | Et=2.40396 | TT=14 38
+sFGVB=0
+Begin processing the 457th record. Run 190459, Event 10423031, LumiSection 38 at 12-Nov-2014 12:22:46.848 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=0.487386 | phiHit=1.31903 | etaHit=1.39177 | E=2.79209 | Et=1.30758 | TT=16 16
+sFGVB=0
+Begin processing the 458th record. Run 190459, Event 10421175, LumiSection 38 at 12-Nov-2014 12:22:46.972 CET
+Begin processing the 459th record. Run 190459, Event 10121898, LumiSection 38 at 12-Nov-2014 12:22:47.044 CET
+Begin processing the 460th record. Run 190459, Event 10126330, LumiSection 38 at 12-Nov-2014 12:22:47.083 CET
+Begin processing the 461st record. Run 190459, Event 10120778, LumiSection 38 at 12-Nov-2014 12:22:47.137 CET
+Begin processing the 462nd record. Run 190459, Event 10126074, LumiSection 38 at 12-Nov-2014 12:22:47.194 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=2.34996 | phiHit=0.0771238 | etaHit=-0.872587 | E=9.88831 | Et=7.03553 | TT=-10 1
+sFGVB=0
+Begin processing the 463rd record. Run 190459, Event 10131226, LumiSection 38 at 12-Nov-2014 12:22:47.252 CET
+Begin processing the 464th record. Run 190459, Event 10135354, LumiSection 38 at 12-Nov-2014 12:22:47.336 CET
+Begin processing the 465th record. Run 190459, Event 10133626, LumiSection 38 at 12-Nov-2014 12:22:47.382 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.61214 | phiHit=1.03786 | etaHit=-1.3053 | E=2.97042 | Et=1.50025 | TT=-15 12
+sFGVB=1
+Begin processing the 466th record. Run 190459, Event 10137706, LumiSection 38 at 12-Nov-2014 12:22:47.462 CET
+Begin processing the 467th record. Run 190459, Event 10139146, LumiSection 38 at 12-Nov-2014 12:22:47.498 CET
+Begin processing the 468th record. Run 190459, Event 10139818, LumiSection 38 at 12-Nov-2014 12:22:47.530 CET
+Begin processing the 469th record. Run 190459, Event 10144442, LumiSection 38 at 12-Nov-2014 12:22:47.588 CET
+Begin processing the 470th record. Run 190459, Event 10151546, LumiSection 38 at 12-Nov-2014 12:22:47.655 CET
+Begin processing the 471st record. Run 190459, Event 10148730, LumiSection 38 at 12-Nov-2014 12:22:47.719 CET
+Begin processing the 472nd record. Run 190459, Event 10144378, LumiSection 38 at 12-Nov-2014 12:22:47.767 CET
+Begin processing the 473rd record. Run 190459, Event 10138794, LumiSection 38 at 12-Nov-2014 12:22:47.810 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=1.6381 | phiHit=1.0901 | etaHit=-0.0673577 | E=3.02123 | Et=3.01439 | TT=-1 13
+sFGVB=0
+Begin processing the 474th record. Run 190459, Event 10157306, LumiSection 38 at 12-Nov-2014 12:22:47.893 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.50636 | phiHit=-1.66826 | etaHit=-1.11247 | E=2.48552 | Et=1.47482 | TT=-13 53
+sFGVB=0
+Begin processing the 475th record. Run 190459, Event 10161018, LumiSection 38 at 12-Nov-2014 12:22:47.940 CET
+Begin processing the 476th record. Run 190459, Event 10162666, LumiSection 38 at 12-Nov-2014 12:22:47.976 CET
+Begin processing the 477th record. Run 190459, Event 10162762, LumiSection 38 at 12-Nov-2014 12:22:48.007 CET
+Begin processing the 478th record. Run 190459, Event 10162378, LumiSection 38 at 12-Nov-2014 12:22:48.030 CET
+Begin processing the 479th record. Run 190459, Event 10171242, LumiSection 38 at 12-Nov-2014 12:22:48.089 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 480th record. Run 190459, Event 10170314, LumiSection 38 at 12-Nov-2014 12:22:48.116 CET
+Begin processing the 481st record. Run 190459, Event 10170170, LumiSection 38 at 12-Nov-2014 12:22:48.139 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 482nd record. Run 190459, Event 10169866, LumiSection 38 at 12-Nov-2014 12:22:48.201 CET
+Begin processing the 483rd record. Run 190459, Event 10175274, LumiSection 38 at 12-Nov-2014 12:22:48.242 CET
+Begin processing the 484th record. Run 190459, Event 10158906, LumiSection 38 at 12-Nov-2014 12:22:48.269 CET
+-- RecHit : flag=2 | sev=3 | thetaHit=2.46409 | phiHit=2.15414 | etaHit=-1.04317 | E=2.9217 | Et=1.83147 | TT=-12 25
+sFGVB=1
+Begin processing the 485th record. Run 190459, Event 10178330, LumiSection 38 at 12-Nov-2014 12:22:48.348 CET
+Begin processing the 486th record. Run 190459, Event 10173946, LumiSection 38 at 12-Nov-2014 12:22:48.393 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=0.538148 | phiHit=2.45257 | etaHit=1.28822 | E=8.34571 | Et=4.27757 | TT=15 29
+sFGVB=0
+Begin processing the 487th record. Run 190459, Event 10181802, LumiSection 38 at 12-Nov-2014 12:22:48.431 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 488th record. Run 190459, Event 10182922, LumiSection 38 at 12-Nov-2014 12:22:48.458 CET
+Begin processing the 489th record. Run 190459, Event 10180218, LumiSection 38 at 12-Nov-2014 12:22:48.481 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 490th record. Run 190459, Event 10184554, LumiSection 38 at 12-Nov-2014 12:22:48.527 CET
+Begin processing the 491st record. Run 190459, Event 10179866, LumiSection 38 at 12-Nov-2014 12:22:48.550 CET
+Begin processing the 492nd record. Run 190459, Event 10181178, LumiSection 38 at 12-Nov-2014 12:22:48.595 CET
+Begin processing the 493rd record. Run 190459, Event 10188362, LumiSection 38 at 12-Nov-2014 12:22:48.651 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 494th record. Run 190459, Event 10181578, LumiSection 38 at 12-Nov-2014 12:22:48.693 CET
+-- RecHit : flag=14 | sev=4 | thetaHit=2.10281 | phiHit=2.93878 | etaHit=-0.559045 | E=25.4751 | Et=21.9542 | TT=-7 34
+sFGVB=0
+Begin processing the 495th record. Run 190459, Event 10186426, LumiSection 38 at 12-Nov-2014 12:22:48.736 CET
+Begin processing the 496th record. Run 190459, Event 10187610, LumiSection 38 at 12-Nov-2014 12:22:48.769 CET
+Begin processing the 497th record. Run 190459, Event 10192010, LumiSection 38 at 12-Nov-2014 12:22:48.793 CET
+Begin processing the 498th record. Run 190459, Event 10194202, LumiSection 38 at 12-Nov-2014 12:22:48.862 CET
+Begin processing the 499th record. Run 190459, Event 10196506, LumiSection 38 at 12-Nov-2014 12:22:48.889 CET
+No match tower for next spike was found offline:
+ET=255  iphi=31  ieta=21
+Begin processing the 500th record. Run 190459, Event 10199578, LumiSection 38 at 12-Nov-2014 12:22:48.912 CET
+12-Nov-2014 12:22:48 CET  Closed file file:/afs/cern.ch/cms/CAF/CMSCOMM/COMM_ECAL/azabi/F0B823DE-763B-E211-A312-0025905964B2.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 fileAction           -s file_close                             1        1
+    2 fileAction           -s file_open                              2        2
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 fileAction           PostEndRun                        
+    2 fileAction           pre-events       pre-events       
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+System                  3                   3

@@ -1,0 +1,300 @@
+globaltag = GR_R_62_V1::All
+271 DQMStore::DQMStore 
+04-Jun-2015 03:52:41 CEST  Initiating request to open file file:/home/llr/cms/antropov/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root
+04-Jun-2015 03:52:42 CEST  Successfully opened file file:/home/llr/cms/antropov/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root
+Begin processing the 1st record. Run 197923, Event 12968366, LumiSection 187 at 04-Jun-2015 03:52:45.045 CEST
+Begin processing the 101st record. Run 197923, Event 12985862, LumiSection 187 at 04-Jun-2015 03:52:48.421 CEST
+Begin processing the 201st record. Run 197923, Event 12982101, LumiSection 187 at 04-Jun-2015 03:52:50.201 CEST
+Begin processing the 301st record. Run 197923, Event 12981586, LumiSection 187 at 04-Jun-2015 03:52:51.979 CEST
+Begin processing the 401st record. Run 197923, Event 12976993, LumiSection 187 at 04-Jun-2015 03:52:53.757 CEST
+Begin processing the 501st record. Run 197923, Event 12971557, LumiSection 187 at 04-Jun-2015 03:52:55.530 CEST
+Begin processing the 601st record. Run 197923, Event 12971755, LumiSection 187 at 04-Jun-2015 03:52:57.318 CEST
+Begin processing the 701st record. Run 197923, Event 12967698, LumiSection 187 at 04-Jun-2015 03:52:59.007 CEST
+Begin processing the 801st record. Run 197923, Event 12987434, LumiSection 187 at 04-Jun-2015 03:53:00.773 CEST
+Begin processing the 901st record. Run 197923, Event 12982577, LumiSection 187 at 04-Jun-2015 03:53:02.540 CEST
+Begin processing the 1001st record. Run 197923, Event 12980646, LumiSection 187 at 04-Jun-2015 03:53:04.320 CEST
+Begin processing the 1101st record. Run 197923, Event 12977135, LumiSection 187 at 04-Jun-2015 03:53:06.103 CEST
+(EcalTT subDet Barrel iz +  ieta 14 iphi 70) 5 samples 
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=48, FG=0, sFGVB=1, TTF=3
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=0, FG=0, sFGVB=1, TTF=0
+Online:
+(EcalTT subDet Barrel iz +  ieta 14 iphi 70) 1 samples 
+  ET=48, FG=0, sFGVB=1, TTF=3
+Masked flag: 0
+
+Begin processing the 1201st record. Run 197923, Event 12973463, LumiSection 187 at 04-Jun-2015 03:53:07.854 CEST
+Begin processing the 1301st record. Run 197923, Event 12970436, LumiSection 187 at 04-Jun-2015 03:53:09.615 CEST
+(EcalTT subDet Barrel iz +  ieta 10 iphi 51) 5 samples 
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=48, FG=0, sFGVB=1, TTF=3
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=0, FG=0, sFGVB=1, TTF=0
+Online:
+(EcalTT subDet Barrel iz +  ieta 10 iphi 51) 1 samples 
+  ET=48, FG=0, sFGVB=1, TTF=3
+Masked flag: 0
+
+Begin processing the 1401st record. Run 197923, Event 12968168, LumiSection 187 at 04-Jun-2015 03:53:11.284 CEST
+Begin processing the 1501st record. Run 197923, Event 12991672, LumiSection 187 at 04-Jun-2015 03:53:13.040 CEST
+Begin processing the 1601st record. Run 197923, Event 12988312, LumiSection 187 at 04-Jun-2015 03:53:14.811 CEST
+Begin processing the 1701st record. Run 197923, Event 12985763, LumiSection 187 at 04-Jun-2015 03:53:16.579 CEST
+Begin processing the 1801st record. Run 197923, Event 12980868, LumiSection 187 at 04-Jun-2015 03:53:18.348 CEST
+Begin processing the 1901st record. Run 197923, Event 13004009, LumiSection 188 at 04-Jun-2015 03:53:20.126 CEST
+Begin processing the 2001st record. Run 197923, Event 13001657, LumiSection 188 at 04-Jun-2015 03:53:21.904 CEST
+Begin processing the 2101st record. Run 197923, Event 13000269, LumiSection 188 at 04-Jun-2015 03:53:23.597 CEST
+Begin processing the 2201st record. Run 197923, Event 12994696, LumiSection 188 at 04-Jun-2015 03:53:25.378 CEST
+Begin processing the 2301st record. Run 197923, Event 12992180, LumiSection 188 at 04-Jun-2015 03:53:27.143 CEST
+Begin processing the 2401st record. Run 197923, Event 13010380, LumiSection 188 at 04-Jun-2015 03:53:28.899 CEST
+Begin processing the 2501st record. Run 197923, Event 13005632, LumiSection 188 at 04-Jun-2015 03:53:30.681 CEST
+Begin processing the 2601st record. Run 197923, Event 13001442, LumiSection 188 at 04-Jun-2015 03:53:32.463 CEST
+Begin processing the 2701st record. Run 197923, Event 12995110, LumiSection 188 at 04-Jun-2015 03:53:34.208 CEST
+Begin processing the 2801st record. Run 197923, Event 13014462, LumiSection 188 at 04-Jun-2015 03:53:35.878 CEST
+Begin processing the 2901st record. Run 197923, Event 13010671, LumiSection 188 at 04-Jun-2015 03:53:37.644 CEST
+Begin processing the 3001st record. Run 197923, Event 13007250, LumiSection 188 at 04-Jun-2015 03:53:39.388 CEST
+Begin processing the 3101st record. Run 197923, Event 13002748, LumiSection 188 at 04-Jun-2015 03:53:41.170 CEST
+Begin processing the 3201st record. Run 197923, Event 12998947, LumiSection 188 at 04-Jun-2015 03:53:42.934 CEST
+Begin processing the 3301st record. Run 197923, Event 12997111, LumiSection 188 at 04-Jun-2015 03:53:44.684 CEST
+Begin processing the 3401st record. Run 197923, Event 13016039, LumiSection 188 at 04-Jun-2015 03:53:46.435 CEST
+Begin processing the 3501st record. Run 197923, Event 13009925, LumiSection 188 at 04-Jun-2015 03:53:48.111 CEST
+Begin processing the 3601st record. Run 197923, Event 13009734, LumiSection 188 at 04-Jun-2015 03:53:49.871 CEST
+Begin processing the 3701st record. Run 197923, Event 13005411, LumiSection 188 at 04-Jun-2015 03:53:51.628 CEST
+Begin processing the 3801st record. Run 197923, Event 13029528, LumiSection 189 at 04-Jun-2015 03:53:53.390 CEST
+Begin processing the 3901st record. Run 197923, Event 13028344, LumiSection 189 at 04-Jun-2015 03:53:55.157 CEST
+Begin processing the 4001st record. Run 197923, Event 13019809, LumiSection 189 at 04-Jun-2015 03:53:56.928 CEST
+(EcalTT subDet Barrel iz +  ieta 3 iphi 4) 5 samples 
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=48, FG=1, sFGVB=1, TTF=3
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=0, FG=0, sFGVB=1, TTF=0
+Online:
+(EcalTT subDet Barrel iz +  ieta 3 iphi 4) 1 samples 
+  ET=48, FG=1, sFGVB=1, TTF=3
+Masked flag: 0
+
+(EcalTT subDet Barrel iz +  ieta 6 iphi 33) 5 samples 
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=48, FG=1, sFGVB=1, TTF=3
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=0, FG=0, sFGVB=1, TTF=0
+Online:
+(EcalTT subDet Barrel iz +  ieta 6 iphi 33) 1 samples 
+  ET=48, FG=1, sFGVB=1, TTF=3
+Masked flag: 0
+
+Begin processing the 4101st record. Run 197923, Event 13020857, LumiSection 189 at 04-Jun-2015 03:53:58.700 CEST
+Begin processing the 4201st record. Run 197923, Event 13019102, LumiSection 189 at 04-Jun-2015 03:54:00.378 CEST
+Begin processing the 4301st record. Run 197923, Event 13036422, LumiSection 189 at 04-Jun-2015 03:54:02.134 CEST
+Begin processing the 4401st record. Run 197923, Event 13033295, LumiSection 189 at 04-Jun-2015 03:54:03.899 CEST
+Begin processing the 4501st record. Run 197923, Event 13033274, LumiSection 189 at 04-Jun-2015 03:54:05.642 CEST
+Begin processing the 4601st record. Run 197923, Event 13032469, LumiSection 189 at 04-Jun-2015 03:54:07.399 CEST
+Begin processing the 4701st record. Run 197923, Event 13026108, LumiSection 189 at 04-Jun-2015 03:54:09.165 CEST
+Begin processing the 4801st record. Run 197923, Event 13022909, LumiSection 189 at 04-Jun-2015 03:54:10.928 CEST
+Begin processing the 4901st record. Run 197923, Event 13022654, LumiSection 189 at 04-Jun-2015 03:54:12.622 CEST
+Begin processing the 5001st record. Run 197923, Event 13016691, LumiSection 189 at 04-Jun-2015 03:54:14.380 CEST
+Begin processing the 5101st record. Run 197923, Event 13039363, LumiSection 189 at 04-Jun-2015 03:54:16.137 CEST
+Begin processing the 5201st record. Run 197923, Event 13039228, LumiSection 189 at 04-Jun-2015 03:54:17.890 CEST
+Begin processing the 5301st record. Run 197923, Event 13035427, LumiSection 189 at 04-Jun-2015 03:54:19.643 CEST
+Begin processing the 5401st record. Run 197923, Event 13028282, LumiSection 189 at 04-Jun-2015 03:54:21.415 CEST
+Begin processing the 5501st record. Run 197923, Event 13030007, LumiSection 189 at 04-Jun-2015 03:54:23.181 CEST
+Begin processing the 5601st record. Run 197923, Event 13051061, LumiSection 190 at 04-Jun-2015 03:54:24.861 CEST
+Begin processing the 5701st record. Run 197923, Event 13048015, LumiSection 190 at 04-Jun-2015 03:54:26.619 CEST
+Begin processing the 5801st record. Run 197923, Event 13047495, LumiSection 190 at 04-Jun-2015 03:54:28.381 CEST
+Begin processing the 5901st record. Run 197923, Event 13044970, LumiSection 190 at 04-Jun-2015 03:54:30.140 CEST
+Begin processing the 6001st record. Run 197923, Event 13041497, LumiSection 190 at 04-Jun-2015 03:54:31.897 CEST
+Begin processing the 6101st record. Run 197923, Event 13061681, LumiSection 190 at 04-Jun-2015 03:54:33.667 CEST
+Begin processing the 6201st record. Run 197923, Event 13055882, LumiSection 190 at 04-Jun-2015 03:54:35.349 CEST
+Begin processing the 6301st record. Run 197923, Event 13053273, LumiSection 190 at 04-Jun-2015 03:54:37.106 CEST
+Begin processing the 6401st record. Run 197923, Event 13053704, LumiSection 190 at 04-Jun-2015 03:54:38.870 CEST
+Begin processing the 6501st record. Run 197923, Event 13049990, LumiSection 190 at 04-Jun-2015 03:54:40.634 CEST
+Begin processing the 6601st record. Run 197923, Event 13051044, LumiSection 190 at 04-Jun-2015 03:54:42.389 CEST
+Begin processing the 6701st record. Run 197923, Event 13047075, LumiSection 190 at 04-Jun-2015 03:54:44.167 CEST
+Begin processing the 6801st record. Run 197923, Event 13043477, LumiSection 190 at 04-Jun-2015 03:54:45.921 CEST
+Begin processing the 6901st record. Run 197923, Event 13042598, LumiSection 190 at 04-Jun-2015 03:54:47.599 CEST
+Begin processing the 7001st record. Run 197923, Event 13041171, LumiSection 190 at 04-Jun-2015 03:54:49.364 CEST
+Begin processing the 7101st record. Run 197923, Event 13058691, LumiSection 190 at 04-Jun-2015 03:54:51.118 CEST
+Begin processing the 7201st record. Run 197923, Event 13054800, LumiSection 190 at 04-Jun-2015 03:54:52.881 CEST
+Begin processing the 7301st record. Run 197923, Event 13055652, LumiSection 190 at 04-Jun-2015 03:54:54.643 CEST
+Begin processing the 7401st record. Run 197923, Event 13079713, LumiSection 191 at 04-Jun-2015 03:54:56.410 CEST
+Begin processing the 7501st record. Run 197923, Event 13074679, LumiSection 191 at 04-Jun-2015 03:54:58.191 CEST
+Begin processing the 7601st record. Run 197923, Event 13068445, LumiSection 191 at 04-Jun-2015 03:54:59.860 CEST
+Begin processing the 7701st record. Run 197923, Event 13069182, LumiSection 191 at 04-Jun-2015 03:55:01.646 CEST
+Begin processing the 7801st record. Run 197923, Event 13070385, LumiSection 191 at 04-Jun-2015 03:55:03.410 CEST
+(EcalTT subDet Barrel iz -  ieta 17 iphi 18) 5 samples 
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=48, FG=0, sFGVB=1, TTF=3
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=0, FG=0, sFGVB=1, TTF=0
+Online:
+(EcalTT subDet Barrel iz -  ieta 17 iphi 18) 1 samples 
+  ET=48, FG=0, sFGVB=1, TTF=3
+Masked flag: 0
+
+Begin processing the 7901st record. Run 197923, Event 13072021, LumiSection 191 at 04-Jun-2015 03:55:05.170 CEST
+Begin processing the 8001st record. Run 197923, Event 13071490, LumiSection 191 at 04-Jun-2015 03:55:06.947 CEST
+Begin processing the 8101st record. Run 197923, Event 13072360, LumiSection 191 at 04-Jun-2015 03:55:08.693 CEST
+Begin processing the 8201st record. Run 197923, Event 13069084, LumiSection 191 at 04-Jun-2015 03:55:10.451 CEST
+Begin processing the 8301st record. Run 197923, Event 13087100, LumiSection 191 at 04-Jun-2015 03:55:12.134 CEST
+Begin processing the 8401st record. Run 197923, Event 13087527, LumiSection 191 at 04-Jun-2015 03:55:13.909 CEST
+Begin processing the 8501st record. Run 197923, Event 13079998, LumiSection 191 at 04-Jun-2015 03:55:15.679 CEST
+Begin processing the 8601st record. Run 197923, Event 13076932, LumiSection 191 at 04-Jun-2015 03:55:17.433 CEST
+Begin processing the 8701st record. Run 197923, Event 13075274, LumiSection 191 at 04-Jun-2015 03:55:19.196 CEST
+Begin processing the 8801st record. Run 197923, Event 13069712, LumiSection 191 at 04-Jun-2015 03:55:20.960 CEST
+Begin processing the 8901st record. Run 197923, Event 13088528, LumiSection 191 at 04-Jun-2015 03:55:22.728 CEST
+Begin processing the 9001st record. Run 197923, Event 13082923, LumiSection 191 at 04-Jun-2015 03:55:24.406 CEST
+Begin processing the 9101st record. Run 197923, Event 13081843, LumiSection 191 at 04-Jun-2015 03:55:26.149 CEST
+Begin processing the 9201st record. Run 197923, Event 13224037, LumiSection 197 at 04-Jun-2015 03:55:27.881 CEST
+Begin processing the 9301st record. Run 197923, Event 13224225, LumiSection 197 at 04-Jun-2015 03:55:29.662 CEST
+Begin processing the 9401st record. Run 197923, Event 13220562, LumiSection 197 at 04-Jun-2015 03:55:31.434 CEST
+Begin processing the 9501st record. Run 197923, Event 13216671, LumiSection 197 at 04-Jun-2015 03:55:33.206 CEST
+Begin processing the 9601st record. Run 197923, Event 13214974, LumiSection 197 at 04-Jun-2015 03:55:34.880 CEST
+Begin processing the 9701st record. Run 197923, Event 13210118, LumiSection 197 at 04-Jun-2015 03:55:36.638 CEST
+Begin processing the 9801st record. Run 197923, Event 13232646, LumiSection 197 at 04-Jun-2015 03:55:38.392 CEST
+Begin processing the 9901st record. Run 197923, Event 13229421, LumiSection 197 at 04-Jun-2015 03:55:40.152 CEST
+Begin processing the 10001st record. Run 197923, Event 13223319, LumiSection 197 at 04-Jun-2015 03:55:41.920 CEST
+Begin processing the 10101st record. Run 197923, Event 13220596, LumiSection 197 at 04-Jun-2015 03:55:43.676 CEST
+Begin processing the 10201st record. Run 197923, Event 13215160, LumiSection 197 at 04-Jun-2015 03:55:45.439 CEST
+Begin processing the 10301st record. Run 197923, Event 13212057, LumiSection 197 at 04-Jun-2015 03:55:47.120 CEST
+Begin processing the 10401st record. Run 197923, Event 13230689, LumiSection 197 at 04-Jun-2015 03:55:48.878 CEST
+Begin processing the 10501st record. Run 197923, Event 13228891, LumiSection 197 at 04-Jun-2015 03:55:50.645 CEST
+Begin processing the 10601st record. Run 197923, Event 13224668, LumiSection 197 at 04-Jun-2015 03:55:52.414 CEST
+Begin processing the 10701st record. Run 197923, Event 13222099, LumiSection 197 at 04-Jun-2015 03:55:54.167 CEST
+Begin processing the 10801st record. Run 197923, Event 13220536, LumiSection 197 at 04-Jun-2015 03:55:55.917 CEST
+Begin processing the 10901st record. Run 197923, Event 13217450, LumiSection 197 at 04-Jun-2015 03:55:57.581 CEST
+Begin processing the 11001st record. Run 197923, Event 13236614, LumiSection 198 at 04-Jun-2015 03:55:59.332 CEST
+Begin processing the 11101st record. Run 197923, Event 13235743, LumiSection 198 at 04-Jun-2015 03:56:01.092 CEST
+Begin processing the 11201st record. Run 197923, Event 13234546, LumiSection 198 at 04-Jun-2015 03:56:02.849 CEST
+Begin processing the 11301st record. Run 197923, Event 13255266, LumiSection 198 at 04-Jun-2015 03:56:04.617 CEST
+Begin processing the 11401st record. Run 197923, Event 13253910, LumiSection 198 at 04-Jun-2015 03:56:06.377 CEST
+Begin processing the 11501st record. Run 197923, Event 13249738, LumiSection 198 at 04-Jun-2015 03:56:08.135 CEST
+Begin processing the 11601st record. Run 197923, Event 13249313, LumiSection 198 at 04-Jun-2015 03:56:09.818 CEST
+Begin processing the 11701st record. Run 197923, Event 13248404, LumiSection 198 at 04-Jun-2015 03:56:11.575 CEST
+Begin processing the 11801st record. Run 197923, Event 13248285, LumiSection 198 at 04-Jun-2015 03:56:13.324 CEST
+Begin processing the 11901st record. Run 197923, Event 13245669, LumiSection 198 at 04-Jun-2015 03:56:15.099 CEST
+Begin processing the 12001st record. Run 197923, Event 13244809, LumiSection 198 at 04-Jun-2015 03:56:16.846 CEST
+Begin processing the 12101st record. Run 197923, Event 13243811, LumiSection 198 at 04-Jun-2015 03:56:18.602 CEST
+Begin processing the 12201st record. Run 197923, Event 13240391, LumiSection 198 at 04-Jun-2015 03:56:20.278 CEST
+Begin processing the 12301st record. Run 197923, Event 13238736, LumiSection 198 at 04-Jun-2015 03:56:22.034 CEST
+Begin processing the 12401st record. Run 197923, Event 13234819, LumiSection 198 at 04-Jun-2015 03:56:23.797 CEST
+Begin processing the 12501st record. Run 197923, Event 13255931, LumiSection 198 at 04-Jun-2015 03:56:25.554 CEST
+Begin processing the 12601st record. Run 197923, Event 13253640, LumiSection 198 at 04-Jun-2015 03:56:27.311 CEST
+Begin processing the 12701st record. Run 197923, Event 13253380, LumiSection 198 at 04-Jun-2015 03:56:29.071 CEST
+Begin processing the 12801st record. Run 197923, Event 13272782, LumiSection 199 at 04-Jun-2015 03:56:30.841 CEST
+Begin processing the 12901st record. Run 197923, Event 13271027, LumiSection 199 at 04-Jun-2015 03:56:32.508 CEST
+Begin processing the 13001st record. Run 197923, Event 13266978, LumiSection 199 at 04-Jun-2015 03:56:34.265 CEST
+Begin processing the 13101st record. Run 197923, Event 13261456, LumiSection 199 at 04-Jun-2015 03:56:36.038 CEST
+Begin processing the 13201st record. Run 197923, Event 13259688, LumiSection 199 at 04-Jun-2015 03:56:37.798 CEST
+Begin processing the 13301st record. Run 197923, Event 13258270, LumiSection 199 at 04-Jun-2015 03:56:39.559 CEST
+Begin processing the 13401st record. Run 197923, Event 13279806, LumiSection 199 at 04-Jun-2015 03:56:41.320 CEST
+Begin processing the 13501st record. Run 197923, Event 13276353, LumiSection 199 at 04-Jun-2015 03:56:43.083 CEST
+Begin processing the 13601st record. Run 197923, Event 13273044, LumiSection 199 at 04-Jun-2015 03:56:44.761 CEST
+Begin processing the 13701st record. Run 197923, Event 13268397, LumiSection 199 at 04-Jun-2015 03:56:46.516 CEST
+(EcalTT subDet Barrel iz +  ieta 13 iphi 39) 5 samples 
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=48, FG=0, sFGVB=1, TTF=3
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=0, FG=0, sFGVB=1, TTF=0
+Online:
+(EcalTT subDet Barrel iz +  ieta 13 iphi 39) 1 samples 
+  ET=48, FG=0, sFGVB=1, TTF=3
+Masked flag: 0
+
+Begin processing the 13801st record. Run 197923, Event 13265285, LumiSection 199 at 04-Jun-2015 03:56:48.275 CEST
+Begin processing the 13901st record. Run 197923, Event 13258135, LumiSection 199 at 04-Jun-2015 03:56:50.039 CEST
+Begin processing the 14001st record. Run 197923, Event 13278191, LumiSection 199 at 04-Jun-2015 03:56:51.806 CEST
+Begin processing the 14101st record. Run 197923, Event 13276279, LumiSection 199 at 04-Jun-2015 03:56:53.566 CEST
+Begin processing the 14201st record. Run 197923, Event 13274956, LumiSection 199 at 04-Jun-2015 03:56:55.251 CEST
+Begin processing the 14301st record. Run 197923, Event 13269931, LumiSection 199 at 04-Jun-2015 03:56:57.014 CEST
+Begin processing the 14401st record. Run 197923, Event 13268793, LumiSection 199 at 04-Jun-2015 03:56:58.785 CEST
+Begin processing the 14501st record. Run 197923, Event 13267690, LumiSection 199 at 04-Jun-2015 03:57:00.555 CEST
+Begin processing the 14601st record. Run 197923, Event 13287223, LumiSection 200 at 04-Jun-2015 03:57:02.323 CEST
+Begin processing the 14701st record. Run 197923, Event 13305567, LumiSection 200 at 04-Jun-2015 03:57:04.071 CEST
+Begin processing the 14801st record. Run 197923, Event 13304524, LumiSection 200 at 04-Jun-2015 03:57:05.835 CEST
+Begin processing the 14901st record. Run 197923, Event 13303851, LumiSection 200 at 04-Jun-2015 03:57:07.519 CEST
+Begin processing the 15001st record. Run 197923, Event 13301149, LumiSection 200 at 04-Jun-2015 03:57:09.258 CEST
+Begin processing the 15101st record. Run 197923, Event 13300498, LumiSection 200 at 04-Jun-2015 03:57:11.010 CEST
+Begin processing the 15201st record. Run 197923, Event 13297937, LumiSection 200 at 04-Jun-2015 03:57:12.774 CEST
+Begin processing the 15301st record. Run 197923, Event 13296142, LumiSection 200 at 04-Jun-2015 03:57:14.536 CEST
+Begin processing the 15401st record. Run 197923, Event 13293664, LumiSection 200 at 04-Jun-2015 03:57:16.288 CEST
+Begin processing the 15501st record. Run 197923, Event 13288808, LumiSection 200 at 04-Jun-2015 03:57:17.972 CEST
+Begin processing the 15601st record. Run 197923, Event 13288849, LumiSection 200 at 04-Jun-2015 03:57:19.730 CEST
+Begin processing the 15701st record. Run 197923, Event 13283395, LumiSection 200 at 04-Jun-2015 03:57:21.489 CEST
+Begin processing the 15801st record. Run 197923, Event 13282114, LumiSection 200 at 04-Jun-2015 03:57:23.256 CEST
+Begin processing the 15901st record. Run 197923, Event 13282911, LumiSection 200 at 04-Jun-2015 03:57:25.027 CEST
+Begin processing the 16001st record. Run 197923, Event 13282372, LumiSection 200 at 04-Jun-2015 03:57:26.790 CEST
+Begin processing the 16101st record. Run 197923, Event 13302060, LumiSection 200 at 04-Jun-2015 03:57:28.548 CEST
+Begin processing the 16201st record. Run 197923, Event 13297262, LumiSection 200 at 04-Jun-2015 03:57:30.203 CEST
+Begin processing the 16301st record. Run 197923, Event 13294125, LumiSection 200 at 04-Jun-2015 03:57:31.961 CEST
+Begin processing the 16401st record. Run 197923, Event 13315208, LumiSection 201 at 04-Jun-2015 03:57:33.709 CEST
+Begin processing the 16501st record. Run 197923, Event 13313344, LumiSection 201 at 04-Jun-2015 03:57:35.472 CEST
+Begin processing the 16601st record. Run 197923, Event 13311494, LumiSection 201 at 04-Jun-2015 03:57:37.225 CEST
+Begin processing the 16701st record. Run 197923, Event 13307129, LumiSection 201 at 04-Jun-2015 03:57:38.975 CEST
+Begin processing the 16801st record. Run 197923, Event 13328401, LumiSection 201 at 04-Jun-2015 03:57:40.651 CEST
+Begin processing the 16901st record. Run 197923, Event 13326529, LumiSection 201 at 04-Jun-2015 03:57:42.394 CEST
+Begin processing the 17001st record. Run 197923, Event 13325186, LumiSection 201 at 04-Jun-2015 03:57:44.136 CEST
+Begin processing the 17101st record. Run 197923, Event 13322979, LumiSection 201 at 04-Jun-2015 03:57:45.890 CEST
+Begin processing the 17201st record. Run 197923, Event 13318860, LumiSection 201 at 04-Jun-2015 03:57:47.649 CEST
+Begin processing the 17301st record. Run 197923, Event 13313789, LumiSection 201 at 04-Jun-2015 03:57:49.411 CEST
+Begin processing the 17401st record. Run 197923, Event 13308015, LumiSection 201 at 04-Jun-2015 03:57:51.151 CEST
+Begin processing the 17501st record. Run 197923, Event 13306364, LumiSection 201 at 04-Jun-2015 03:57:52.837 CEST
+Begin processing the 17601st record. Run 197923, Event 13327636, LumiSection 201 at 04-Jun-2015 03:57:54.595 CEST
+Begin processing the 17701st record. Run 197923, Event 13326730, LumiSection 201 at 04-Jun-2015 03:57:56.375 CEST
+Begin processing the 17801st record. Run 197923, Event 13327279, LumiSection 201 at 04-Jun-2015 03:57:58.132 CEST
+Begin processing the 17901st record. Run 197923, Event 13328163, LumiSection 201 at 04-Jun-2015 03:57:59.897 CEST
+Begin processing the 18001st record. Run 197923, Event 13324142, LumiSection 201 at 04-Jun-2015 03:58:01.642 CEST
+Begin processing the 18101st record. Run 197923, Event 13323901, LumiSection 201 at 04-Jun-2015 03:58:03.328 CEST
+Begin processing the 18201st record. Run 197923, Event 13343331, LumiSection 202 at 04-Jun-2015 03:58:05.072 CEST
+Begin processing the 18301st record. Run 197923, Event 13342383, LumiSection 202 at 04-Jun-2015 03:58:06.882 CEST
+Begin processing the 18401st record. Run 197923, Event 13342784, LumiSection 202 at 04-Jun-2015 03:58:08.641 CEST
+Begin processing the 18501st record. Run 197923, Event 13339584, LumiSection 202 at 04-Jun-2015 03:58:10.392 CEST
+Begin processing the 18601st record. Run 197923, Event 13337742, LumiSection 202 at 04-Jun-2015 03:58:12.162 CEST
+Begin processing the 18701st record. Run 197923, Event 13331601, LumiSection 202 at 04-Jun-2015 03:58:13.852 CEST
+Begin processing the 18801st record. Run 197923, Event 13352857, LumiSection 202 at 04-Jun-2015 03:58:15.604 CEST
+Begin processing the 18901st record. Run 197923, Event 13351068, LumiSection 202 at 04-Jun-2015 03:58:17.369 CEST
+Begin processing the 19001st record. Run 197923, Event 13353145, LumiSection 202 at 04-Jun-2015 03:58:19.133 CEST
+Begin processing the 19101st record. Run 197923, Event 13351749, LumiSection 202 at 04-Jun-2015 03:58:20.878 CEST
+(EcalTT subDet Barrel iz -  ieta 14 iphi 33) 5 samples 
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=48, FG=0, sFGVB=1, TTF=3
+  ET=0, FG=0, sFGVB=1, TTF=0
+  ET=0, FG=0, sFGVB=1, TTF=0
+Online:
+(EcalTT subDet Barrel iz -  ieta 14 iphi 33) 1 samples 
+  ET=48, FG=0, sFGVB=1, TTF=3
+Masked flag: 0
+
+Begin processing the 19201st record. Run 197923, Event 13348891, LumiSection 202 at 04-Jun-2015 03:58:22.642 CEST
+Begin processing the 19301st record. Run 197923, Event 13347293, LumiSection 202 at 04-Jun-2015 03:58:24.406 CEST
+Begin processing the 19401st record. Run 197923, Event 13345222, LumiSection 202 at 04-Jun-2015 03:58:26.089 CEST
+Begin processing the 19501st record. Run 197923, Event 13343674, LumiSection 202 at 04-Jun-2015 03:58:27.823 CEST
+Begin processing the 19601st record. Run 197923, Event 13341692, LumiSection 202 at 04-Jun-2015 03:58:29.594 CEST
+Begin processing the 19701st record. Run 197923, Event 13341031, LumiSection 202 at 04-Jun-2015 03:58:31.355 CEST
+Begin processing the 19801st record. Run 197923, Event 13341810, LumiSection 202 at 04-Jun-2015 03:58:33.108 CEST
+Begin processing the 19901st record. Run 197923, Event 13363744, LumiSection 203 at 04-Jun-2015 03:58:34.874 CEST
+04-Jun-2015 03:58:36 CEST  Closed file file:/home/llr/cms/antropov/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root
+
+=============================================
+
+MessageLogger Summary
+
+ type     category        sev    module        subroutine        count    total
+ ---- -------------------- -- ---------------- ----------------  -----    -----
+    1 fileAction           -s file_close                             1        1
+    2 fileAction           -s file_open                              2        2
+
+ type    category    Examples: run/evt        run/evt          run/evt
+ ---- -------------------- ---------------- ---------------- ----------------
+    1 fileAction           PostEndRun                        
+    2 fileAction           pre-events       pre-events       
+
+Severity    # Occurrences   Total Occurrences
+--------    -------------   -----------------
+System                  3                   3

@@ -1,0 +1,22 @@
+nohup: ignoring input
+globaltag = GR_R_62_V1::All
+271 DQMStore::DQMStore 
+21-Jun-2015 09:23:34 CEST  Initiating request to open file root://polgrid4.in2p3.fr//store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root
+150621 09:23:34 67321 Xrd: CheckErrorStatus: Server [polgrid4.in2p3.fr:1094] declared: Server error: No user mapping(error code: 3005)
+21-Jun-2015 09:23:34 CEST  Fallback request to file root://xrootd-cms.infn.it//store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root
+150621 09:23:45 67325 Xrd: CheckErrorStatus: Server [llrxrd-redir.in2p3.fr:1294] declared: Server error: No user mapping(error code: 3005)
+----- Begin Fatal Exception 21-Jun-2015 09:23:45 CEST-----------------------
+An exception of category 'FallbackFileOpenError' occurred while
+   [0] Constructing the EventProcessor
+   [1] Constructing input source of type PoolSource
+   [2] Calling RootInputFileSequence::initFile()
+   [3] Calling StorageFactory::open()
+   [4] Calling XrdFile::open()
+Exception Message:
+Failed to open the file 'root://xrootd-cms.infn.it//store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root'
+   Additional Info:
+      [a] Input file root://polgrid4.in2p3.fr//store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root could not be opened.
+Fallback Input file root://xrootd-cms.infn.it//store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root also could not be opened.
+      [b] XrdClient::Open(name='root://xrootd-cms.infn.it//store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root', flags=0x10, permissions=0666) => error 'Server error: No user mapping' (errno=3005)
+      [c] Current server connection: root://polgrid4.in2p3.fr:11001//store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root
+----- End Fatal Exception -------------------------------------------------
