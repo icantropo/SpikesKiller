@@ -1640,7 +1640,6 @@ if (do_l1extraparticles_){
 
 		   bool l1SingleEG5 = menu->gtAlgorithmResult( "L1_SingleEG5", gtDecisionWordBeforeMask);
 
-
 		   bool processL1extraParticles=true;
 		   if (do_l1EG5Cut_) {processL1extraParticles=l1SingleEG5;}
 
@@ -1661,6 +1660,9 @@ if (do_l1extraparticles_){
 				std::vector<double> l1CandidatesEnergies_Emulated;
 				std::vector<double> l1CandidatesEts_Online;
 				std::vector<double> l1CandidatesEts_Emulated;
+
+				map<double, l1extra::L1EmParticleCollection::const_iterator> map_Ets_candidates_Online;
+				map<double, l1extra::L1EmParticleCollection::const_iterator> map_Ets_candidates_Emul;
 
 				//cout << "Online:" << endl;
 				//cout << "Isolated:" << endl;
@@ -1689,6 +1691,7 @@ if (do_l1extraparticles_){
 								h_l1em_Online_Particles_barrel_et->Fill( emItr->et() );
 								l1CandidatesEnergies_Online.push_back(emItr->energy());
 								l1CandidatesEts_Online.push_back(emItr->et());
+								map_Ets_candidates_Online[emItr->et()]=emItr;
 						}
 						if ( (emItr->eta() < 1.567) && (emItr->eta() > -1.567) )
 								h_l1em_Online_Particles_eta1567_et->Fill( emItr->et() );
@@ -1738,6 +1741,7 @@ if (do_l1extraparticles_){
 										h_l1em_Online_Particles_barrel_et->Fill( emItr->et() );
 										l1CandidatesEnergies_Online.push_back(emItr->energy());
 										l1CandidatesEts_Online.push_back(emItr->et());
+										map_Ets_candidates_Online[emItr->et()]=emItr;
 						}
 						if ( (emItr->eta() < 1.567) && (emItr->eta() > -1.567) )
 								h_l1em_Online_Particles_eta1567_et->Fill( emItr->et() );
@@ -1786,6 +1790,7 @@ if (do_l1extraparticles_){
 										h_l1em_Emul_Particles_barrel_et->Fill( emItr->et() );
 										l1CandidatesEnergies_Emulated.push_back(emItr->energy());
 										l1CandidatesEts_Emulated.push_back(emItr->et());
+										map_Ets_candidates_Emul[emItr->et()]=emItr;
 						}
 						if ( (emItr->eta() < 1.567) && (emItr->eta() > -1.567) )
 								h_l1em_Emul_Particles_eta1567_et->Fill( emItr->et() );
@@ -1837,6 +1842,7 @@ if (do_l1extraparticles_){
 										h_l1em_Emul_Particles_barrel_et->Fill( emItr->et() );
 										l1CandidatesEnergies_Emulated.push_back(emItr->energy());
 										l1CandidatesEts_Emulated.push_back(emItr->et());
+										map_Ets_candidates_Emul[emItr->et()]=emItr;
 						}
 						if ( (emItr->eta() < 1.567) && (emItr->eta() > -1.567) )
 								h_l1em_Emul_Particles_eta1567_et->Fill( emItr->et() );
@@ -1880,32 +1886,78 @@ if (do_l1extraparticles_){
 				h_l1Candides_N_Emul->Fill(l1CandidatesEts_Emulated.size());
 				h_l1Candides_N_difference->Fill(l1CandidatesEts_Online.size()-l1CandidatesEts_Emulated.size());
 
-				if ( (l1CandidatesEts_Online.size() == 1 ) &&
-						l1CandidatesEts_Online.size()!=l1CandidatesEts_Emulated.size()){
-							cout << "l1CandidatesEnergies_Online.size() :"<< l1CandidatesEnergies_Online.size() << endl;
-							cout << "l1CandidatesEnergies_Emulated.size() :"<< l1CandidatesEnergies_Emulated.size() << endl;
-							cout << "l1CandidatesEts_Online.size() :"<< l1CandidatesEts_Online.size() << endl;
-							cout << "l1CandidatesEts_Emulated.size() :"<< l1CandidatesEts_Emulated.size() << endl<< endl;
+				if (l1CandidatesEts_Online.size() > 0){
+					if (l1CandidatesEts_Emulated.size()==0){
+						cout << "Highest l1 Et Online Emul doesn't match!!" << endl;
+						l1extra::L1EmParticleCollection::const_iterator it_Online = map_Ets_candidates_Online[l1CandidatesEts_Online.back()];
 
-							//HLT TriggerPath
-								edm::Handle<edm::TriggerResults> triggerBits;
-							//				edm::Handle<pat::TriggerObjectStandAloneCollection> triggerObjects;
-							//				edm::Handle<pat::PackedTriggerPrescales> triggerPrescales;
+						cout << "Highest l1 Et Online Emul doesn't match!!" << endl;
+										cout <<"Online" << endl;
+										cout << "eta = " << it_Online->eta()
+															      	   << " phi = " << it_Online->phi() << endl
+																	   << " etaIndex = " << it_Online->gctEmCand()->etaIndex()
+																	   << " ieta = " << it_Online->gctEmCand()->regionId().ieta()
+																	   << " etasign = " << it_Online->gctEmCand()->etaSign() << endl
+															      	   << " energy = " << it_Online->energy()
+															      	   << " et = " << it_Online->et()
+																	   << endl;
+						cout <<"No emulated candidates";
 
-								iEvent.getByToken(triggerBits_, triggerBits);
-							//				iEvent.getByToken(triggerObjects_, triggerObjects);
-							//				iEvent.getByToken(triggerPrescales_, triggerPrescales);
+					} else if (l1CandidatesEts_Online.back()!=l1CandidatesEts_Emulated.back()){
 
-								const edm::TriggerNames &names = iEvent.triggerNames(*triggerBits);
-								std::cout << "\n === TRIGGER PATHS === " << std::endl;
-								for (unsigned int i = 0, n = triggerBits->size(); i < n; ++i) {
-									std::cout << "Trigger " << names.triggerName(i) <<
-							//			                ", prescale " << triggerPrescales->getPrescaleForIndex(i) <<
-											": " << (triggerBits->accept(i) ? "PASS" : "fail (or not run)")
-											<< std::endl;
-								}
+						cout << "Higest l1 Et Online Emul doesn't match!!" << endl;
+						l1extra::L1EmParticleCollection::const_iterator it_Online = map_Ets_candidates_Online[l1CandidatesEts_Online.back()];
 
+																cout <<"Online" << endl;
+																cout << "eta = " << it_Online->eta()
+																					      	   << " phi = " << it_Online->phi() << endl
+																							   << " etaIndex = " << it_Online->gctEmCand()->etaIndex()
+																							   << " ieta = " << it_Online->gctEmCand()->regionId().ieta()
+																							   << " etasign = " << it_Online->gctEmCand()->etaSign() << endl
+																					      	   << " energy = " << it_Online->energy()
+																					      	   << " et = " << it_Online->et()
+																							   << endl;
+						l1extra::L1EmParticleCollection::const_iterator it_Emul = map_Ets_candidates_Emul[l1CandidatesEts_Emulated.back()];
+						cout << "Highest l1 Et Online Emul doesn't match!!" << endl;
+						cout <<"Emul" << endl;
+									cout << "eta = " << it_Emul->eta()
+																   << " phi = " << it_Emul->phi() << endl
+																   << " etaIndex = " << it_Emul->gctEmCand()->etaIndex()
+																   << " ieta = " << it_Emul->gctEmCand()->regionId().ieta()
+																   << " etasign = " << it_Emul->gctEmCand()->etaSign() << endl
+																   << " energy = " << it_Emul->energy()
+																   << " et = " << it_Emul->et()
+																   << endl;
+					}
 				}
+
+
+//				if ( (l1CandidatesEts_Online.size() == 1 ) &&
+//						l1CandidatesEts_Online.size()!=l1CandidatesEts_Emulated.size()){
+//							cout << "l1CandidatesEnergies_Online.size() :"<< l1CandidatesEnergies_Online.size() << endl;
+//							cout << "l1CandidatesEnergies_Emulated.size() :"<< l1CandidatesEnergies_Emulated.size() << endl;
+//							cout << "l1CandidatesEts_Online.size() :"<< l1CandidatesEts_Online.size() << endl;
+//							cout << "l1CandidatesEts_Emulated.size() :"<< l1CandidatesEts_Emulated.size() << endl<< endl;
+//
+////							//HLT TriggerPath
+////								edm::Handle<edm::TriggerResults> triggerBits;
+////							//				edm::Handle<pat::TriggerObjectStandAloneCollection> triggerObjects;
+////							//				edm::Handle<pat::PackedTriggerPrescales> triggerPrescales;
+////
+////								iEvent.getByToken(triggerBits_, triggerBits);
+////							//				iEvent.getByToken(triggerObjects_, triggerObjects);
+////							//				iEvent.getByToken(triggerPrescales_, triggerPrescales);
+////
+////								const edm::TriggerNames &names = iEvent.triggerNames(*triggerBits);
+////								std::cout << "\n === TRIGGER PATHS === " << std::endl;
+////								for (unsigned int i = 0, n = triggerBits->size(); i < n; ++i) {
+////									std::cout << "Trigger " << names.triggerName(i) <<
+////							//			                ", prescale " << triggerPrescales->getPrescaleForIndex(i) <<
+////											": " << (triggerBits->accept(i) ? "PASS" : "fail (or not run)")
+////											<< std::endl;
+////								}
+//
+//				}
 
 
 			//	//HLT TriggerPath
