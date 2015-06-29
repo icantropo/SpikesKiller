@@ -51,6 +51,6 @@ Thumbs.db
 
 # Eclipse IDE files #
 #####################
-.settings
-.project
-.cprogect
+*.settings
+*.project
+*.cprogect
