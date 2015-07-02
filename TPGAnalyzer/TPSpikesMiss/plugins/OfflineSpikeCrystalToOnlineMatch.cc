@@ -148,7 +148,7 @@ private:
 	void globalFireL1_Normal(double eleRCT_eT, int noniso, int iso,
 				 vector<int> & firedEG_N, vector<int> menu);
 
-	// handles to get TPs collections
+	// handles to get TPGs collections
 	edm::Handle<EcalTrigPrimDigiCollection> * ecal_tp_;
 	edm::Handle<EcalTrigPrimDigiCollection> * emulatorTP;
 
@@ -158,9 +158,9 @@ private:
 	edm::InputTag EcalRecHitCollectionEB_;
 
 	//spikes
-	std::vector<EcalTrigTowerDetId> TrigTowersWithRecHitSpikes;
+	std::vector<EcalTrigTowerDetId> TrigTowersWithRecHitSpikes; // not used currently
 
-	//analyzer config to produce different plots
+	//Things defined in python configuration file
 	const bool do_reconstruct_amplitude_allTTs_;
 	const bool do_rechit_spikes_search_;
 	const bool do_reconstruct_amplitudes_spikes_; //overrides do_rechit_spikes_search
@@ -212,15 +212,16 @@ private:
 //	int sev3_sev4_with_sFGVB1=0;
 //	int sev3_sev4_with_sFGVB1_with_dataframe=0;
 
-	//output file
+	//output file   (not used)
 	TFile* file_;
 	//histograms
 
 //	TH2F * h_TPGsaturated;
 
-	std::vector<TH2D*> hvect_Spikes;
-	std::vector<TH2D*> hvect_Spikes_icalib;
-	std::vector<TH2D*> hvect_Spikes_icalib_ADCtoGeV;
+	// hitograms to make LEGO2 distributions of energy inside Trigger Tower with offline spike.
+	std::vector<TH2D*> hvect_Spikes; // ADC counts on z axis
+	std::vector<TH2D*> hvect_Spikes_icalib; // (ADC counts)*icalib constant; on z axis
+	std::vector<TH2D*> hvect_Spikes_icalib_ADCtoGeV; // GeV on Z axis
 	int spiked_hists_number = 0;
 
 	TH1F *h_nofevents;
@@ -394,7 +395,7 @@ private:
 
 	int spike_N;
 
-	//weights for reconstruction of the signal amplitude in crystal's photo-multiplier from the ADC counts.
+	//weights for reconstruction of the signal amplitude in crystal from the ADC counts.
 	double weight[10]; 	//online
 	double weight_offline[10];
 
@@ -408,6 +409,11 @@ private:
     edm::EDGetTokenT<edm::TriggerResults> triggerBits_;
 //    edm::EDGetTokenT<pat::TriggerObjectStandAloneCollection> triggerObjects_;
 //    edm::EDGetTokenT<pat::PackedTriggerPrescales> triggerPrescales_;
+
+
+    // map to find RCT region ieta iphi (DetId) knowing TPG ieta iphi (DetId).
+    map<EBDetId, L1CaloRegionDetId> map_DetId_RegionID;
+
 };
 
 OfflineSpikeCrystalToOnlineMatch::OfflineSpikeCrystalToOnlineMatch(	const edm::ParameterSet& iConfig) :
@@ -425,9 +431,9 @@ OfflineSpikeCrystalToOnlineMatch::OfflineSpikeCrystalToOnlineMatch(	const edm::P
 //				triggerPrescales_(consumes<pat::PackedTriggerPrescales>(iConfig.getParameter<edm::InputTag>("prescales")))
 {
 	//now do what ever initialization is needed
-	EcalRecHitCollectionEB_ = (iConfig.getParameter<edm::InputTag>(
-			"EcalRecHitCollectionEB"));
+	EcalRecHitCollectionEB_ = (iConfig.getParameter<edm::InputTag>(	"EcalRecHitCollectionEB" ));
 
+	//Histograms
 	h_nofevents = fs->make<TH1F>("h_nofevents", "h_nofevents", 2, 0, 2);
 
 	h_ttonline_et = fs->make<TH1F>("h_ttonline_et", "h_ttonline_et", 256, -0.5, 255.5);
@@ -667,10 +673,10 @@ OfflineSpikeCrystalToOnlineMatch::OfflineSpikeCrystalToOnlineMatch(	const edm::P
 	h_l1Candides_N_Emul = fs->make<TH1F>("h_l1Candides_N_Emul", "h_l1Candides_N_Emul", 9, -0.5, 8.5);
 	h_l1Candides_N_difference = fs->make<TH1F>("h_l1Candides_N_difference", "h_l1Candides_N_difference", 17, -8.5, 8.5);
 
-	//L1TriigerBit
+	//L1TrigerBit
 	m_l1GTReadoutRecTag_     = iConfig.getParameter<edm::InputTag>("L1GlobalReadoutRecord");
 
-	//weights for reconstruction of the signal amplitude in crystal's photo-multiplier from the ADC counts.
+	//weights for reconstruction of the signal amplitude in crystal from the ADC counts.
 	//online
 	weight[0] = 0.0;
 	weight[1] = 0.0;
@@ -693,6 +699,31 @@ OfflineSpikeCrystalToOnlineMatch::OfflineSpikeCrystalToOnlineMatch(	const edm::P
 	weight_offline[7] = 0.1575187;
 	weight_offline[8] = -0.002082776;
 	weight_offline[9] = 0.0;
+
+	// Create map EBDetID -> RCT_regionId
+	// Code tested only for Barrel TPGs   18 < ieta < 18
+	// https://twiki.cern.ch/twiki/bin/viewauth/CMS/RCTMap
+
+	for (int tow_iEta=-32; tow_iEta < 33; tow_iEta++){
+			if (tow_iEta==0) continue;
+			for (int tow_iPhi=1; tow_iPhi < 73; tow_iPhi++){
+				EBDetId tow_id(tow_iEta, tow_iPhi);
+
+				unsigned int reg_ieta, reg_iphi;
+
+				reg_ieta = floor ( (double) tow_iEta / 4) + 11;
+
+				if ( (tow_iPhi == 71) || (tow_iPhi == 72) ){
+					reg_iphi = 0;
+				} else {
+					reg_iphi = floor ( (double) (tow_iPhi + 1) / 4);
+				}
+
+				L1CaloRegionDetId reg_id = L1CaloRegionDetId(reg_ieta, reg_iphi);
+				map_DetId_RegionID[tow_id] = reg_id;
+			}
+		}
+
 
 //	h_temp_hist = fs->make<TH1F>("h_temp_hist", "debug_hist", 200, 0, -1);
 
@@ -739,7 +770,7 @@ OfflineSpikeCrystalToOnlineMatch::OfflineSpikeCrystalToOnlineMatch(	const edm::P
 }
 
 OfflineSpikeCrystalToOnlineMatch::~OfflineSpikeCrystalToOnlineMatch() {
-	// do anything here that needs to be done at desctruction time
+	// do anything here that needs to be done at destruction time
 	// (e.g. close files, deallocate resources etc.)
 
 }
@@ -755,19 +786,19 @@ void OfflineSpikeCrystalToOnlineMatch::analyze(const edm::Event& iEvent,
 	h_nofevents->Fill(1);
 
 	//ONLINE TPs (Alex's code for Iurii the best)
-	//Get the TP online collection
+	//Get handles for online TPGs
 	edm::Handle<EcalTrigPrimDigiCollection> onlineTP;
 	iEvent.getByLabel(tpOnlineCollection_, onlineTP);
 	EcalTrigPrimDigiCollection const &onlineTPs = *(onlineTP.product());
 	EcalTrigPrimDigiCollection::const_iterator onTP_it;
 
-	//Get the TP offline collection
+	//Get handles for emulated TPGs
 	edm::Handle<EcalTrigPrimDigiCollection> emulatorTP;
 	iEvent.getByLabel(tpEmulatorCollection_, emulatorTP);
 	EcalTrigPrimDigiCollection const &emulatorTPs = *(emulatorTP.product());
 	EcalTrigPrimDigiCollection::const_iterator ofTP_it;
 
-	//Get ECAL Masked TT
+	//ECAL Masked TriggerTowers
 	vector<int> MaskEta;
 	vector<int> MaskPhi;
 
@@ -780,7 +811,7 @@ void OfflineSpikeCrystalToOnlineMatch::analyze(const edm::Event& iEvent,
 
 	uint nMaskedChannels = 0;
 
-
+	//Create map of masked trigger tower
 	int MaskedFlagTTs[towerMap.size()];
 	for (it=towerMap.begin(); it!=towerMap.end(); ++it) {
 	//const EcalTrigTowerDetId  towerId = (*it).first;
@@ -799,7 +830,7 @@ void OfflineSpikeCrystalToOnlineMatch::analyze(const edm::Event& iEvent,
 	  }//masked
 	}//loop towers
 
-	  // EMULATOR TPs
+	  //// Loop through emulated TPGs
 	  //if (print_) std::cout<<"TPEmulator collection size="<<tpEmul.product()->size()<<std::endl ;
 
 	int i_emTPs=0;
@@ -873,6 +904,7 @@ void OfflineSpikeCrystalToOnlineMatch::analyze(const edm::Event& iEvent,
 
 		}// if EmulatorCompressedEt > 0
 
+		// Hunt for hot tower
 		if ( (EmulatorCompressedEt == 132) ||
 			 (EmulatorCompressedEt == 48)  ||
 			 (EmulatorCompressedEt == 192)  ||
@@ -893,7 +925,7 @@ void OfflineSpikeCrystalToOnlineMatch::analyze(const edm::Event& iEvent,
 		}//loop over emulator TPGs
 
 
-	//Looping over online TPs collection
+	//Looping over Online TPGs collection
 	//std::cout << "looping on online TPG" << std::endl;
 
 	for (onTP_it = onlineTPs.begin(); onTP_it != onlineTPs.end(); ++onTP_it) {
@@ -1083,7 +1115,7 @@ void OfflineSpikeCrystalToOnlineMatch::analyze(const edm::Event& iEvent,
 
 
 	//------------------------//
-	// GET THE SPIKES //
+	// GET RecHit Spikes	  //
 	//------------------------//
 
 	// geometry (used for L1 trigger)
@@ -1154,6 +1186,9 @@ void OfflineSpikeCrystalToOnlineMatch::analyze(const edm::Event& iEvent,
 //  cout << "calib=" << float(agc->getEBValue()) << endl;
 //  cout << "calibAdcToGeV = " << calibAdcToGeV;
 
+
+
+////// RECONSTRUCT AMPLITUDES OF TRIGGER TOWERS FROM CRYSTALs ADCs
 
 if (do_reconstruct_amplitude_allTTs_==true){
 //  Reconstruct amplitudes for all trigger towers
@@ -1272,8 +1307,24 @@ if (do_reconstruct_amplitude_allTTs_==true){
 	}
 }// if do_reconstruct_amplitude_allTTs_
 
+
+//////  BROWSE RecHit COLLECTION //////////////
+
+//Map to store info about the spikes
+//Covering only barrel regions
+map<L1CaloRegionDetId, bool> map_RCT_regs_with_offline_spikes;
+
+for (unsigned int reg_ieta=6; reg_ieta < 15; reg_ieta++){
+	for (unsigned int reg_iphi=0; reg_iphi < 18; reg_iphi++){
+		L1CaloRegionDetId RCT_region_id(reg_ieta, reg_iphi);
+		map_RCT_regs_with_offline_spikes[RCT_region_id]=false;
+	}
+}
+
+// starting rechit search
 if (do_rechit_spikes_search_ || do_reconstruct_amplitudes_spikes_) {
 //Find spikes in the RecHit collection and reconstruct amplitudes of crystals inside the trigger tower
+//	cout << "Inside RecHit Loop." << endl;
 	if (iEvent.getByLabel(EcalRecHitCollectionEB_, rechitsEB)) {
 		//cout << "looping" << endl;
 		for (rechitItr = rechitsEB->begin(); rechitItr != rechitsEB->end();
@@ -1308,19 +1359,26 @@ if (do_rechit_spikes_search_ || do_reconstruct_amplitudes_spikes_) {
 //			cout << "sev = " << sev<< endl;
 			if ((sev == 3) || (sev == 4)) {  // if it's a spike
 //				sev3_sev4_count++;
-
+//				cout << "Inside Spikes Loop." << endl;
 				//thetaHit = (theBarrelGeometry_->getGeometry(id)->getPosition()).theta();
 //				etaHit = (theBarrelGeometry_->getGeometry(id)->getPosition()).eta();
 //				phiHit = (theBarrelGeometry_->getGeometry(id)->getPosition()).phi();
 //				rhit_ieta = id.ieta();
 				rhit_iphi = id.iphi();
-				//rhit_iphi = ( (EBDetId) rechitItr->id()).iphi();
 
 				const EcalTrigTowerDetId towid = id.tower();
 
 				TrigTowersWithRecHitSpikes.push_back(towid);
 				flag = 0;
 				flag = rechitItr->recoFlag();
+
+				// Fill map of ECT regions with spikes
+				EBDetId tower_detId(towid.ieta(), towid.iphi());
+				L1CaloRegionDetId & RCT_region_match = map_DetId_RegionID[tower_detId];
+				map_RCT_regs_with_offline_spikes[RCT_region_match]=true;
+//				cout << towid << endl;
+//				cout << "Reg ieta : " << RCT_region_match.ieta() << endl;
+//				cout << "Reg iphi : " << RCT_region_match.iphi() << endl;
 
 				if (do_reconstruct_amplitudes_spikes_==true) {
 					EcalTrigPrimDigiCollection::const_iterator TrigPrimWithReghitSpike_it;
@@ -1610,10 +1668,7 @@ if (do_rechit_spikes_search_ || do_reconstruct_amplitudes_spikes_) {
 	}	//rechits EB
 } // if do_rechit_spikes_search_
 
-
-
 ////Loop through L1EmParticles
-// online collection
 if (do_l1extraparticles_){
 	 	   //L1 trigger menu
 		   edm::ESHandle<L1GtTriggerMenu> menuRcd;
@@ -1645,33 +1700,31 @@ if (do_l1extraparticles_){
 
 		   if(processL1extraParticles){
 
-				//l1extraparticles
+				//Handles for l1extraparticles
+			   	//Online collection
 				edm::Handle< l1extra::L1EmParticleCollection > emNonisolColl ;
 				edm::Handle< l1extra::L1EmParticleCollection > emIsolColl ;
 				iEvent.getByLabel("l1extraParticlesOnline","NonIsolated", emNonisolColl ) ;
 				iEvent.getByLabel("l1extraParticlesOnline","Isolated", emIsolColl ) ;
-				// emulated collection
+				//Emulated collection
 				edm::Handle< l1extra::L1EmParticleCollection > emNonisolColl_M ;
 				edm::Handle< l1extra::L1EmParticleCollection > emIsolColl_M ;
 				iEvent.getByLabel("l1extraParticles","NonIsolated", emNonisolColl_M ) ;
 				iEvent.getByLabel("l1extraParticles","Isolated", emIsolColl_M ) ;
 
+				//Energies and Ets of all candidates
 				std::vector<double> l1CandidatesEnergies_Online;
 				std::vector<double> l1CandidatesEnergies_Emulated;
 				std::vector<double> l1CandidatesEts_Online;
 				std::vector<double> l1CandidatesEts_Emulated;
 
+				// Maps: Ets -> reference to L1 candidate
 				map<double, l1extra::L1EmParticleCollection::const_iterator> map_Ets_candidates_Online;
 				map<double, l1extra::L1EmParticleCollection::const_iterator> map_Ets_candidates_Emul;
 
-				//cout << "Online:" << endl;
-				//cout << "Isolated:" << endl;
+				//// Fill histograms and Ets vectors
+				//Browse online Isolated collection
 				for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl->begin(); emItr != emIsolColl->end() ;++emItr) {
-				//      cout << "eta = " << emItr->eta()
-				//      	   << " phi = " << emItr->phi()
-				//      	   << " energy = " << emItr->energy()
-				//      	   << " et = " << emItr->et()
-				//		   << endl;
 
 						h_l1em_Online_Particles_noBadTowerCut_et->Fill( emItr->et() );
 						if ( (emItr->eta() < 1.479) && (emItr->eta() > -1.479) )
@@ -1679,6 +1732,7 @@ if (do_l1extraparticles_){
 						if ( (emItr->eta() < 1.567) && (emItr->eta() > -1.567) )
 							h_l1em_Online_Particles_noBadTowerCut_eta1567_et->Fill(emItr->et() );
 
+						// Cut out regions with hot towers
 						if ( (emItr->gctEmCand()->regionId().ieta() == 14) && (emItr->gctEmCand()->regionId().iphi() == 7) )
 							continue;
 						if ( (emItr->gctEmCand()->regionId().ieta() == 9) && (emItr->gctEmCand()->regionId().iphi() == 16) )
@@ -1687,6 +1741,7 @@ if (do_l1extraparticles_){
 						h_l1em_Online_Particles_Isolated_et->Fill( emItr->et() );
 						h_l1em_Online_Particles_Isolated_energy->Fill( emItr->energy() );
 						h_l1em_Online_Particles_et->Fill( emItr->et() );
+						// In the barrel
 						if ( (emItr->eta() < 1.479) && (emItr->eta() > -1.479) ) {
 								h_l1em_Online_Particles_barrel_et->Fill( emItr->et() );
 								l1CandidatesEnergies_Online.push_back(emItr->energy());
@@ -1696,8 +1751,6 @@ if (do_l1extraparticles_){
 						if ( (emItr->eta() < 1.567) && (emItr->eta() > -1.567) )
 								h_l1em_Online_Particles_eta1567_et->Fill( emItr->et() );
 						h_l1em_Online_Particles_energy->Fill( emItr->energy() );
-			//			l1CandidatesEnergies_Online.push_back(emItr->energy());
-			//			l1CandidatesEts_Online.push_back(emItr->et());
 						h_l1em_Online_Particles_Isolated_map->Fill(emItr->eta(), emItr->phi());
 						h_l1em_Online_Particles_Isolated_index_map->Fill(emItr->gctEmCand()->regionId().ieta(),
 																		emItr->gctEmCand()->regionId().iphi());
@@ -1707,21 +1760,9 @@ if (do_l1extraparticles_){
 
 						if (emItr->et() == 63) h_l1em_saturated_Online_Particles_index_map->Fill(emItr->gctEmCand()->regionId().ieta(),
 																				emItr->gctEmCand()->regionId().iphi());
-
-				//					cout << "Online: " <<  endl;
-				//					cout << "ieta: " << emItr->gctEmCand()->regionId().ieta() << endl;
-				//					cout << "iphi: " << emItr->gctEmCand()->regionId().iphi() << endl;
-				//					cout << "eta: " << emItr->eta() << endl;
-				//					cout << "phi: " << emItr->phi() << endl;
-
 					}
-				//cout << "NonIsolated:" << endl;
+				// Online non-isolated
 				for( l1extra::L1EmParticleCollection::const_iterator emItr = emNonisolColl->begin(); emItr != emNonisolColl->end() ;++emItr) {
-				//      cout << "eta = " << emItr->eta()
-				//      	   << " phi = " << emItr->phi()
-				//      	   << " energy = " << emItr->energy()
-				//      	   << " et = " << emItr->et()
-				//		   << endl;
 
 						h_l1em_Online_Particles_noBadTowerCut_et->Fill( emItr->et() );
 						if ( (emItr->eta() < 1.479) && (emItr->eta() > -1.479) )
@@ -1746,13 +1787,6 @@ if (do_l1extraparticles_){
 						if ( (emItr->eta() < 1.567) && (emItr->eta() > -1.567) )
 								h_l1em_Online_Particles_eta1567_et->Fill( emItr->et() );
 						h_l1em_Online_Particles_energy->Fill( emItr->energy() );
-			//			l1CandidatesEnergies_Online.push_back(emItr->energy());
-			//			l1CandidatesEts_Online.push_back(emItr->et());
-				//			cout << "Online: " <<  endl;
-				//			cout << "ieta: " << emItr->gctEmCand()->regionId().ieta() << endl;
-				//			cout << "iphi: " << emItr->gctEmCand()->regionId().iphi() << endl;
-				//			cout << "eta: " << emItr->eta() << endl;
-				//			cout << "phi: " << emItr->phi() << endl;
 						h_l1em_Online_Particles_NonIsolated_map->Fill(emItr->eta(), emItr->phi());
 						h_l1em_Online_Particles_NonIsolated_index_map->Fill(emItr->gctEmCand()->regionId().ieta(),
 																		emItr->gctEmCand()->regionId().iphi());
@@ -1763,14 +1797,8 @@ if (do_l1extraparticles_){
 						if (emItr->et() == 63) h_l1em_saturated_Online_Particles_index_map->Fill(emItr->gctEmCand()->regionId().ieta(),
 																				emItr->gctEmCand()->regionId().iphi());
 					}
-				//cout << "Emulated:" << endl;
-				//cout << "Isolated:" << endl;
+				// Emulated isolated
 				for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl_M->begin(); emItr != emIsolColl_M->end() ;++emItr) {
-				//      cout << "eta = " << emItr->eta()
-				//      	   << " phi = " << emItr->phi()
-				//      	   << " energy = " << emItr->energy()
-				//      	   << " et = " << emItr->et()
-				//		   << endl;
 						h_l1em_Emul_Particles_noBadTowerCut_et->Fill( emItr->et() );
 						if ( (emItr->eta() < 1.479) && (emItr->eta() > -1.479) )
 							h_l1em_Emul_Particles_noBadTowerCut_barrel_et->Fill( emItr->et() );
@@ -1808,22 +1836,9 @@ if (do_l1extraparticles_){
 						if (emItr->et() == 63) h_l1em_saturated_Emul_Particles_index_map->Fill(emItr->gctEmCand()->regionId().ieta(),
 																				emItr->gctEmCand()->regionId().iphi());
 
-				//		cout << "Online: "<< endl;
-				//		cout << "ieta: " << emItr->gctEmCand()->regionId().ieta() << endl;
-				//		cout << "iphi: " << emItr->gctEmCand()->regionId().iphi() << endl;
-				//		cout << "eta: " << emItr->eta() << endl;
-				//		cout << "phi: " << emItr->phi() << endl;
 					}
-				//cout << "NonIsolated:" << endl;
+				// Emulated non-isolated
 				for( l1extra::L1EmParticleCollection::const_iterator emItr = emNonisolColl_M->begin(); emItr != emNonisolColl_M->end() ;++emItr) {
-				//      cout << "eta = " << emItr->eta()
-				//      	   << " phi = " << emItr->phi() << endl
-				//		   << " etaIndex = " << emItr->gctEmCand()->etaIndex()
-				//		   << " ieta = " << emItr->gctEmCand()->regionId().ieta()
-				//		   << " etasign = " << emItr->gctEmCand()->etaSign() << endl
-				//      	   << " energy = " << emItr->energy()
-				//      	   << " et = " << emItr->et()
-				//		   << endl;
 						h_l1em_Emul_Particles_noBadTowerCut_et->Fill( emItr->et() );
 						if ( (emItr->eta() < 1.479) && (emItr->eta() > -1.479) )
 							h_l1em_Emul_Particles_noBadTowerCut_barrel_et->Fill( emItr->et() );
@@ -1846,10 +1861,7 @@ if (do_l1extraparticles_){
 						}
 						if ( (emItr->eta() < 1.567) && (emItr->eta() > -1.567) )
 								h_l1em_Emul_Particles_eta1567_et->Fill( emItr->et() );
-				//		else cout << "eta: "<< emItr->eta() <<endl;
 						h_l1em_Emul_Particles_energy->Fill( emItr->energy() );
-			//			l1CandidatesEnergies_Emulated.push_back(emItr->energy());
-			//			l1CandidatesEts_Emulated.push_back(emItr->et());
 								h_l1em_Emul_Particles_NonIsolated_map->Fill(emItr->eta(), emItr->phi());
 								h_l1em_Emul_Particles_NonIsolated_index_map->Fill(emItr->gctEmCand()->regionId().ieta(),
 																				emItr->gctEmCand()->regionId().iphi());
@@ -1860,6 +1872,7 @@ if (do_l1extraparticles_){
 																						emItr->gctEmCand()->regionId().iphi());
 					}
 
+				// Sort collection of L1 candidates Ets and fill highest Et histograms
 				if (l1CandidatesEnergies_Online.size() > 0){
 					std::sort(l1CandidatesEnergies_Online.begin(), l1CandidatesEnergies_Online.end());
 				//	cout<<"L1 Online energy highest: "<< l1CandidatesEnergies_Online.back()<<endl;
@@ -1901,7 +1914,7 @@ if (do_l1extraparticles_){
 															      	   << " energy = " << it_Online->energy()
 															      	   << " et = " << it_Online->et()
 																	   << endl;
-						cout <<"No emulated candidates";
+						cout <<"No emulated candidates" << endl;
 
 					} else if (l1CandidatesEts_Online.back()!=l1CandidatesEts_Emulated.back()){
 
@@ -1978,6 +1991,7 @@ if (do_l1extraparticles_){
 			//                << std::endl;
 			//    }
 
+				// Make ratios of Ets from Highest Et candidates.
 				if (l1CandidatesEnergies_Online.size() > 0
 					&& l1CandidatesEnergies_Emulated.size() > 0
 					&& l1CandidatesEts_Online.size() > 0
@@ -2009,16 +2023,15 @@ if (do_l1extraparticles_){
 				}
 		   };//if processL1extraParticles
 }//if do_l1extraparticles
-//edm::Handle< l1extra::L1EmParticleCollection > emNonisolColl ;
-//edm::Handle< l1extra::L1EmParticleCollection > emIsolColl ;
-//iEvent.getByLabel("l1extraParticlesOnline","NonIsolated", emNonisolColl ) ;
-//iEvent.getByLabel("l1extraParticlesOnline","Isolated", emIsolColl ) ;
 
-//edm::Handle< L1CaloEmCandCollection >  rctEmCandColl;
-//iEvent.getByLabel("simRctDigis","", rctEmCandColl ) ;
-//edm::Handle< L1CaloEmCollection >  rctEmCandColl;
-//iEvent.getByLabel("simRctDigis","", rctEmCandColl ) ;
-
+// cout RCT regions with offline spikes (RecHit sev=3 or sev=4)
+//for (auto RCT_it : map_RCT_regs_with_offline_spikes){
+//	if (RCT_it.second == true){
+//		cout <<"Spike in region : " << endl;
+//		cout << "reg ieta : " << RCT_it.first.ieta() << " ; "
+//				<< "reg iphi : " << RCT_it.first.iphi() << endl;
+//	}
+//}
 
 
 //	mytree->Fill();

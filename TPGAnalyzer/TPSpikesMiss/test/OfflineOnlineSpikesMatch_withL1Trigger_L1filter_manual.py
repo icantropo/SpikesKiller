@@ -25,7 +25,7 @@ process.load("EventFilter.EcalRawToDigi.EcalUnpackerData_cfi");
 process.ecalEBunpacker.InputLabel = cms.InputTag('rawDataCollector');
 process.load("RecoLocalCalo.EcalRecAlgos.EcalSeverityLevelESProducer_cfi")
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(10000) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(100) )
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
