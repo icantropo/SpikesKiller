@@ -148,6 +148,14 @@ private:
 	void globalFireL1_Normal(double eleRCT_eT, int noniso, int iso,
 				 vector<int> & firedEG_N, vector<int> menu);
 
+	void cout_L1Extra_candidate(l1extra::L1EmParticleCollection::const_iterator & it_l1extra);
+	void cout_L1Extra_candidate(l1extra::L1EmParticle & it_l1extra);
+	//	void cout_all_L1Extra_candidates(map<double, l1extra::L1EmParticleCollection::const_iterator> & map_candidates);
+	void cout_all_L1Extra_candidates(edm::Handle< l1extra::L1EmParticleCollection > OnlineIso,
+																	   edm::Handle< l1extra::L1EmParticleCollection > OnlineNonIso,
+																	   edm::Handle< l1extra::L1EmParticleCollection > EmulatedIso,
+																	   edm::Handle< l1extra::L1EmParticleCollection > EmulatedNonIso);
+
 	// handles to get TPGs collections
 	edm::Handle<EcalTrigPrimDigiCollection> * ecal_tp_;
 	edm::Handle<EcalTrigPrimDigiCollection> * emulatorTP;
@@ -413,6 +421,11 @@ private:
 
     // map to find RCT region ieta iphi (DetId) knowing TPG ieta iphi (DetId).
     map<EBDetId, L1CaloRegionDetId> map_DetId_RegionID;
+
+	//Map to store info about the spikes
+	//Map covers only barrel regions
+	map<L1CaloRegionDetId, bool> map_RCT_regs_with_offline_spikes;
+
 
 };
 
@@ -723,6 +736,7 @@ OfflineSpikeCrystalToOnlineMatch::OfflineSpikeCrystalToOnlineMatch(	const edm::P
 				map_DetId_RegionID[tow_id] = reg_id;
 			}
 		}
+
 
 
 //	h_temp_hist = fs->make<TH1F>("h_temp_hist", "debug_hist", 200, 0, -1);
@@ -1311,15 +1325,17 @@ if (do_reconstruct_amplitude_allTTs_==true){
 //////  BROWSE RecHit COLLECTION //////////////
 
 //Map to store info about the spikes
-//Covering only barrel regions
-map<L1CaloRegionDetId, bool> map_RCT_regs_with_offline_spikes;
+//Map covers only barrel regions
+//Clearing map
 
+map_RCT_regs_with_offline_spikes.clear();
 for (unsigned int reg_ieta=6; reg_ieta < 15; reg_ieta++){
 	for (unsigned int reg_iphi=0; reg_iphi < 18; reg_iphi++){
 		L1CaloRegionDetId RCT_region_id(reg_ieta, reg_iphi);
 		map_RCT_regs_with_offline_spikes[RCT_region_id]=false;
 	}
 }
+
 
 // starting rechit search
 if (do_rechit_spikes_search_ || do_reconstruct_amplitudes_spikes_) {
@@ -1365,6 +1381,8 @@ if (do_rechit_spikes_search_ || do_reconstruct_amplitudes_spikes_) {
 //				phiHit = (theBarrelGeometry_->getGeometry(id)->getPosition()).phi();
 //				rhit_ieta = id.ieta();
 				rhit_iphi = id.iphi();
+
+//				cout << endl << endl << "Inside loop" << endl << endl;
 
 				const EcalTrigTowerDetId towid = id.tower();
 
@@ -1899,50 +1917,59 @@ if (do_l1extraparticles_){
 				h_l1Candides_N_Emul->Fill(l1CandidatesEts_Emulated.size());
 				h_l1Candides_N_difference->Fill(l1CandidatesEts_Online.size()-l1CandidatesEts_Emulated.size());
 
-				if (l1CandidatesEts_Online.size() > 0){
-					if (l1CandidatesEts_Emulated.size()==0){
-						cout << "Highest l1 Et Online Emul doesn't match!!" << endl;
-						l1extra::L1EmParticleCollection::const_iterator it_Online = map_Ets_candidates_Online[l1CandidatesEts_Online.back()];
+//				if (l1CandidatesEts_Online.size() > 0){
+//					if (l1CandidatesEts_Emulated.size()==0){
+				if (l1CandidatesEts_Emulated.size()!=0){
+					if ( (l1CandidatesEts_Emulated.back() >= 12 ) && ( l1CandidatesEts_Emulated.back() <= 18 ) ){
+						bool cout_event = false;
+						if ( l1CandidatesEts_Online.size()!=0 ) {
+							if ( (l1CandidatesEts_Online.back() < 12 ) || (l1CandidatesEts_Online.back() > 18 ) ) cout_event = true;
+						}
+						if ( l1CandidatesEts_Online.size()==0 )	cout_event = true;
+						if (cout_event){
+							cout << "Emul et [12,18]; online et <12 || >18 :" << endl;
+							cout << "EventN : "<< iEvent.id().event() << endl << endl;
+							cout << "online highest Et:" << l1CandidatesEts_Online.back() << endl;
+							cout << "emulated highest Et:" << l1CandidatesEts_Emulated.back() << endl;
+							for (auto it: l1CandidatesEts_Online){
+								cout << "OnlineEt : " << it << endl;
+							}
+//							cout << "Online candidates:" << endl;
+//							cout_all_L1Extra_candidates(map_Ets_candidates_Online);
+//							cout << endl;
+//							cout << "Emul candidates:" << endl;
+//							cout_all_L1Extra_candidates(map_Ets_candidates_Emul);
+//							cout << endl;
+							cout_all_L1Extra_candidates(emIsolColl, emNonisolColl, emIsolColl_M, emNonisolColl_M);
 
-						cout << "Highest l1 Et Online Emul doesn't match!!" << endl;
-										cout <<"Online" << endl;
-										cout << "eta = " << it_Online->eta()
-															      	   << " phi = " << it_Online->phi() << endl
-																	   << " etaIndex = " << it_Online->gctEmCand()->etaIndex()
-																	   << " ieta = " << it_Online->gctEmCand()->regionId().ieta()
-																	   << " etasign = " << it_Online->gctEmCand()->etaSign() << endl
-															      	   << " energy = " << it_Online->energy()
-															      	   << " et = " << it_Online->et()
-																	   << endl;
-						cout <<"No emulated candidates" << endl;
-
-					} else if (l1CandidatesEts_Online.back()!=l1CandidatesEts_Emulated.back()){
-
-						cout << "Higest l1 Et Online Emul doesn't match!!" << endl;
-						l1extra::L1EmParticleCollection::const_iterator it_Online = map_Ets_candidates_Online[l1CandidatesEts_Online.back()];
-
-																cout <<"Online" << endl;
-																cout << "eta = " << it_Online->eta()
-																					      	   << " phi = " << it_Online->phi() << endl
-																							   << " etaIndex = " << it_Online->gctEmCand()->etaIndex()
-																							   << " ieta = " << it_Online->gctEmCand()->regionId().ieta()
-																							   << " etasign = " << it_Online->gctEmCand()->etaSign() << endl
-																					      	   << " energy = " << it_Online->energy()
-																					      	   << " et = " << it_Online->et()
-																							   << endl;
-						l1extra::L1EmParticleCollection::const_iterator it_Emul = map_Ets_candidates_Emul[l1CandidatesEts_Emulated.back()];
-						cout << "Highest l1 Et Online Emul doesn't match!!" << endl;
-						cout <<"Emul" << endl;
-									cout << "eta = " << it_Emul->eta()
-																   << " phi = " << it_Emul->phi() << endl
-																   << " etaIndex = " << it_Emul->gctEmCand()->etaIndex()
-																   << " ieta = " << it_Emul->gctEmCand()->regionId().ieta()
-																   << " etasign = " << it_Emul->gctEmCand()->etaSign() << endl
-																   << " energy = " << it_Emul->energy()
-																   << " et = " << it_Emul->et()
-																   << endl;
+//							cout << " Online : "<< endl;
+//							for (auto it : l1CandidatesEts_Online){
+//								cout << " Et : " << it << endl;
+//							}
+//							cout << " Emulated : "<< endl;
+//							for (auto it : l1CandidatesEts_Emulated){
+//								cout << " Et : " << it << endl;
+						}
 					}
 				}
+
+											//HLT TriggerPath
+												edm::Handle<edm::TriggerResults> triggerBits;
+											//				edm::Handle<pat::TriggerObjectStandAloneCollection> triggerObjects;
+											//				edm::Handle<pat::PackedTriggerPrescales> triggerPrescales;
+
+												iEvent.getByToken(triggerBits_, triggerBits);
+											//				iEvent.getByToken(triggerObjects_, triggerObjects);
+											//				iEvent.getByToken(triggerPrescales_, triggerPrescales);
+
+												const edm::TriggerNames &names = iEvent.triggerNames(*triggerBits);
+												std::cout << "\n === TRIGGER PATHS === " << std::endl;
+												for (unsigned int i = 0, n = triggerBits->size(); i < n; ++i) {
+													std::cout << "Trigger " << names.triggerName(i) <<
+											//			                ", prescale " << triggerPrescales->getPrescaleForIndex(i) <<
+															": " << (triggerBits->accept(i) ? "PASS" : "fail (or not run)")
+															<< std::endl;
+												}
 
 
 //				if ( (l1CandidatesEts_Online.size() == 1 ) &&
@@ -1952,23 +1979,7 @@ if (do_l1extraparticles_){
 //							cout << "l1CandidatesEts_Online.size() :"<< l1CandidatesEts_Online.size() << endl;
 //							cout << "l1CandidatesEts_Emulated.size() :"<< l1CandidatesEts_Emulated.size() << endl<< endl;
 //
-////							//HLT TriggerPath
-////								edm::Handle<edm::TriggerResults> triggerBits;
-////							//				edm::Handle<pat::TriggerObjectStandAloneCollection> triggerObjects;
-////							//				edm::Handle<pat::PackedTriggerPrescales> triggerPrescales;
-////
-////								iEvent.getByToken(triggerBits_, triggerBits);
-////							//				iEvent.getByToken(triggerObjects_, triggerObjects);
-////							//				iEvent.getByToken(triggerPrescales_, triggerPrescales);
-////
-////								const edm::TriggerNames &names = iEvent.triggerNames(*triggerBits);
-////								std::cout << "\n === TRIGGER PATHS === " << std::endl;
-////								for (unsigned int i = 0, n = triggerBits->size(); i < n; ++i) {
-////									std::cout << "Trigger " << names.triggerName(i) <<
-////							//			                ", prescale " << triggerPrescales->getPrescaleForIndex(i) <<
-////											": " << (triggerBits->accept(i) ? "PASS" : "fail (or not run)")
-////											<< std::endl;
-////								}
+
 //
 //				}
 
@@ -2021,10 +2032,15 @@ if (do_l1extraparticles_){
 						}
 
 				}
+
+//				if (iEvent.id().event() == 13077624){
+//					cout_all_L1Extra_candidates(emIsolColl, emNonisolColl, emIsolColl_M, emNonisolColl_M);
+//				}
+
 		   };//if processL1extraParticles
 }//if do_l1extraparticles
 
-// cout RCT regions with offline spikes (RecHit sev=3 or sev=4)
+//// cout RCT regions with offline spikes (RecHit sev=3 or sev=4)
 //for (auto RCT_it : map_RCT_regs_with_offline_spikes){
 //	if (RCT_it.second == true){
 //		cout <<"Spike in region : " << endl;
@@ -2036,7 +2052,54 @@ if (do_l1extraparticles_){
 
 //	mytree->Fill();
 
+
 }
+
+void OfflineSpikeCrystalToOnlineMatch::cout_L1Extra_candidate(l1extra::L1EmParticleCollection::const_iterator & it_l1extra){
+	cout << "Et : " << it_l1extra->et()
+		 << " ; energy :" << it_l1extra->energy() << endl
+		 << "iEta : " << it_l1extra->gctEmCand()->regionId().ieta()
+		 << " ; iPhi : "<< it_l1extra->gctEmCand()->regionId().iphi() << endl
+		 << "eta : " << it_l1extra->eta()
+		 << " ; phi : "<< it_l1extra->phi() << endl
+		 << "Offline spike in region : " <<  map_RCT_regs_with_offline_spikes[it_l1extra->gctEmCand()->regionId()]
+		 << endl << endl;
+
+};
+
+void OfflineSpikeCrystalToOnlineMatch::cout_L1Extra_candidate(l1extra::L1EmParticle & it_l1extra){
+	cout << "Et : " << it_l1extra.et()
+		 << " ; energy :" << it_l1extra.energy() << endl
+		 << "iEta : " << it_l1extra.gctEmCand()->regionId().ieta()
+		 << " ; iPhi : "<< it_l1extra.gctEmCand()->regionId().iphi() << endl
+		 << "eta : " << it_l1extra.eta()
+		 << " ; phi : "<< it_l1extra.phi() << endl
+		 << "Offline spike in region : " <<  map_RCT_regs_with_offline_spikes[it_l1extra.gctEmCand()->regionId()]
+		 << endl << endl;
+
+};
+
+//void OfflineSpikeCrystalToOnlineMatch::cout_all_L1Extra_candidates(map<double, l1extra::L1EmParticleCollection::const_iterator> & map_candidates){
+//	for (auto it_map: map_candidates){
+//		cout_L1Extra_candidate(it_map.second);
+//	}
+//
+//};
+
+void OfflineSpikeCrystalToOnlineMatch::cout_all_L1Extra_candidates(edm::Handle< l1extra::L1EmParticleCollection > OnlineIso,
+																   edm::Handle< l1extra::L1EmParticleCollection > OnlineNonIso,
+																   edm::Handle< l1extra::L1EmParticleCollection > EmulatedIso,
+																   edm::Handle< l1extra::L1EmParticleCollection > EmulatedNonIso){
+	cout << "Online Isolated:" << endl << endl;
+	for (l1extra::L1EmParticleCollection::const_iterator emItr = OnlineIso->begin(); emItr != OnlineIso->end() ;++emItr) cout_L1Extra_candidate(emItr);
+	cout << "Online NonIsolated:" << endl << endl;
+	for (l1extra::L1EmParticleCollection::const_iterator emItr = OnlineNonIso->begin(); emItr != OnlineNonIso->end() ;++emItr) cout_L1Extra_candidate(emItr);
+	cout << "Emulated Isolated:" << endl << endl;
+	for (l1extra::L1EmParticleCollection::const_iterator emItr = EmulatedIso->begin(); emItr != EmulatedIso->end() ;++emItr) cout_L1Extra_candidate(emItr);
+	cout << "Emulated NonIsolated:" << endl << endl;
+	for (l1extra::L1EmParticleCollection::const_iterator emItr = EmulatedNonIso->begin(); emItr != EmulatedNonIso->end() ;++emItr) cout_L1Extra_candidate(emItr);
+
+};
 
 //Emulate L1 trigger decision. Taken from L1Studies/EGamma/Macro/Efficiency/selectPairs.C
 void OfflineSpikeCrystalToOnlineMatch::fireL1(int L1noniso, int L1iso, vector<int> & firedEG, vector<int> EG) {
