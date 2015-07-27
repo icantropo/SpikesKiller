@@ -25,7 +25,7 @@ process.load("EventFilter.EcalRawToDigi.EcalUnpackerData_cfi");
 process.ecalEBunpacker.InputLabel = cms.InputTag('rawDataCollector');
 process.load("RecoLocalCalo.EcalRecAlgos.EcalSeverityLevelESProducer_cfi")
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
+process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(1000) )
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
@@ -48,18 +48,7 @@ process.source = cms.Source("PoolSource",
         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/848BBF77-58C3-E111-AC7C-001D09F2437B.root',
         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/A00208B1-02C3-E111-A907-001D09F24D67.root',
         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/BAB0D134-06C3-E111-A9DE-001D09F2960F.root',
-        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/FCFCCD7A-FEC2-E111-81AF-001D09F2462D.root',
-        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/199/276/827A5303-1BD1-E111-8B71-002481E0CC00.root'
-        
-#       ZeroBias filtered -> Offline spikes
-#         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test/371aa169538416419fdcbb2bba27730c/RecHitSpikesZeroBias1_Run2012C_RAW_1_1_0ZL.root'
-#         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test_2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_5_1_Mq0.root',
-#         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test_2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_1_1_qXs.root'
-
-#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/588/AA1AFC57-1BCA-E111-B408-003048F110BE.root',
-#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/588/DEE0C78B-1CCA-E111-AF34-003048F024DE.root',
-#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/022/BE01FBFE-DAC3-E111-BD8B-001D09F2915A.root'
-#         'file:/home/llr/cms/antropov/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root'
+        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/FCFCCD7A-FEC2-E111-81AF-001D09F2462D.root'
 #         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test/371aa169538416419fdcbb2bba27730c/RecHitSpikesZeroBias1_Run2012C_RAW_1_1_0ZL.root'
 #         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test_2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_5_1_Mq0.root'
 #         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test_2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_1_1_qXs.rootcd vb'
@@ -71,22 +60,20 @@ process.source = cms.Source("PoolSource",
 #         '/store/user/iantropo/ZeroBias1/Run2012C_v1_RAW_Spikes_v2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_2765_1_y6E.root',
 #         '/store/user/iantropo/ZeroBias1/Run2012C_v1_RAW_Spikes_v2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_2744_1_zyj.root'
     )
-#     ,skipEvents=cms.untracked.uint32(40000)
 )
 
 # to emulate with default parameters
-# process.load("SimCalorimetry.EcalTrigPrimProducers.ecalTriggerPrimitiveDigis_cff")
+process.load("SimCalorimetry.EcalTrigPrimProducers.ecalTriggerPrimitiveDigis_cff")
 
 # to simulate with config file
-process.load('SimCalorimetry.EcalTrigPrimProducers.ecalTrigPrimESProducer_cff')
-# process.EcalTrigPrimESProducer.DatabaseFile = 'TPG_beamv6_trans_spikekill.txt.gz' 
-process.EcalTrigPrimESProducer.DatabaseFile = 'TPG_beamv6_notrans_spikekill_12_killing18.tar.gz' 
+#process.load('SimCalorimetry.EcalTrigPrimProducers.ecalTrigPrimESProducer_cff')
+#process.EcalTrigPrimESProducer.DatabaseFile = 'TPG_beamv6_trans_spikekill.txt.gz' 
 
 process.simEcalTriggerPrimitiveDigis.Label = 'ecalDigis'
 process.simEcalTriggerPrimitiveDigis.Label = 'ecalEBunpacker'
 process.simEcalTriggerPrimitiveDigis.InstanceEB =  'ebDigis'
 process.simEcalTriggerPrimitiveDigis.InstanceEE =  'eeDigis'
-process.simEcalTriggerPrimitiveDigis.BarrelOnly = False
+process.simEcalTriggerPrimitiveDigis.BarrelOnly = True
 
 # ---------------------------------------------------------------------
 # Simulate Ecal Trigger Primitives
@@ -140,6 +127,10 @@ process.l1extraParticlesOnline = cms.EDProducer("L1ExtraParticlesProd",
                                                 ignoreHtMiss = cms.bool(False)
                                                 )
 
+
+
+
+
 process.OfflineSpikeCrystalToOnlineMatch = cms.EDAnalyzer('OfflineSpikeCrystalToOnlineMatch',
                               histogramFile         = cms.string('iurii_TPFile_OffSearch_hists.root'),
                               TPEmulatorCollection  = cms.InputTag("simEcalTriggerPrimitiveDigis"),
@@ -150,16 +141,11 @@ process.OfflineSpikeCrystalToOnlineMatch = cms.EDAnalyzer('OfflineSpikeCrystalTo
                               do_rechit_spikes_search=cms.bool(True),
                               do_reconstruct_amplitudes_spikes=cms.bool(True), #overrides do_rechit_spikes_search
                               do_3DSpike_plots=cms.bool(False),
-                              do_l1extraparticles=cms.bool(True),
-                              do_l1EG5Cut=cms.bool(False),
-                              bits=cms.InputTag("TriggerResults","","HLT"),
-                              L1GlobalReadoutRecord = cms.InputTag("gtDigis"),
-                              sFGVB_threshold = cms.int32(12),
-                              spike_killing_threshold = cms.int32(18)
+                              do_l1extraparticles=cms.bool(True)
                               )
 
 process.TFileService = cms.Service ("TFileService",
-                                    fileName = cms.string ("SpikesEmulation2.root")
+                                    fileName = cms.string ("SpikesEmulation.root")
                                     )
 
 # Output definition
@@ -179,25 +165,34 @@ process.TFileService = cms.Service ("TFileService",
 # Save all event content in separate file (for debug purposes)
 # ---------------------------------------------------------------------
 #Output definition
-# process.SpecialEventContent = cms.PSet(
-# #         outputCommands = cms.untracked.vstring('drop *'),
+process.SpecialEventContent = cms.PSet(
+        outputCommands = cms.untracked.vstring('drop *'),
 #         outputCommands = cms.untracked.vstring('keep *'),
-#         splitLevel = cms.untracked.int32(0)
-#        )
-#  
-# process.FEVTDEBUGHLToutput = cms.OutputModule("PoolOutputModule",
-#                                               splitLevel = cms.untracked.int32(0),
-#                                               #outputCommands = cms.untracked.vstring('keep *'),
-#                                               #outputCommands = process.RECOEventContent.outputCommands,
-#                                               outputCommands = process.SpecialEventContent.outputCommands,
-#                                               fileName = cms.untracked.string('tree_testFastSim_EventContent.root'),
-#                                               #SelectEvents = cms.untracked.PSet( SelectEvents = cms.vstring ('filter') ),
-#                                               dataset = cms.untracked.PSet(
-#         #filterName = cms.untracked.string('EmulSpikesFilter'),
-#         dataTier = cms.untracked.string('DIGI-RECO')
-#         )
-# )
-# process.KeepOutput = cms.Path(process.FEVTDEBUGHLToutput)
+        splitLevel = cms.untracked.int32(0)
+       )
+
+process.SpecialEventContent.outputCommands.append('keep *_l1extraParticles*_*Isolated_*')
+process.SpecialEventContent.outputCommands.append('keep *_simEcalTriggerPrimitiveDigis_*_*')
+process.SpecialEventContent.outputCommands.append('keep *_ecalDigis_EcalTriggerPrimitives_*')
+process.SpecialEventContent.outputCommands.append('keep *_ecalEBunpacker_ebDigis_*')
+
+# process.SpecialEventContent.outputCommands.append('keep *_EcalRecHitsEB_*_*')
+#Masked Tower Map: ? 
+
+ 
+process.FEVTDEBUGHLToutput = cms.OutputModule("PoolOutputModule",
+                                              splitLevel = cms.untracked.int32(0),
+                                              #outputCommands = cms.untracked.vstring('keep *'),
+                                              #outputCommands = process.RECOEventContent.outputCommands,
+                                              outputCommands = process.SpecialEventContent.outputCommands,
+                                              fileName = cms.untracked.string('tree_TPGs.root'),
+                                              #SelectEvents = cms.untracked.PSet( SelectEvents = cms.vstring ('filter') ),
+                                              dataset = cms.untracked.PSet(
+        #filterName = cms.untracked.string('EmulSpikesFilter'),
+        dataTier = cms.untracked.string('DIGI-RECO')
+        )
+)
+process.output_step = cms.EndPath(process.FEVTDEBUGHLToutput)
 
 
 # Path and EndPath definitions
@@ -231,8 +226,6 @@ process.endjob_step = cms.EndPath(process.endOfProcess)
 
 process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
-process.RawToDigi.remove(process.siStripDigis)
-
 process.p = cms.Path(
                      process.RawToDigi +
                      process.ecalEBunpacker + 
@@ -241,9 +234,10 @@ process.p = cms.Path(
                      process.simGctDigis +
                      process.simGtDigis +
                      process.l1extraParticles +
-                     process.l1extraParticlesOnline +
+                     process.l1extraParticlesOnline
                      
-                     process.OfflineSpikeCrystalToOnlineMatch
+#                      process.OfflineSpikeCrystalToOnlineMatch
                      )
-process.schedule = cms.Schedule(process.p, process.endjob_step)#,process.RECOSIMoutput_step)
-# process.schedule = cms.Schedule(process.p, process.endjob_step, process.KeepOutput)
+# process.schedule = cms.Schedule(process.p, process.endjob_step)#,process.RECOSIMoutput_step)
+process.schedule = cms.Schedule(process.p, process.output_step, process.endjob_step, )
+# process.schedule = cms.Schedule(process.p, process.output_step)

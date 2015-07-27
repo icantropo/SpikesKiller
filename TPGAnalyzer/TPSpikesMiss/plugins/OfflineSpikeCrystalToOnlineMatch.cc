@@ -20,6 +20,7 @@
 #include <memory>
 #include <iostream>
 #include <cmath>
+#include <algorithm>
 
 //includes root
 #include "TTree.h"
@@ -131,6 +132,9 @@ using namespace std;
 using namespace edm;
 //using namespace IPTools;
 
+bool SortL1CandidatesByEt(const l1extra::L1EmParticleCollection::const_iterator &lhCand,
+						  const l1extra::L1EmParticleCollection::const_iterator &rhCand);
+
 class OfflineSpikeCrystalToOnlineMatch: public edm::EDAnalyzer {
 public:
 	explicit OfflineSpikeCrystalToOnlineMatch(const edm::ParameterSet&);
@@ -156,6 +160,10 @@ private:
 																	   edm::Handle< l1extra::L1EmParticleCollection > EmulatedIso,
 																	   edm::Handle< l1extra::L1EmParticleCollection > EmulatedNonIso);
 
+	//Sort
+//	bool SortL1CandidatesByEt(const l1extra::L1EmParticleCollection::const_iterator &lhCand,
+//							  const l1extra::L1EmParticleCollection::const_iterator &rhCand);
+
 	// handles to get TPGs collections
 	edm::Handle<EcalTrigPrimDigiCollection> * ecal_tp_;
 	edm::Handle<EcalTrigPrimDigiCollection> * emulatorTP;
@@ -175,6 +183,10 @@ private:
 	const bool do_3DSpike_plots_;
 	const bool do_l1extraparticles_;
 	const bool do_l1EG5Cut_;
+
+	const int sFGVB_threshold_;
+	const int TPG_spike_killing_threshold_;
+
 
 	//virtual void beginRun(edm::Run const&, edm::EventSetup const&) override;
 	//virtual void endRun(edm::Run const&, edm::EventSetup const&) override;
@@ -292,6 +304,8 @@ private:
 	TH1F *h_rechit_spikes_energy_sFGVB1Em;
 
 	TH1F *h_rechit_spikes_match_to_ttonline_et;
+	TH1F *h_rechit_spikes_match_to_ttonline_barrel_et;
+	TH1F *h_rechit_spikes_match_to_ttonline_barrel_shbin_et;
 	TH1F *h_rechit_spikes_to_ttonline_et_sFGVB0On;
 	TH1F *h_rechit_spikes_to_ttonline_et_sFGVB1On;
 	TH1F *h_rechit_spikes_match_to_ttemulator_et;
@@ -349,7 +363,7 @@ private:
 	TH2D *h_l1em_saturated_Online_Particles_index_map;
 	TH2D *h_l1em_saturated_Emul_Particles_index_map;
 
-	//L1 EM Particles
+	//L1 EM Particles, ets
 	TH1F *h_l1em_Emul_Particles_Isolated_et;
 	TH1F *h_l1em_Emul_Particles_NonIsolated_et;
 	TH1F *h_l1em_Online_Particles_Isolated_et;
@@ -371,6 +385,33 @@ private:
 	TH1F *h_l1em_Emul_Particles_Highest_et;
 	TH1F *h_l1em_Online_Particles_Highest_et;
 
+	//with offline spikes
+	TH1F *h_l1em_Emul_Particles_Highest_et_offline_spikes;
+	TH1F *h_l1em_Online_Particles_Highest_et_offline_spikes;
+	TH1F *h_l1em_Emul_Particles_et_offline_spikes;
+	TH1F *h_l1em_Online_Particles_et_offline_spikes;
+	TH1F *h_l1em_Online_spikes_killed_et;
+
+	//offline spikes filter and spiky EG5 removal
+	TH1F *h_l1em_Emul_Particles_Highest_et_offline_spikes_filter_spikyEG5;
+	TH1F *h_l1em_Online_Particles_Highest_et_offline_spikes_filter_spikyEG5;
+	TH1F *h_l1em_Emul_Particles_et_offline_spikes_filter_spikyEG5;
+	TH1F *h_l1em_Online_Particles_et_offline_spikes_filter_spikyEG5;
+
+	//with removal of events with new spikes in GeV [12 , new TT killing threshold]
+	TH1F *h_l1em_Emul_Particles_Highest_et_filter_spikyEG5;
+	TH1F *h_l1em_Online_Particles_Highest_et_filter_spikyEG5;
+	TH1F *h_l1em_Emul_Particles_et_filter_spikyEG5;
+	TH1F *h_l1em_Online_Particles_et_filter_spikyEG5;
+
+	//with removal of events with new spikes in GeV [12 , new TT killing threshold], filter by trigger bit
+	TH1F *h_l1em_Emul_Particles_Highest_et_filter_spikyEG5_by_trigger_bit;
+	TH1F *h_l1em_Online_Particles_Highest_et_filter_spikyEG5_by_trigger_bit;
+	TH1F *h_l1em_Emul_Particles_et_filter_spikyEG5_by_trigger_bit;
+	TH1F *h_l1em_Online_Particles_et_filter_spikyEG5_by_trigger_bit;
+
+
+	//L1 EM Particles, energies
 	TH1F *h_l1em_Emul_Particles_Isolated_energy;
 	TH1F *h_l1em_Emul_Particles_NonIsolated_energy;
 	TH1F *h_l1em_Online_Particles_Isolated_energy;
@@ -439,12 +480,17 @@ OfflineSpikeCrystalToOnlineMatch::OfflineSpikeCrystalToOnlineMatch(	const edm::P
 				do_3DSpike_plots_(iConfig.getParameter<bool>("do_3DSpike_plots")),
 				do_l1extraparticles_(iConfig.getParameter<bool>("do_l1extraparticles")),
 				do_l1EG5Cut_(iConfig.getParameter<bool>("do_l1EG5Cut")),
+				sFGVB_threshold_(iConfig.getParameter<int>("sFGVB_threshold")),
+				TPG_spike_killing_threshold_(iConfig.getParameter<int>("spike_killing_threshold")),
 				triggerBits_(consumes<edm::TriggerResults>(iConfig.getParameter<edm::InputTag>("bits")))
 //				triggerObjects_(consumes<pat::TriggerObjectStandAloneCollection>(iConfig.getParameter<edm::InputTag>("objects"))),
 //				triggerPrescales_(consumes<pat::PackedTriggerPrescales>(iConfig.getParameter<edm::InputTag>("prescales")))
 {
 	//now do what ever initialization is needed
+
 	EcalRecHitCollectionEB_ = (iConfig.getParameter<edm::InputTag>(	"EcalRecHitCollectionEB" ));
+
+//	triggerBits_ = consumes<edm::TriggerResults>(iConfig.getParameter<edm::InputTag>("bits"));
 
 	//Histograms
 	h_nofevents = fs->make<TH1F>("h_nofevents", "h_nofevents", 2, 0, 2);
@@ -520,6 +566,8 @@ OfflineSpikeCrystalToOnlineMatch::OfflineSpikeCrystalToOnlineMatch(	const edm::P
 	h_rechit_spikes_energy_sFGVB1Em = fs->make<TH1F>("h_rechit_spikes_energy_sFGVB1Em", "h_rechit_spikes_energy_sFGVB1Em", 256, -0.5, 255.5);
 
 	h_rechit_spikes_match_to_ttonline_et = fs->make<TH1F>("h_rechit_spikes_match_to_ttonline_et", "h_rechit_spikes_match_to_ttonline_et", 256, -0.5, 255.5);
+	h_rechit_spikes_match_to_ttonline_barrel_et = fs->make<TH1F>("h_rechit_spikes_match_to_ttonline_barrel_et", "h_rechit_spikes_match_to_ttonline_barrel_et", 256, -0.5, 255.5);
+	h_rechit_spikes_match_to_ttonline_barrel_shbin_et = fs->make<TH1F>("h_rechit_spikes_match_to_ttonline_barrel_shbin_et", "h_rechit_spikes_match_to_ttonline_barrel_shbin_et", 257, -1, 256);
 	h_rechit_spikes_to_ttonline_et_sFGVB0On = fs->make<TH1F>("h_rechit_spikes_to_ttonline_et_sFGVB0On", "h_rechit_spikes_to_ttonline_et_sFGVB0On", 256, -0.5, 255.5);
 	h_rechit_spikes_to_ttonline_et_sFGVB1On = fs->make<TH1F>("h_rechit_spikes_to_ttonline_et_sFGVB1On", "h_rechit_spikes_to_ttonline_et_sFGVB1On", 256, -0.5, 255.5);
 	h_rechit_spikes_match_to_ttemulator_et = fs->make<TH1F>("h_rechit_spikes_match_to_ttemulator_et", "h_rechit_spikes_match_to_ttemulator_et", 256, -0.5, 255.5);
@@ -641,7 +689,7 @@ OfflineSpikeCrystalToOnlineMatch::OfflineSpikeCrystalToOnlineMatch(	const edm::P
 	h_l1em_saturated_Emul_Particles_index_map->GetXaxis()->SetTitle("ieta");
 	h_l1em_saturated_Emul_Particles_index_map->GetYaxis()->SetTitle("iphi");
 
-	//L1 EM Particles
+	//L1 EM Particles, ets
 	h_l1em_Emul_Particles_Isolated_et = fs->make<TH1F>("h_l1em_Emul_Particles_Isolated_et", "h_l1em_Emul_Particles_Isolated_et", 256, 0, 256);
 	h_l1em_Emul_Particles_NonIsolated_et = fs->make<TH1F>("h_l1em_Emul_Particles_NonIsolated_et", "h_l1em_Emul_Particles_NonIsolated_et", 256, 0, 256);
 	h_l1em_Online_Particles_Isolated_et = fs->make<TH1F>("h_l1em_Online_Particles_Isolated_et", "h_l1em_Online_Particles_Isolated_et", 256, 0, 256);
@@ -655,6 +703,32 @@ OfflineSpikeCrystalToOnlineMatch::OfflineSpikeCrystalToOnlineMatch(	const edm::P
 	h_l1em_Emul_Particles_Highest_et = fs->make<TH1F>("h_l1em_Emul_Particles_Highest_et", "h_l1em_Emul_Particles_Highest_et", 256, 0, 256);
 	h_l1em_Online_Particles_Highest_et = fs->make<TH1F>("h_l1em_Online_Particles_Highest_et", "h_l1em_Online_Particles_Highest_et", 256, 0, 256);
 
+	//with offline spikes
+	h_l1em_Emul_Particles_Highest_et_offline_spikes = fs->make<TH1F>("h_l1em_Emul_Particles_Highest_et_offline_spikes", "h_l1em_Emul_Particles_Highest_et_offline_spikes", 256, 0, 256);
+	h_l1em_Online_Particles_Highest_et_offline_spikes = fs->make<TH1F>("h_l1em_Online_Particles_Highest_et_offline_spikes", "h_l1em_Online_Particles_Highest_et_offline_spikes", 256, 0, 256);
+	h_l1em_Emul_Particles_et_offline_spikes = fs->make<TH1F>("h_l1em_Emul_Particles_et_offline_spikes", "h_l1em_Emul_Particles_et_offline_spikes", 256, 0, 256);
+	h_l1em_Online_Particles_et_offline_spikes = fs->make<TH1F>("h_l1em_Online_Particles_et_offline_spikes", "h_l1em_Online_Particles_et_offline_spikes", 256, 0, 256);
+	h_l1em_Online_spikes_killed_et = fs->make<TH1F>("h_l1em_Online_spikes_killed_et", "h_l1em_Online_spikes_killed_et", 256, 0, 256);
+
+
+	//offline spikes filter and spiky EG5 removal
+	h_l1em_Emul_Particles_Highest_et_offline_spikes_filter_spikyEG5 = fs->make<TH1F>("h_l1em_Emul_Particles_Highest_et_offline_spikes_filter_spikyEG5", "h_l1em_Emul_Particles_Highest_et_offline_spikes_filter_spikyEG5", 256, 0, 256);
+	h_l1em_Online_Particles_Highest_et_offline_spikes_filter_spikyEG5 = fs->make<TH1F>("h_l1em_Online_Particles_Highest_et_offline_spikes_filter_spikyEG5", "h_l1em_Online_Particles_Highest_et_offline_spikes_filter_spikyEG5", 256, 0, 256);
+	h_l1em_Emul_Particles_et_offline_spikes_filter_spikyEG5 = fs->make<TH1F>("h_l1em_Emul_Particles_et_offline_spikes_filter_spikyEG5", "h_l1em_Emul_Particles_et_offline_spikes_filter_spikyEG5", 256, 0, 256);
+	h_l1em_Online_Particles_et_offline_spikes_filter_spikyEG5 = fs->make<TH1F>("h_l1em_Online_Particles_et_offline_spikes_filter_spikyEG5", "h_l1em_Online_Particles_et_offline_spikes_filter_spikyEG5", 256, 0, 256);
+
+	//with removal of events with new spikes in GeV [12 , new TT killing threshold]
+	h_l1em_Emul_Particles_Highest_et_filter_spikyEG5 = fs->make<TH1F>("h_l1em_Emul_Particles_Highest_et_filter_spikyEG5", "h_l1em_Emul_Particles_Highest_et_filter_spikyEG5", 256, 0, 256);
+	h_l1em_Online_Particles_Highest_et_filter_spikyEG5 = fs->make<TH1F>("h_l1em_Online_Particles_Highest_et_filter_spikyEG5", "h_l1em_Online_Particles_Highest_et_filter_spikyEG5", 256, 0, 256);
+	h_l1em_Emul_Particles_et_filter_spikyEG5 = fs->make<TH1F>("h_l1em_Emul_Particles_et_filter_spikyEG5", "h_l1em_Emul_Particles_et_filter_spikyEG5", 256, 0, 256);
+	h_l1em_Online_Particles_et_filter_spikyEG5 = fs->make<TH1F>("h_l1em_Online_Particles_et_filter_spikyEG5", "h_l1em_Online_Particles_et_filter_spikyEG5", 256, 0, 256);
+
+	//with removal of events with new spikes in GeV [12 , new TT killing threshold], filter by trigger bit
+	h_l1em_Emul_Particles_Highest_et_filter_spikyEG5_by_trigger_bit = fs->make<TH1F>("h_l1em_Emul_Particles_Highest_et_filter_spikyEG5_by_trigger_bit", "h_l1em_Emul_Particles_Highest_et_filter_spikyEG5_by_trigger_bit", 256, 0, 256);
+	h_l1em_Online_Particles_Highest_et_filter_spikyEG5_by_trigger_bit = fs->make<TH1F>("h_l1em_Online_Particles_Highest_et_filter_spikyEG5_by_trigger_bit", "h_l1em_Online_Particles_Highest_et_filter_spikyEG5_by_trigger_bit", 256, 0, 256);
+	h_l1em_Emul_Particles_et_filter_spikyEG5_by_trigger_bit = fs->make<TH1F>("h_l1em_Emul_Particles_et_filter_spikyEG5_by_trigger_bit", "h_l1em_Emul_Particles_et_filter_spikyEG5_by_trigger_bit", 256, 0, 256);
+	h_l1em_Online_Particles_et_filter_spikyEG5_by_trigger_bit = fs->make<TH1F>("h_l1em_Online_Particles_et_filter_spikyEG5_by_trigger_bit", "h_l1em_Online_Particles_et_filter_spikyEG5_by_trigger_bit", 256, 0, 256);
+
 	h_l1em_Emul_Particles_noBadTowerCut_et = fs->make<TH1F>("h_l1em_Emul_Particles_noBadTowerCut_et", "h_l1em_Emul_Particles_noBadTowerCut_et", 256, 0, 256);
 	h_l1em_Online_Particles_noBadTowerCut_et = fs->make<TH1F>("h_l1em_Online_Particles_noBadTowerCut_et", "h_l1em_Online_Particles_noBadTowerCut_et", 256, 0, 256);
 	h_l1em_Emul_Particles_noBadTowerCut_eta1567_et = fs->make<TH1F>("h_l1em_Emul_Particles_noBadTowerCut_eta1567_et", "h_l1em_Emul_Particles_noBadTowerCut_eta1567_et", 256, 0, 256);
@@ -663,7 +737,7 @@ OfflineSpikeCrystalToOnlineMatch::OfflineSpikeCrystalToOnlineMatch(	const edm::P
 	h_l1em_Online_Particles_noBadTowerCut_barrel_et = fs->make<TH1F>("h_l1em_Online_Particles_noBadTowerCut_barrel_et", "h_l1em_Online_Particles_noBadTowerCut_barrel_et", 256, 0, 256);
 
 
-	//L1 EM Particles
+	//L1 EM Particles, energies
 	h_l1em_Emul_Particles_Isolated_energy = fs->make<TH1F>("h_l1em_Emul_Particles_Isolated_energy", "h_l1em_Emul_Particles_Isolated_energy", 256, 0, 256);
 	h_l1em_Emul_Particles_NonIsolated_energy = fs->make<TH1F>("h_l1em_Emul_Particles_NonIsolated_energy", "h_l1em_Emul_Particles_NonIsolated_energy", 256, 0, 256);
 	h_l1em_Online_Particles_Isolated_energy = fs->make<TH1F>("h_l1em_Online_Particles_Isolated_energy", "h_l1em_Online_Particles_Isolated_energy", 256, 0, 256);
@@ -918,24 +992,24 @@ void OfflineSpikeCrystalToOnlineMatch::analyze(const edm::Event& iEvent,
 
 		}// if EmulatorCompressedEt > 0
 
-		// Hunt for hot tower
-		if ( (EmulatorCompressedEt == 132) ||
-			 (EmulatorCompressedEt == 48)  ||
-			 (EmulatorCompressedEt == 192)  ||
-			 (EmulatorCompressedEt == 240)  ||
-			 (EmulatorCompressedEt == 248)  ||
-			 (EmulatorCompressedEt == 255)
-				) {
-			cout << emTP_it;
-
-			EcalTrigPrimDigiCollection::const_iterator onlineMatch_it;
-			onlineMatch_it = onlineTPs.find(emTP_it.id());
-
-			cout << "Online:" << endl;
-			cout << *onlineMatch_it;
-			cout <<"Masked flag: " << MaskedFlag << endl << endl;
-
-		}
+//		// Hunt for hot tower
+//		if ( (EmulatorCompressedEt == 132) ||
+//			 (EmulatorCompressedEt == 48)  ||
+//			 (EmulatorCompressedEt == 192)  ||
+//			 (EmulatorCompressedEt == 240)  ||
+//			 (EmulatorCompressedEt == 248)  ||
+//			 (EmulatorCompressedEt == 255)
+//				) {
+//			cout << emTP_it;
+//
+//			EcalTrigPrimDigiCollection::const_iterator onlineMatch_it;
+//			onlineMatch_it = onlineTPs.find(emTP_it.id());
+//
+//			cout << "Online:" << endl;
+//			cout << *onlineMatch_it;
+//			cout <<"Masked flag: " << MaskedFlag << endl << endl;
+//
+//		}
 		}//loop over emulator TPGs
 
 
@@ -1566,6 +1640,9 @@ if (do_rechit_spikes_search_ || do_reconstruct_amplitudes_spikes_) {
 				onlineMatchForSpike_it = onlineTPs.find(towid);
 				if (onlineMatchForSpike_it != onlineTPs.end()) {
 					double rechit_spikes_match_to_ttonline_et;
+					int online_match_tt_ieta = onlineMatchForSpike_it->id().ieta();
+					int online_match_tt_iphi = onlineMatchForSpike_it->id().iphi();
+
 					rechit_spikes_match_to_ttonline_et = onlineMatchForSpike_it->compressedEt();
 
 					h_rechit_spikes_et_FoundInOnlineTTs->Fill(rechit_spikes_et);
@@ -1587,6 +1664,10 @@ if (do_rechit_spikes_search_ || do_reconstruct_amplitudes_spikes_) {
 
 					if (rechit_spikes_match_to_ttonline_et > 0 ) {
 						h_rechit_spikes_match_to_ttonline_et->Fill(	rechit_spikes_match_to_ttonline_et );
+						if ( (-18 < online_match_tt_ieta) && (online_match_tt_ieta < 18) ){
+							h_rechit_spikes_match_to_ttonline_barrel_et->Fill(rechit_spikes_match_to_ttonline_et);
+							h_rechit_spikes_match_to_ttonline_barrel_shbin_et->Fill(rechit_spikes_match_to_ttonline_et);
+						}
 
 						if (sFGVB == 0) {
 							//std::cout << "sFGVB=0" << std::endl;
@@ -1740,10 +1821,16 @@ if (do_l1extraparticles_){
 				map<double, l1extra::L1EmParticleCollection::const_iterator> map_Ets_candidates_Online;
 				map<double, l1extra::L1EmParticleCollection::const_iterator> map_Ets_candidates_Emul;
 
+
+				// Vector of iterators to  on L1 candidates
+//				vector<l1extra::L1EmParticle*> v_L1CandidatesOnline;
+//				vector<l1extra::L1EmParticle*> v_L1CandidatesEmulated;
+				vector<l1extra::L1EmParticleCollection::const_iterator> v_L1CandidatesOnline;
+				vector<l1extra::L1EmParticleCollection::const_iterator> v_L1CandidatesEmulated;
+
 				//// Fill histograms and Ets vectors
 				//Browse online Isolated collection
 				for( l1extra::L1EmParticleCollection::const_iterator emItr = emIsolColl->begin(); emItr != emIsolColl->end() ;++emItr) {
-
 						h_l1em_Online_Particles_noBadTowerCut_et->Fill( emItr->et() );
 						if ( (emItr->eta() < 1.479) && (emItr->eta() > -1.479) )
 							h_l1em_Online_Particles_noBadTowerCut_barrel_et->Fill( emItr->et() );
@@ -1765,6 +1852,7 @@ if (do_l1extraparticles_){
 								l1CandidatesEnergies_Online.push_back(emItr->energy());
 								l1CandidatesEts_Online.push_back(emItr->et());
 								map_Ets_candidates_Online[emItr->et()]=emItr;
+								v_L1CandidatesOnline.push_back(emItr);
 						}
 						if ( (emItr->eta() < 1.567) && (emItr->eta() > -1.567) )
 								h_l1em_Online_Particles_eta1567_et->Fill( emItr->et() );
@@ -1801,6 +1889,7 @@ if (do_l1extraparticles_){
 										l1CandidatesEnergies_Online.push_back(emItr->energy());
 										l1CandidatesEts_Online.push_back(emItr->et());
 										map_Ets_candidates_Online[emItr->et()]=emItr;
+										v_L1CandidatesOnline.push_back(emItr);
 						}
 						if ( (emItr->eta() < 1.567) && (emItr->eta() > -1.567) )
 								h_l1em_Online_Particles_eta1567_et->Fill( emItr->et() );
@@ -1837,6 +1926,7 @@ if (do_l1extraparticles_){
 										l1CandidatesEnergies_Emulated.push_back(emItr->energy());
 										l1CandidatesEts_Emulated.push_back(emItr->et());
 										map_Ets_candidates_Emul[emItr->et()]=emItr;
+										v_L1CandidatesEmulated.push_back(emItr);
 						}
 						if ( (emItr->eta() < 1.567) && (emItr->eta() > -1.567) )
 								h_l1em_Emul_Particles_eta1567_et->Fill( emItr->et() );
@@ -1876,6 +1966,7 @@ if (do_l1extraparticles_){
 										l1CandidatesEnergies_Emulated.push_back(emItr->energy());
 										l1CandidatesEts_Emulated.push_back(emItr->et());
 										map_Ets_candidates_Emul[emItr->et()]=emItr;
+										v_L1CandidatesEmulated.push_back(emItr);
 						}
 						if ( (emItr->eta() < 1.567) && (emItr->eta() > -1.567) )
 								h_l1em_Emul_Particles_eta1567_et->Fill( emItr->et() );
@@ -1890,7 +1981,7 @@ if (do_l1extraparticles_){
 																						emItr->gctEmCand()->regionId().iphi());
 					}
 
-				// Sort collection of L1 candidates Ets and fill highest Et histograms
+				// Sort collection of L1 candidates Ets and fill histograms with highest Et candidates
 				if (l1CandidatesEnergies_Online.size() > 0){
 					std::sort(l1CandidatesEnergies_Online.begin(), l1CandidatesEnergies_Online.end());
 				//	cout<<"L1 Online energy highest: "<< l1CandidatesEnergies_Online.back()<<endl;
@@ -1913,63 +2004,46 @@ if (do_l1extraparticles_){
 					h_l1em_Emul_Particles_Highest_et->Fill(l1CandidatesEts_Emulated.back());
 				}
 
+
 				h_l1Candides_N_Online->Fill(l1CandidatesEts_Online.size());
 				h_l1Candides_N_Emul->Fill(l1CandidatesEts_Emulated.size());
 				h_l1Candides_N_difference->Fill(l1CandidatesEts_Online.size()-l1CandidatesEts_Emulated.size());
 
 //				if (l1CandidatesEts_Online.size() > 0){
 //					if (l1CandidatesEts_Emulated.size()==0){
-				if (l1CandidatesEts_Emulated.size()!=0){
-					if ( (l1CandidatesEts_Emulated.back() >= 12 ) && ( l1CandidatesEts_Emulated.back() <= 18 ) ){
-						bool cout_event = false;
-						if ( l1CandidatesEts_Online.size()!=0 ) {
-							if ( (l1CandidatesEts_Online.back() < 12 ) || (l1CandidatesEts_Online.back() > 18 ) ) cout_event = true;
-						}
-						if ( l1CandidatesEts_Online.size()==0 )	cout_event = true;
-						if (cout_event){
-							cout << "Emul et [12,18]; online et <12 || >18 :" << endl;
-							cout << "EventN : "<< iEvent.id().event() << endl << endl;
-							cout << "online highest Et:" << l1CandidatesEts_Online.back() << endl;
-							cout << "emulated highest Et:" << l1CandidatesEts_Emulated.back() << endl;
-							for (auto it: l1CandidatesEts_Online){
-								cout << "OnlineEt : " << it << endl;
-							}
-//							cout << "Online candidates:" << endl;
-//							cout_all_L1Extra_candidates(map_Ets_candidates_Online);
-//							cout << endl;
-//							cout << "Emul candidates:" << endl;
-//							cout_all_L1Extra_candidates(map_Ets_candidates_Emul);
-//							cout << endl;
-							cout_all_L1Extra_candidates(emIsolColl, emNonisolColl, emIsolColl_M, emNonisolColl_M);
-
-//							cout << " Online : "<< endl;
-//							for (auto it : l1CandidatesEts_Online){
-//								cout << " Et : " << it << endl;
+//				if (l1CandidatesEts_Emulated.size()!=0){
+//					if ( (l1CandidatesEts_Emulated.back() >= 12 ) && ( l1CandidatesEts_Emulated.back() <= 18 ) ){
+//						bool cout_event = false;
+//						if ( l1CandidatesEts_Online.size()!=0 ) {
+//							if ( (l1CandidatesEts_Online.back() < 12 ) || (l1CandidatesEts_Online.back() > 18 ) ) cout_event = true;
+//						}
+//						if ( l1CandidatesEts_Online.size()==0 )	cout_event = true;
+//						if (cout_event){
+//							cout << "Emul et [12,18]; online et <12 || >18 :" << endl;
+//							cout << "EventN : "<< iEvent.id().event() << endl << endl;
+//							cout << "online highest Et:" << l1CandidatesEts_Online.back() << endl;
+//							cout << "emulated highest Et:" << l1CandidatesEts_Emulated.back() << endl;
+//							for (auto it: l1CandidatesEts_Online){
+//								cout << "OnlineEt : " << it << endl;
 //							}
-//							cout << " Emulated : "<< endl;
-//							for (auto it : l1CandidatesEts_Emulated){
-//								cout << " Et : " << it << endl;
-						}
-					}
-				}
-
-											//HLT TriggerPath
-												edm::Handle<edm::TriggerResults> triggerBits;
-											//				edm::Handle<pat::TriggerObjectStandAloneCollection> triggerObjects;
-											//				edm::Handle<pat::PackedTriggerPrescales> triggerPrescales;
-
-												iEvent.getByToken(triggerBits_, triggerBits);
-											//				iEvent.getByToken(triggerObjects_, triggerObjects);
-											//				iEvent.getByToken(triggerPrescales_, triggerPrescales);
-
-												const edm::TriggerNames &names = iEvent.triggerNames(*triggerBits);
-												std::cout << "\n === TRIGGER PATHS === " << std::endl;
-												for (unsigned int i = 0, n = triggerBits->size(); i < n; ++i) {
-													std::cout << "Trigger " << names.triggerName(i) <<
-											//			                ", prescale " << triggerPrescales->getPrescaleForIndex(i) <<
-															": " << (triggerBits->accept(i) ? "PASS" : "fail (or not run)")
-															<< std::endl;
-												}
+////							cout << "Online candidates:" << endl;
+////							cout_all_L1Extra_candidates(map_Ets_candidates_Online);
+////							cout << endl;
+////							cout << "Emul candidates:" << endl;
+////							cout_all_L1Extra_candidates(map_Ets_candidates_Emul);
+////							cout << endl;
+//							cout_all_L1Extra_candidates(emIsolColl, emNonisolColl, emIsolColl_M, emNonisolColl_M);
+//
+////							cout << " Online : "<< endl;
+////							for (auto it : l1CandidatesEts_Online){
+////								cout << " Et : " << it << endl;
+////							}
+////							cout << " Emulated : "<< endl;
+////							for (auto it : l1CandidatesEts_Emulated){
+////								cout << " Et : " << it << endl;
+//						}
+//					}
+//				} // if Ets.size>0
 
 
 //				if ( (l1CandidatesEts_Online.size() == 1 ) &&
@@ -2033,12 +2107,100 @@ if (do_l1extraparticles_){
 
 				}
 
+
+				//// Fill histograms which have specific cuts. ////////////////////////////////////////////
+
+				//Sort vectors with iterators on L1 Candidates
+				//(Optimize with previous code sorting)
+				double L1OnlineHighestEt, L1EmulatedHighestEt;
+				L1OnlineHighestEt = 0 ;
+				L1EmulatedHighestEt = 0;
+				if (v_L1CandidatesOnline.size() > 0){
+					std::sort(v_L1CandidatesOnline.begin(), v_L1CandidatesOnline.end(), SortL1CandidatesByEt);
+					L1OnlineHighestEt = v_L1CandidatesOnline.back()->et();
+				}
+				if (v_L1CandidatesEmulated.size() > 0) {
+					std::sort(v_L1CandidatesEmulated.begin(), v_L1CandidatesEmulated.end(), SortL1CandidatesByEt);
+					L1EmulatedHighestEt = v_L1CandidatesEmulated.back()->et();
+				}
+
+				//Cut out event if
+				//OnlineHighestEt < EmulatedHighestEt; and EmulatedHighestEt in range [12,killingthreshold]GeV
+				bool spike_appeared_after_inc_killThreshold=false;
+				if ( (L1OnlineHighestEt < L1EmulatedHighestEt) &&
+									 ( (L1EmulatedHighestEt >= 12) && (L1EmulatedHighestEt <= TPG_spike_killing_threshold_) )
+									 ) spike_appeared_after_inc_killThreshold=true;
+				if ( !spike_appeared_after_inc_killThreshold ){
+
+					if (v_L1CandidatesEmulated.size() > 0) {
+						h_l1em_Emul_Particles_Highest_et_filter_spikyEG5->Fill(L1EmulatedHighestEt);
+						for (auto it:v_L1CandidatesEmulated){
+							h_l1em_Emul_Particles_et_filter_spikyEG5->Fill(it->et());
+						}
+					}
+					if (v_L1CandidatesOnline.size() > 0) {
+						h_l1em_Online_Particles_Highest_et_filter_spikyEG5->Fill(L1OnlineHighestEt);
+						for (auto it:v_L1CandidatesOnline){
+							h_l1em_Online_Particles_et_filter_spikyEG5->Fill(it->et());
+						}
+					}
+				} // if !spike_appeared_after_inc_killThreshold
+
+				// If there is offline spike in L1 Candidate region
+				if (v_L1CandidatesOnline.size() > 0){
+					if (map_RCT_regs_with_offline_spikes[v_L1CandidatesOnline.back()->gctEmCand()->regionId()]) {
+						h_l1em_Online_Particles_Highest_et_offline_spikes->Fill(v_L1CandidatesOnline.back()->et());
+						if (!spike_appeared_after_inc_killThreshold)
+							h_l1em_Online_Particles_Highest_et_filter_spikyEG5_by_trigger_bit->Fill(v_L1CandidatesOnline.back()->et());
+					}
+				}
+				if (v_L1CandidatesEmulated.size() > 0){
+					if (map_RCT_regs_with_offline_spikes[v_L1CandidatesEmulated.back()->gctEmCand()->regionId()]){
+						h_l1em_Emul_Particles_Highest_et_offline_spikes->Fill(v_L1CandidatesEmulated.back()->et());
+						if (!spike_appeared_after_inc_killThreshold)
+							h_l1em_Emul_Particles_Highest_et_filter_spikyEG5_by_trigger_bit->Fill(v_L1CandidatesOnline.back()->et());
+					}
+				}
+				for (auto L1cand_it : v_L1CandidatesOnline){
+					//if there is spike in the region
+					if ( map_RCT_regs_with_offline_spikes[L1cand_it->gctEmCand()->regionId()] ){
+						h_l1em_Online_Particles_et_offline_spikes->Fill(L1cand_it->et());
+						if (!spike_appeared_after_inc_killThreshold)
+							h_l1em_Online_Particles_et_filter_spikyEG5_by_trigger_bit->Fill(L1cand_it->et());
+						// Check that this Online spike was killed during emulation.
+						bool spikeIsPresentInEmulation = false;
+						for (auto emul_L1_cand_it: v_L1CandidatesEmulated){
+							if (emul_L1_cand_it == L1cand_it){
+								spikeIsPresentInEmulation=true;
+								break;
+							}
+						}
+						if (!spikeIsPresentInEmulation)
+							h_l1em_Online_spikes_killed_et->Fill(L1cand_it->et());
+					}
+				}
+				for (auto L1cand_it : v_L1CandidatesEmulated){
+					//if there is spike in the region
+					if ( map_RCT_regs_with_offline_spikes[L1cand_it->gctEmCand()->regionId()] ){
+							h_l1em_Emul_Particles_et_offline_spikes->Fill(L1cand_it->et());
+							if (!spike_appeared_after_inc_killThreshold)
+								h_l1em_Emul_Particles_et_filter_spikyEG5_by_trigger_bit->Fill(L1cand_it->et());
+					}
+				}
+
+//				TH1F *h_l1em_Emul_Particles_Highest_et_filter_spikyEG5_by_trigger_bit;
+//					TH1F *h_l1em_Online_Particles_Highest_et_filter_spikyEG5_by_trigger_bit;
+//					TH1F *h_l1em_Emul_Particles_et_filter_spikyEG5_by_trigger_bit;
+//					TH1F *h_l1em_Online_Particles_et_filter_spikyEG5_by_trigger_bit;
+
+
 //				if (iEvent.id().event() == 13077624){
 //					cout_all_L1Extra_candidates(emIsolColl, emNonisolColl, emIsolColl_M, emNonisolColl_M);
 //				}
 
 		   };//if processL1extraParticles
 }//if do_l1extraparticles
+
 
 //// cout RCT regions with offline spikes (RecHit sev=3 or sev=4)
 //for (auto RCT_it : map_RCT_regs_with_offline_spikes){
@@ -2052,8 +2214,33 @@ if (do_l1extraparticles_){
 
 //	mytree->Fill();
 
+//
+////HLT TriggerPath
+//	edm::Handle<edm::TriggerResults> triggerBits;
+////				edm::Handle<pat::TriggerObjectStandAloneCollection> triggerObjects;
+////				edm::Handle<pat::PackedTriggerPrescales> triggerPrescales;
+//
+//	iEvent.getByToken(triggerBits_, triggerBits);
+////				iEvent.getByToken(triggerObjects_, triggerObjects);
+////				iEvent.getByToken(triggerPrescales_, triggerPrescales);
+//
+//	const edm::TriggerNames &names = iEvent.triggerNames(*triggerBits);
+//	std::cout << "\n === TRIGGER PATHS === " << std::endl;
+//	for (unsigned int i = 0, n = triggerBits->size(); i < n; ++i) {
+//		std::cout << "Trigger " << names.triggerName(i) <<
+////			                ", prescale " << triggerPrescales->getPrescaleForIndex(i) <<
+//				": " << (triggerBits->accept(i) ? "PASS" : "fail (or not run)")
+//				<< std::endl;
+//	}
 
 }
+
+//bool OfflineSpikeCrystalToOnlineMatch::SortL1CandidatesByEt(const l1extra::L1EmParticleCollection::const_iterator &lhCand,
+bool SortL1CandidatesByEt(const l1extra::L1EmParticleCollection::const_iterator &lhCand,
+		const l1extra::L1EmParticleCollection::const_iterator &rhCand){
+	return (lhCand->et() < rhCand->et() );
+};
+
 
 void OfflineSpikeCrystalToOnlineMatch::cout_L1Extra_candidate(l1extra::L1EmParticleCollection::const_iterator & it_l1extra){
 	cout << "Et : " << it_l1extra->et()

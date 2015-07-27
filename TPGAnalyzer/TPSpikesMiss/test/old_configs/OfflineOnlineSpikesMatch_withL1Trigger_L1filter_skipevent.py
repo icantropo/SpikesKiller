@@ -25,7 +25,7 @@ process.load("EventFilter.EcalRawToDigi.EcalUnpackerData_cfi");
 process.ecalEBunpacker.InputLabel = cms.InputTag('rawDataCollector');
 process.load("RecoLocalCalo.EcalRecAlgos.EcalSeverityLevelESProducer_cfi")
 
-process.maxEvents = cms.untracked.PSet( input = cms.untracked.int32(-1) )
+process.maxEvents = cms.untracked.PSet(input = cms.untracked.int32(100))
 
 # Production Info
 process.configurationMetadata = cms.untracked.PSet(
@@ -49,17 +49,13 @@ process.source = cms.Source("PoolSource",
         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/A00208B1-02C3-E111-A907-001D09F24D67.root',
         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/BAB0D134-06C3-E111-A9DE-001D09F2960F.root',
         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/FCFCCD7A-FEC2-E111-81AF-001D09F2462D.root',
-        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/199/276/827A5303-1BD1-E111-8B71-002481E0CC00.root'
-        
-#       ZeroBias filtered -> Offline spikes
-#         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test/371aa169538416419fdcbb2bba27730c/RecHitSpikesZeroBias1_Run2012C_RAW_1_1_0ZL.root'
-#         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test_2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_5_1_Mq0.root',
-#         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test_2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_1_1_qXs.root'
-
-#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/588/AA1AFC57-1BCA-E111-B408-003048F110BE.root',
-#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/588/DEE0C78B-1CCA-E111-AF34-003048F024DE.root',
-#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/022/BE01FBFE-DAC3-E111-BD8B-001D09F2915A.root'
+        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/199/276/827A5303-1BD1-E111-8B71-002481E0CC00.root',
+        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/588/AA1AFC57-1BCA-E111-B408-003048F110BE.root',
+        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/588/DEE0C78B-1CCA-E111-AF34-003048F024DE.root',
+        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/022/BE01FBFE-DAC3-E111-BD8B-001D09F2915A.root'
 #         'file:/home/llr/cms/antropov/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root'
+#         '/store/user/iantropo/ZeroBias1/Run2012C_v1_RAW_Spikes_v2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_97_1_kiA.root',
+#       ZeroBias filtered -> Offline spikes
 #         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test/371aa169538416419fdcbb2bba27730c/RecHitSpikesZeroBias1_Run2012C_RAW_1_1_0ZL.root'
 #         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test_2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_5_1_Mq0.root'
 #         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test_2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_1_1_qXs.rootcd vb'
@@ -71,7 +67,7 @@ process.source = cms.Source("PoolSource",
 #         '/store/user/iantropo/ZeroBias1/Run2012C_v1_RAW_Spikes_v2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_2765_1_y6E.root',
 #         '/store/user/iantropo/ZeroBias1/Run2012C_v1_RAW_Spikes_v2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_2744_1_zyj.root'
     )
-#     ,skipEvents=cms.untracked.uint32(40000)
+     ,skipEvents = cms.untracked.uint32(8100)
 )
 
 # to emulate with default parameters
@@ -153,13 +149,11 @@ process.OfflineSpikeCrystalToOnlineMatch = cms.EDAnalyzer('OfflineSpikeCrystalTo
                               do_l1extraparticles=cms.bool(True),
                               do_l1EG5Cut=cms.bool(False),
                               bits=cms.InputTag("TriggerResults","","HLT"),
-                              L1GlobalReadoutRecord = cms.InputTag("gtDigis"),
-                              sFGVB_threshold = cms.int32(12),
-                              spike_killing_threshold = cms.int32(18)
+                              L1GlobalReadoutRecord = cms.InputTag("gtDigis")
                               )
 
 process.TFileService = cms.Service ("TFileService",
-                                    fileName = cms.string ("SpikesEmulation2.root")
+                                    fileName = cms.string ("SpikesEmulation.root")
                                     )
 
 # Output definition
@@ -229,12 +223,20 @@ process.endjob_step = cms.EndPath(process.endOfProcess)
 #process.schedule = cms.Schedule(process.L1Reco_step,process.endjob_step, process.p)#,process.RECOSIMoutput_step)
 #process.schedule = cms.Schedule(process.L1Reco_step,process.endjob_step)#,process.RECOSIMoutput_step)
 
+#Filter L1 Trigger events
+
+process.load('L1Trigger.Skimmer.l1Filter_cfi')
+# process.l1Filter.algorithms = cms.vstring('L1_SingleEG15', 'L1_SingleEG20')
+# process.l1Filter.inputTag = cms.InputTag('hltL1GtObjectMap')
+process.l1Filter.algorithms = cms.vstring('L1_SingleEG5')
+
 process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
 process.RawToDigi.remove(process.siStripDigis)
 
 process.p = cms.Path(
                      process.RawToDigi +
+                     process.l1Filter +
                      process.ecalEBunpacker + 
                      process.simEcalTriggerPrimitiveDigis + 
                      process.simRctDigis +

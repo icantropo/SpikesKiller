@@ -43,23 +43,20 @@ process.GlobalTag = GlobalTag(process.GlobalTag, 'auto:com10', '')
 
 process.source = cms.Source("PoolSource",
     fileNames = cms.untracked.vstring(
-        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root',
-        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/80AC1792-00C3-E111-B1DD-001D09F24FEC.root',
-        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/848BBF77-58C3-E111-AC7C-001D09F2437B.root',
-        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/A00208B1-02C3-E111-A907-001D09F24D67.root',
-        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/BAB0D134-06C3-E111-A9DE-001D09F2960F.root',
-        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/FCFCCD7A-FEC2-E111-81AF-001D09F2462D.root',
-        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/199/276/827A5303-1BD1-E111-8B71-002481E0CC00.root'
-        
-#       ZeroBias filtered -> Offline spikes
-#         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test/371aa169538416419fdcbb2bba27730c/RecHitSpikesZeroBias1_Run2012C_RAW_1_1_0ZL.root'
-#         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test_2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_5_1_Mq0.root',
-#         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test_2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_1_1_qXs.root'
-
-#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/588/AA1AFC57-1BCA-E111-B408-003048F110BE.root',
-#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/588/DEE0C78B-1CCA-E111-AF34-003048F024DE.root',
-#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/022/BE01FBFE-DAC3-E111-BD8B-001D09F2915A.root'
+#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root',
+#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/80AC1792-00C3-E111-B1DD-001D09F24FEC.root',
+#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/848BBF77-58C3-E111-AC7C-001D09F2437B.root',
+#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/A00208B1-02C3-E111-A907-001D09F24D67.root',
+#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/BAB0D134-06C3-E111-A9DE-001D09F2960F.root',
+#         '/store/data/Run2012C/ZeroBias1/RAW/v1/000/197/923/FCFCCD7A-FEC2-E111-81AF-001D09F2462D.root',
+        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/199/276/827A5303-1BD1-E111-8B71-002481E0CC00.root',
+        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/588/AA1AFC57-1BCA-E111-B408-003048F110BE.root',
+        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/588/DEE0C78B-1CCA-E111-AF34-003048F024DE.root',
+        '/store/data/Run2012C/ZeroBias1/RAW/v1/000/198/022/BE01FBFE-DAC3-E111-BD8B-001D09F2915A.root'
+#         'file:/afs/cern.ch/cms/CAF/CMSCOMM/COMM_ECAL/azabi/F0B823DE-763B-E211-A312-0025905964B2.root'
 #         'file:/home/llr/cms/antropov/Run2012C/ZeroBias1/RAW/v1/000/197/923/2A0B6407-09C3-E111-928B-001D09F29533.root'
+#         '/store/user/iantropo/ZeroBias1/Run2012C_v1_RAW_Spikes_v2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_97_1_kiA.root',
+#       ZeroBias filtered -> Offline spikes
 #         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test/371aa169538416419fdcbb2bba27730c/RecHitSpikesZeroBias1_Run2012C_RAW_1_1_0ZL.root'
 #         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test_2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_5_1_Mq0.root'
 #         '/store/user/iantropo/ZeroBias1/Run2012C-v1_RAW_Spikes_publish_test_2/71fb363099bf4cf205945e9168ab2c25/RecHitSpikesZeroBias1_Run2012C_RAW_1_1_qXs.rootcd vb'
@@ -159,7 +156,7 @@ process.OfflineSpikeCrystalToOnlineMatch = cms.EDAnalyzer('OfflineSpikeCrystalTo
                               )
 
 process.TFileService = cms.Service ("TFileService",
-                                    fileName = cms.string ("SpikesEmulation2.root")
+                                    fileName = cms.string ("SpikesEmulation.root")
                                     )
 
 # Output definition
@@ -206,7 +203,7 @@ process.L1Reco_step = cms.Path(process.L1Reco)
 process.reconstruction_step = cms.Path(process.reconstruction)
 process.ecallocalreco_step= cms.Path(process.ecalLocalRecoSequence)
 process.endjob_step = cms.EndPath(process.endOfProcess)
-                     
+
 # process.DumpOutput = cms.EndPath(process.FEVTDEBUGHLToutput)
 #process.RECOSIMoutput_step = cms.EndPath(process.RECOSIMoutput)  # write output
 
@@ -229,12 +226,19 @@ process.endjob_step = cms.EndPath(process.endOfProcess)
 #process.schedule = cms.Schedule(process.L1Reco_step,process.endjob_step, process.p)#,process.RECOSIMoutput_step)
 #process.schedule = cms.Schedule(process.L1Reco_step,process.endjob_step)#,process.RECOSIMoutput_step)
 
+#Filter L1 Trigger events
+
+process.load('L1Trigger.Skimmer.l1Filter_cfi')
+# process.l1Filter.algorithms = cms.vstring('L1_SingleEG15', 'L1_SingleEG20')
+# process.l1Filter.inputTag = cms.InputTag('hltL1GtObjectMap')
+process.l1Filter.algorithms = cms.vstring('L1_SingleEG5')
+
 process.MessageLogger.cerr.FwkReport.reportEvery = 100
 
-process.RawToDigi.remove(process.siStripDigis)
+# process.RawToDigi.remove(process.siStripDigis)
 
 process.p = cms.Path(
-                     process.RawToDigi +
+                     process.l1Filter +
                      process.ecalEBunpacker + 
                      process.simEcalTriggerPrimitiveDigis + 
                      process.simRctDigis +
@@ -245,5 +249,7 @@ process.p = cms.Path(
                      
                      process.OfflineSpikeCrystalToOnlineMatch
                      )
-process.schedule = cms.Schedule(process.p, process.endjob_step)#,process.RECOSIMoutput_step)
+# process.schedule = cms.Schedule(process.p, process.endjob_step)#,process.RECOSIMoutput_step)
 # process.schedule = cms.Schedule(process.p, process.endjob_step, process.KeepOutput)
+process.schedule = cms.Schedule(process.raw2digi_step,process.L1Reco_step,process.reconstruction_step,process.endjob_step, process.p)
+
